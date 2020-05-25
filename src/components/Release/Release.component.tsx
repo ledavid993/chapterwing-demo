@@ -126,7 +126,7 @@ export const ReleaseSkeleton = () => {
             <div>Second Coming</div>
           </Skeleton>
         </Box>
-        <Image src="/icons/overflowmenu.svg" />
+        <Image src="/icons/overflowmenu.svg" alt="overflowmenu" />
       </Flex>
     </Box>
   );

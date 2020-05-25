@@ -17,7 +17,8 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="chapterwing"
-          content="Read, write, and share novels. From indie novels to web novels. Start reading today"
+          content="Read, write, and share novels. From indie novels to web novels. Chapterwing is a
+           place for writers to share with readers and readers to discuss their favorite book"
         />
       </Head>
       <MenuBar onMenuBarOpen={onMenuBarOpen} />

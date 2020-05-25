@@ -113,7 +113,7 @@ export default function Home() {
                     <span>-</span> Bookmark your favorite book in one place
                   </p>
                 </Box>
-                <Image src="/icons/read.svg" />
+                <Image src="/icons/read.svg" alt="read" />
               </Flex>
             </Box>
             <Box margin="20px">
@@ -136,7 +136,7 @@ export default function Home() {
                     <span>-</span> Get pay to write your story
                   </p>
                 </Box>
-                <Image src="/icons/write.svg" />
+                <Image src="/icons/write.svg" alt="write" />
               </Flex>
             </Box>
             <Flex justifyContent="center" margin="15px 0">
