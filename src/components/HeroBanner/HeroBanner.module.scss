@@ -1,11 +1,12 @@
 .headerBackground {
   background: url(/banner.jpg) no-repeat center center;
   height: 50vh;
-  width: 100vw;
+  width: 100%;
   background-size: cover;
   position: relative;
   left: 0;
   z-index: -1;
+  box-sizing: border-box;
 
   section {
     width: 100%;

@@ -3,6 +3,7 @@ import { reject, isNil } from "ramda";
 import clsx from "clsx";
 import { IoMdLogIn, IoIosSearch } from "react-icons/io";
 import styles from "./SideBar.module.scss";
+import { useEffect } from "react";
 
 const config = {
   sectionDivider1: {
@@ -72,6 +73,14 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
       })
     );
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
 
   return (
     <Box

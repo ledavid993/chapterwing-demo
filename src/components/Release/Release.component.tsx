@@ -20,13 +20,7 @@ interface Props {
 
 const Release = ({ novel }) => {
   return (
-    <Box
-      w="100%"
-      className={styles.container}
-      padding="15px"
-      paddingBottom="5px"
-      boxSizing="border-box"
-    >
+    <Box w="100%" className={styles.container}>
       <Flex alignItems="center" height="100%">
         <Image
           src="https://cdn.novelupdates.com/imgmid/series_18089.jpg"

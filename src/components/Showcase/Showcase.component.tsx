@@ -15,7 +15,7 @@ const Showcase: React.FC<Props> = ({ style }) => {
   return (
     <>
       {!isEmpty(props.novels) ? (
-        <Box minHeight="200px" backgroundColor="#c4c4c410" style={style}>
+        <Box className={styles.container} style={style}>
           <div className={styles.heading}>
             <img src="/icons/feather.png" />
             <span>{props.title}</span>
@@ -66,7 +66,7 @@ const ShowcaseSkeleton = ({ style }) => {
   };
 
   return (
-    <Box minHeight="200px" backgroundColor="#c4c4c410" style={style}>
+    <Box className={styles.container} style={style}>
       <div className={styles.heading}>
         <img src="/icons/feather.png" />
         <span>{props.title}</span>

@@ -1,3 +1,8 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
 .content1 {
   color: #dfdfdf;
   width: 100%;
@@ -23,5 +28,17 @@
     color: #84b7c7;
     font-weight: bold;
     font-size: 12px;
+  }
+}
+
+@media (min-width: 812px) {
+  .container {
+    width: 75%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 1024px;
   }
 }

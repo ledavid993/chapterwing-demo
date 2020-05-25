@@ -53,3 +53,9 @@
   transform: translateX(0%);
   visibility: visible;
 }
+
+@media (min-width: 812px) {
+  .container {
+    width: 30%;
+  }
+}
