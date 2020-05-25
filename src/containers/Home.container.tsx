@@ -99,13 +99,13 @@ export default function Home() {
               >
                 Features to make your reading easier
                 <p>
-                  <span>></span> Bookmark your favorite book in one place
+                  <span>-</span> Bookmark your favorite book in one place
                 </p>
                 <p>
-                  <span>></span> Bookmark your favorite book in one place
+                  <span>-</span> Bookmark your favorite book in one place
                 </p>
                 <p>
-                  <span>></span> Bookmark your favorite book in one place
+                  <span>-</span> Bookmark your favorite book in one place
                 </p>
               </Box>
               <Image src="/icons/read.svg" />
