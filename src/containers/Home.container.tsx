@@ -122,13 +122,13 @@ export default function Home() {
               >
                 Start Writing Your Novel
                 <p>
-                  <span>></span> Tools to make your writing easier to manage
+                  <span>-</span> Tools to make your writing easier to manage
                 </p>
                 <p>
-                  <span>></span> Show others your story to thousands
+                  <span>-</span> Show others your story to thousands
                 </p>
                 <p>
-                  <span>></span> Get pay to write your story
+                  <span>-</span> Get pay to write your story
                 </p>
               </Box>
               <Image src="/icons/write.svg" />
