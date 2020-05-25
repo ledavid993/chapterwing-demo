@@ -6,6 +6,7 @@ import Discussion, {
   DiscussionSkeleton,
 } from "./Discussion/Discussion.component";
 import Release, { ReleaseSkeleton } from "./Release/Release.component";
+import Registry from "./Registry/Registry.component";
 
 export {
   Layout,
@@ -16,4 +17,5 @@ export {
   DiscussionSkeleton,
   Release,
   ReleaseSkeleton,
+  Registry,
 };

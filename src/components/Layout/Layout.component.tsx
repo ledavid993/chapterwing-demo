@@ -3,12 +3,19 @@ import Head from "next/head";
 import MenuBar from "../MenuBar/MenuBar.component";
 import SideBar from "../SideBar/SideBar.component";
 import Backdrop from "../Backdrop/Backdrop";
+import Registry from "../Registry/Registry.component";
 
 export default function Layout({ children }) {
   const {
     isOpen: isMenuBarOpen,
     onOpen: onMenuBarOpen,
     onClose: onMenuBarClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isRegistryOpen,
+    onOpen: onRegistryOpen,
+    onClose: onRegistryClose,
   } = useDisclosure();
 
   return (
@@ -21,9 +28,10 @@ export default function Layout({ children }) {
            place for writers to share with readers and readers to discuss their favorite book"
         />
       </Head>
-      <MenuBar onMenuBarOpen={onMenuBarOpen} />
+      <MenuBar onMenuBarOpen={onMenuBarOpen} onRegistryOpen={onRegistryOpen} />
       <Backdrop onClose={onMenuBarClose} isOpen={isMenuBarOpen} />
       <SideBar isOpen={isMenuBarOpen} />
+      <Registry isOpen={isRegistryOpen} onRegistryClose={onRegistryClose} />
       {children}
       <Box
         backgroundColor="#c4c4c420"
