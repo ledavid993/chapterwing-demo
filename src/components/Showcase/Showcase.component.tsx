@@ -17,7 +17,7 @@ const Showcase: React.FC<Props> = ({ style }) => {
       {!isEmpty(props.novels) ? (
         <Box className={styles.container} style={style}>
           <div className={styles.heading}>
-            <img src="/icons/feather.png" />
+            <img src="/icons/feather.png" alt="feather" />
             <span>{props.title}</span>
           </div>
           <Grid
@@ -68,7 +68,7 @@ const ShowcaseSkeleton = ({ style }) => {
   return (
     <Box className={styles.container} style={style}>
       <div className={styles.heading}>
-        <img src="/icons/feather.png" />
+        <img src="/icons/feather.png" alt="feather" />
         <span>{props.title}</span>
       </div>
       <Grid
