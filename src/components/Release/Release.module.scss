@@ -1,0 +1,14 @@
+.container {
+  background: #c4c4c410;
+  margin: 10px 0;
+  min-height: 80px;
+
+  span {
+    font-size: 10px;
+    color: #d3d3d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 4px;
+  }
+}

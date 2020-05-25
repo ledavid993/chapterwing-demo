@@ -1,0 +1,34 @@
+$fontSize: 25px;
+
+.container {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  justify-content: space-between;
+  z-index: 50;
+
+  div:first-of-type {
+    display: flex;
+    align-items: center;
+
+    svg {
+      font-size: $fontSize;
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      padding-left: 15px;
+      font-size: 20px;
+    }
+  }
+
+  svg {
+    font-size: $fontSize;
+  }
+}

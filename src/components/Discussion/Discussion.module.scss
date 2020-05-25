@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  display: flex;
+  margin: 10px 0;
+
+  .number {
+    height: 50px;
+    width: 40px;
+    min-width: 40px;
+    padding: 5px;
+    background: #c4c4c4;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .content {
+    padding-left: 16px;
+    height: auto;
+
+    h4 {
+      color: #d3d3d3;
+      font-weight: bold;
+    }
+
+    p {
+      color: #d3d3d3;
+      font-size: 0.8rem;
+      white-space: pre-line;
+    }
+  }
+}

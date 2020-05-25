@@ -1,0 +1,27 @@
+.content1 {
+  color: #dfdfdf;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 24px 0;
+
+  p {
+    padding: 8px 0;
+  }
+}
+
+.whysignup {
+  padding: 4px;
+  p {
+    font-size: 10px;
+  }
+
+  span {
+    padding-left: 15px;
+    color: #84b7c7;
+    font-weight: bold;
+    font-size: 12px;
+  }
+}
