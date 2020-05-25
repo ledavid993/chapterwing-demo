@@ -10,6 +10,7 @@
   transform: translateX(-115%);
   transition: all 0.2s ease-in-out;
   visibility: hidden;
+  overflow: auto;
 
   .extra {
     color: rgba(238, 238, 238, 0.6);
@@ -54,7 +55,7 @@
   visibility: visible;
 }
 
-@media (min-width: 812px) {
+@media (min-width: 730px) {
   .container {
     width: 30%;
   }
