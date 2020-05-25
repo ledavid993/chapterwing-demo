@@ -16,7 +16,7 @@ export default function Layout({ children }) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
-          name="Chapterwing - Homepage"
+          name="description"
           content="Read, write, and share novels. From indie novels to web novels. Chapterwing is a
            place for writers to share with readers and readers to discuss their favorite book"
         />
