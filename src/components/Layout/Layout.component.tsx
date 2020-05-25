@@ -1,4 +1,5 @@
 import { useDisclosure, Box, Text } from "@chakra-ui/core";
+import Head from "next/head";
 import MenuBar from "../MenuBar/MenuBar.component";
 import SideBar from "../SideBar/SideBar.component";
 import Backdrop from "../Backdrop/Backdrop";
@@ -12,6 +13,13 @@ export default function Layout({ children }) {
 
   return (
     <div>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="chapterwing"
+          content="Read, write, and share novels. From indie novels to web novels. Start reading today"
+        />
+      </Head>
       <MenuBar onMenuBarOpen={onMenuBarOpen} />
       <Backdrop onClose={onMenuBarClose} isOpen={isMenuBarOpen} />
       <SideBar isOpen={isMenuBarOpen} />
