@@ -40,6 +40,8 @@ export default function Layout({ children }) {
         justifyContent="center"
         flexDirection="column"
         padding="15px;"
+        position="relative"
+        bottom="0"
       >
         <Text fontSize="14px" color="white">
           chapterwing.@gmail.com

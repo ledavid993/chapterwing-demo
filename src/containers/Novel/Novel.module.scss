@@ -1,0 +1,44 @@
+.shade {
+  background: linear-gradient(
+    133.58deg,
+    rgba(6, 6, 6, 0.3) 18.73%,
+    rgba(196, 196, 196, 0) 122.05%
+  );
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+.stack {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+
+.paper {
+  width: 166px;
+  border-radius: 1px;
+  height: 250px;
+  position: absolute;
+  box-shadow: 0 2px 7px rgba(154, 160, 185, 0.05),
+    0 4px 10px rgba(166, 173, 201, 0.2);
+}
+
+.paper:nth-child(1) {
+  transform: rotate(14deg);
+  background: rgb(242, 242, 242);
+}
+
+.paper:nth-child(2) {
+  transform: rotate(-8deg);
+  background: rgb(245, 245, 245);
+}
+
+.paper:nth-child(3) {
+  transform: rotate(-3deg) translateY(10px);
+  background: rgb(246, 246, 246);
+}

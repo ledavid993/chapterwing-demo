@@ -9,7 +9,7 @@ import {
   DiscussionSkeleton,
   Release,
   ReleaseSkeleton,
-} from "../components";
+} from "../../components";
 import styles from "./Home.module.scss";
 
 const discussions = [
