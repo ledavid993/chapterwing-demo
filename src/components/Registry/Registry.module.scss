@@ -20,12 +20,12 @@
     align-items: center;
     width: 50%;
     flex-direction: column;
+    background: #dedede50;
   }
 }
 
-.active {
-  background: #dedede50;
-  width: 100%;
+.container .active {
+  background: #303030;
 }
 
 .lineSign {
