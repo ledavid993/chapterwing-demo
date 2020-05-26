@@ -24,21 +24,30 @@
   border-radius: 1px;
   height: 250px;
   position: absolute;
-  box-shadow: 0 2px 7px rgba(154, 160, 185, 0.05),
-    0 4px 10px rgba(166, 173, 201, 0.2);
+  box-shadow: 0 2px 2px rgba(154, 160, 185, 0.05),
+    0 2px 3px rgba(166, 173, 201, 0.2);
+
+  img {
+    box-shadow: 4px 3px 7px 1px rgba(0, 0, 0, 0.5);
+  }
 }
 
 .paper:nth-child(1) {
   transform: rotate(14deg);
-  background: rgb(242, 242, 242);
+  background: rgb(198, 198, 198);
 }
 
 .paper:nth-child(2) {
   transform: rotate(-8deg);
-  background: rgb(245, 245, 245);
+  background: rgb(212, 212, 212);
 }
 
 .paper:nth-child(3) {
   transform: rotate(-3deg) translateY(10px);
-  background: rgb(246, 246, 246);
+  background: rgb(221, 221, 221);
+}
+
+.paper:nth-child(4) {
+  transform: rotate(-20deg) translateY(9px);
+  background: rgb(230, 230, 230);
 }
