@@ -56,7 +56,20 @@ const Registry: React.FC<Props> = ({ isOpen, onRegistryClose }) => {
           )}
         </Box>
       </Flex>
-      {isSignIn ? <SignIn /> : <CreateAccount />}
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        marginTop="100px"
+      >
+        <Image src="/icons/owl.svg" h="100px" w="100px" alt="owl" />
+        {isSignIn ? (
+          <SignIn message=" Welcome, Please Sign in!" />
+        ) : (
+          <CreateAccount message="New? Please Create Around." />
+        )}
+      </Box>
       <Flex justifyContent="space-around" marginTop="30px">
         <Button onClick={() => onRegistryClose()}>Cancel</Button>
         {isSignIn ? (
@@ -73,18 +86,11 @@ const Registry: React.FC<Props> = ({ isOpen, onRegistryClose }) => {
   );
 };
 
-const SignIn = () => {
+const SignIn = ({ message }) => {
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-      marginTop="100px"
-    >
-      <Image src="/icons/owl.svg" h="100px" w="100px" alt="owl" />
+    <>
       <Text margin="10px 0" color="#d3d3d3" fontWeight="bold">
-        Welcome, Please Sign in!
+        {message}
       </Text>
       <Box width="80%">
         <Stack spacing={4}>
@@ -105,22 +111,15 @@ const SignIn = () => {
           </InputGroup>
         </Stack>
       </Box>
-    </Box>
+    </>
   );
 };
 
-const CreateAccount = () => {
+const CreateAccount = ({ message }) => {
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-      marginTop="100px"
-    >
-      <Image src="/icons/owl.svg" h="100px" w="100px" alt="owl" />
+    <>
       <Text margin="10px 0" color="#d3d3d3" fontWeight="bold">
-        New? Please Create Around.
+        {message}
       </Text>
       <Box width="80%">
         <Stack spacing={4}>
@@ -148,7 +147,7 @@ const CreateAccount = () => {
           </InputGroup>
         </Stack>
       </Box>
-    </Box>
+    </>
   );
 };
 
