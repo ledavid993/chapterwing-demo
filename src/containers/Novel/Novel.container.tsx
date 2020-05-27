@@ -111,7 +111,7 @@ export default function Novel() {
         </Box>
         <Box>
           <Header fontSize="14px">Discussions</Header>
-          <Discussion />
+          <Discussion title="" content="" likes={0} />
         </Box>
       </Box>
     </Layout>
