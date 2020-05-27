@@ -1,9 +1,9 @@
-import { Box, Grid, Skeleton } from "@chakra-ui/core";
-import { isEmpty } from "ramda";
-import styles from "./Showcase.module.scss";
+import { Box, Grid, Skeleton } from '@chakra-ui/core';
+import { isEmpty } from 'ramda';
+import styles from './Showcase.module.scss';
 
 const props = {
-  title: "Popular Releases",
+  title: 'Popular Releases',
   novels: [],
 };
 
@@ -20,21 +20,9 @@ const Showcase: React.FC<Props> = ({ style }) => {
             <img src="/icons/feather.png" alt="feather" />
             <span>{props.title}</span>
           </div>
-          <Grid
-            templateColumns="repeat(4, 1fr)"
-            gap={6}
-            padding="10x"
-            textAlign="center"
-          >
+          <Grid templateColumns="repeat(4, 1fr)" gap={6} padding="10x" textAlign="center">
             {props.novels.map((e) => (
-              <Box
-                w="100%"
-                maxWidth="80px"
-                h="110px"
-                bg="blue.500"
-                margin="0 auto"
-                borderRadius="5px"
-              />
+              <Box w="100%" maxWidth="80px" h="110px" bg="blue.500" margin="0 auto" borderRadius="5px" />
             ))}
           </Grid>
         </Box>
@@ -45,7 +33,7 @@ const Showcase: React.FC<Props> = ({ style }) => {
   );
 };
 
-const ShowcaseSkeleton = ({ style }) => {
+const ShowcaseSkeleton = ({ style }: any) => {
   const skeletonGrid = () => {
     const arr = [];
     for (let i = 0; i < 8; i++) {
@@ -71,12 +59,7 @@ const ShowcaseSkeleton = ({ style }) => {
         <img src="/icons/feather.png" alt="feather" />
         <span>{props.title}</span>
       </div>
-      <Grid
-        templateColumns="repeat(4, 1fr)"
-        gap={6}
-        padding="10px"
-        textAlign="center"
-      >
+      <Grid templateColumns="repeat(4, 1fr)" gap={6} padding="10px" textAlign="center">
         {skeletonGrid()}
       </Grid>
     </Box>

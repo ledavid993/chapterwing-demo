@@ -1,5 +1,5 @@
-import { Text, Heading, Box } from "@chakra-ui/core";
-import { Layout } from "../../components";
+import { Text, Heading, Box } from '@chakra-ui/core';
+import { Layout } from '../../components';
 
 const Chapter = () => {
   return (

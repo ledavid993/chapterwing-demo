@@ -1,7 +1,7 @@
-import { Box, Flex, Text, Image } from "@chakra-ui/core";
-import { Header } from "..";
-import { useRouter } from "next/router";
-import styles from "./Table.module.scss";
+import { Box, Flex, Text, Image } from '@chakra-ui/core';
+import { Header } from '..';
+import { useRouter } from 'next/router';
+import styles from './Table.module.scss';
 
 interface Props {
   name: string;
@@ -9,18 +9,18 @@ interface Props {
 
 const data = [
   {
-    number: 1,
-    title: "Redo",
+    chapter: 1,
+    title: 'Redo',
     likes: 5,
   },
   {
-    number: 2,
-    title: "Redone",
+    chapter: 2,
+    title: 'Redone',
     likes: 5,
   },
   {
-    number: 3,
-    title: "Redid",
+    chapter: 3,
+    title: 'Redid',
     likes: 99,
   },
 ];
@@ -40,7 +40,7 @@ const Table: React.FC<Props> = ({ name }) => {
         {data.map((d) => (
           <TableList
             key={d.title}
-            number={d.number}
+            number={d.chapter}
             title={d.title}
             likes={d.likes}
             navigatePage={navigatePage}
@@ -51,15 +51,15 @@ const Table: React.FC<Props> = ({ name }) => {
   );
 };
 
-const TableList = ({ number, title, likes, navigatePage }: any) => (
+const TableList = ({ chapter, title, likes, navigatePage }: any) => (
   <Flex
     justifyContent="space-between"
     padding="10px"
     className={styles.listContainer}
-    onClick={() => navigatePage(number)}
+    onClick={() => navigatePage(chapter)}
   >
     <Text color="#d3d3d3" fontSize="13px" fontWeight="bold">
-      Chapter {number}: {title}
+      Chapter {chapter}: {title}
     </Text>
     <Flex alignItems="center" justifyContent="center">
       <Image src="/icons/heart.png" alt="image" h="22px" w="22px" />

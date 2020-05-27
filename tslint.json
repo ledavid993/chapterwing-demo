@@ -3,6 +3,12 @@
   "rules": {
     "import-name": false,
     "align": false,
+    "ter-arrow-parens": false,
+    "trailing-comma": false,
+    "no-increment-decrement": false,
+    "curly": false,
+    "no-trailing-whitespace": false,
+    "max-line-length": false,
     "function-name": [
       true,
       {
@@ -14,12 +20,7 @@
       }
     ],
     "variable-name": {
-      "options": [
-        "ban-keywords",
-        "check-format",
-        "allow-leading-underscore",
-        "allow-pascal-case"
-      ]
+      "options": ["ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
     }
   }
 }

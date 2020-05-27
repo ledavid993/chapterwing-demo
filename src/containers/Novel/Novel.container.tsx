@@ -1,14 +1,6 @@
-import {
-  Box,
-  Image,
-  Heading,
-  Text,
-  SimpleGrid,
-  Divider,
-  Flex,
-} from "@chakra-ui/core";
-import { Layout, Header, Table, Review, Discussion } from "../../components";
-import styles from "./Novel.module.scss";
+import { Box, Image, Heading, Text, SimpleGrid, Divider, Flex } from '@chakra-ui/core';
+import { Layout, Header, Table, Review, Discussion } from '../../components';
+import styles from './Novel.module.scss';
 
 export default function Novel() {
   return (
@@ -33,21 +25,10 @@ export default function Novel() {
         </div>
       </Box>
       <Box padding="10px">
-        <Heading
-          size="md"
-          color="#d3d3d3"
-          margin="15px 0"
-          textDecoration="underline"
-        >
+        <Heading size="md" color="#d3d3d3" margin="15px 0" textDecoration="underline">
           Second Coming of Gluttony
         </Heading>
-        <Text
-          marginTop="5%"
-          whiteSpace="pre-line"
-          color="white"
-          fontSize="12px"
-          lineHeight=".9rem"
-        >
+        <Text marginTop="5%" whiteSpace="pre-line" color="white" fontSize="12px" lineHeight=".9rem">
           {`Space complexity time is not the only thing that matters in an algorithm. We might also care about the amount of memort - or space requried by an algorithm
 
                 Space complexity is a parallel concept to time compleixty if we need to create an array of size n this weill requires o n space if we need a two dimensinal array of size n this will rqeuired n2 space

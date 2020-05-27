@@ -1,3 +1,3 @@
-import { Novel } from "../../containers";
+import { Novel } from '../../containers';
 
 export default Novel;

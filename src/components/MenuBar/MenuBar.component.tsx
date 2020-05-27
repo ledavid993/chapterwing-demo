@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { MdMenu } from "react-icons/md";
-import { IoMdLogIn } from "react-icons/io";
-import { Box } from "@chakra-ui/core";
-import styles from "./MenuBar.module.scss";
+import Link from 'next/link';
+import { MdMenu } from 'react-icons/md';
+import { IoMdLogIn } from 'react-icons/io';
+import { Box } from '@chakra-ui/core';
+import styles from './MenuBar.module.scss';
 
 interface Props {
   onMenuBarOpen: () => void;

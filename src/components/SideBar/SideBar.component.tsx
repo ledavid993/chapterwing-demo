@@ -1,25 +1,25 @@
-import Link from "next/link";
-import { Box, Heading, Divider } from "@chakra-ui/core";
-import { reject, isNil } from "ramda";
-import clsx from "clsx";
-import { IoMdLogIn, IoIosSearch } from "react-icons/io";
-import styles from "./SideBar.module.scss";
-import { useEffect } from "react";
+import Link from 'next/link';
+import { Box, Heading, Divider } from '@chakra-ui/core';
+import { reject, isNil } from 'ramda';
+import clsx from 'clsx';
+import { IoMdLogIn, IoIosSearch } from 'react-icons/io';
+import styles from './SideBar.module.scss';
+import { useEffect } from 'react';
 
 const config = {
   sectionDivider1: {
     sectionDivider: true,
   },
   title: {
-    name: "ChapterWing",
+    name: 'ChapterWing',
   },
   section1: {
     signIn: {
-      name: "Sign In",
+      name: 'Sign In',
       icon: <IoMdLogIn />,
     },
     search: {
-      name: "Search",
+      name: 'Search',
       icon: <IoIosSearch />,
     },
   },
@@ -28,14 +28,14 @@ const config = {
   },
   section2: {
     category: {
-      name: "Novels",
+      name: 'Novels',
     },
     popularNovels: {
-      name: "Popular Novels",
+      name: 'Popular Novels',
       icon: <IoMdLogIn />,
     },
     library: {
-      name: "Library",
+      name: 'Library',
       icon: <IoIosSearch />,
     },
   },
@@ -44,19 +44,19 @@ const config = {
   },
   extrasection: {
     aboutEX: {
-      name: "About",
+      name: 'About',
     },
     contactEX: {
-      name: "Contact",
+      name: 'Contact',
     },
     feedbackEX: {
-      name: "Feedback",
+      name: 'Feedback',
     },
     termOfUseEX: {
-      name: "Term Of Use",
+      name: 'Term Of Use',
     },
     privacyEX: {
-      name: "Privacy",
+      name: 'Privacy',
     },
   },
 };
@@ -70,16 +70,16 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
     return reject(
       (v) => isNil(v),
       Object.entries(config).map(([key, value]) => {
-        if (key.includes("section")) return value;
+        if (key.includes('section')) value;
       })
     );
   };
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     }
   }, [isOpen]);
 
@@ -102,28 +102,22 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
         </Heading>
       </Link>
       {getSections().map((section) => {
-        return Object.entries(section).map(([key, value]) => {
-          if (key === "category")
-            return (
-              <div className={styles.category} key={key}>
-                {value.name}
-              </div>
-            );
-          else if (key.includes("EX"))
-            return (
-              <div className={styles.extra} key={key}>
-                {value.name}
-              </div>
-            );
-          else if (key.includes("sectionDivider"))
-            return <Divider borderColor="background.300" key={key} />;
+        return Object.entries(section as any).map(([key, value]: any) => {
+          if (key === 'category')
+            <div className={styles.category} key={key}>
+              {value.name}
+            </div>;
+          else if (key.includes('EX'))
+            <div className={styles.extra} key={key}>
+              {value.name}
+            </div>;
+          else if (key.includes('sectionDivider'))
+            <Divider borderColor="background.300" key={key} />;
           else
-            return (
-              <div className={styles.categoryType} key={key}>
-                <span>{value.icon}</span>
-                <div>{value.name}</div>
-              </div>
-            );
+            <div className={styles.categoryType} key={key}>
+              <span>{value.icon}</span>
+              <div>{value.name}</div>
+            </div>;
         });
       })}
     </Box>

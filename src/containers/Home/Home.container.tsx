@@ -1,5 +1,5 @@
-import { Box, Divider, Heading, Flex, Image, Button } from "@chakra-ui/core";
-import Head from "next/head";
+import { Box, Divider, Heading, Flex, Image, Button } from '@chakra-ui/core';
+import Head from 'next/head';
 import {
   Layout,
   HeroBanner,
@@ -9,8 +9,8 @@ import {
   DiscussionSkeleton,
   Release,
   ReleaseSkeleton,
-} from "../../components";
-import styles from "./Home.module.scss";
+} from '../../components';
+import styles from './Home.module.scss';
 
 const discussions = [
   // {
@@ -35,7 +35,7 @@ const releases = [];
 
 export default function Home() {
   const loadingDiscussions = () => {
-    let arr = [];
+    const arr = [];
     for (let i = 0; i < 3; i++) {
       arr.push(<DiscussionSkeleton />);
     }
@@ -43,7 +43,7 @@ export default function Home() {
   };
 
   const loadingReleases = () => {
-    let arr = [];
+    const arr = [];
     for (let i = 0; i < 8; i++) {
       arr.push(<ReleaseSkeleton />);
     }

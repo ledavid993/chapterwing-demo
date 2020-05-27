@@ -1,3 +1,3 @@
-import { Chapter } from "../../../containers";
+import { Chapter } from '../../../containers';
 
 export default Chapter;

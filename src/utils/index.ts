@@ -1,3 +1,3 @@
-import ellipsisString from "./ellipsisString";
+import ellipsisString from './ellipsisString';
 
 export { ellipsisString };

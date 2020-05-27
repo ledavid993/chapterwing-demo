@@ -8,7 +8,11 @@ import Registry from '../Registry/Registry.component';
 export default function Layout({ children }: any) {
   const { isOpen: isMenuBarOpen, onOpen: onMenuBarOpen, onClose: onMenuBarClose } = useDisclosure();
 
-  const { isOpen: isRegistryOpen, onOpen: onRegistryOpen, onClose: onRegistryClose } = useDisclosure();
+  const {
+    isOpen: isRegistryOpen,
+    onOpen: onRegistryOpen,
+    onClose: onRegistryClose,
+  } = useDisclosure();
 
   return (
     <div>
