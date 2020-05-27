@@ -6,7 +6,7 @@ interface Props {
   isOpen: boolean;
 }
 
-const Backdrop = ({ onClose, isOpen }) => {
+const Backdrop = ({ onClose, isOpen }: any) => {
   return (
     <div
       className={clsx(isOpen && styles.backDrop)}
