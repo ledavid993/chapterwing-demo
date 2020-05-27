@@ -5,7 +5,7 @@ import SideBar from "../SideBar/SideBar.component";
 import Backdrop from "../Backdrop/Backdrop";
 import Registry from "../Registry/Registry.component";
 
-export default function Layout({ children }) {
+export default function Layout({ children }: any) {
   const {
     isOpen: isMenuBarOpen,
     onOpen: onMenuBarOpen,
