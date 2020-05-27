@@ -39,9 +39,9 @@ export const DiscussionSkeleton = () => {
         <h4>
           <Skeleton marginBottom="5px">Title</Skeleton>
         </h4>
-        <p>
+        <div>
           <Skeleton w="100%" h="15px" />
-        </p>
+        </div>
       </div>
     </div>
   );
