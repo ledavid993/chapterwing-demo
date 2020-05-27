@@ -7,6 +7,8 @@ import Discussion, {
 } from "./Discussion/Discussion.component";
 import Release, { ReleaseSkeleton } from "./Release/Release.component";
 import Registry from "./Registry/Registry.component";
+import Table from "./Table/Table.component";
+import Review from "./Review/Review.component";
 
 export {
   Layout,
@@ -18,4 +20,6 @@ export {
   Release,
   ReleaseSkeleton,
   Registry,
+  Table,
+  Review,
 };

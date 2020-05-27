@@ -20,9 +20,9 @@
 }
 
 .paper {
-  width: 166px;
+  width: 180px;
   border-radius: 1px;
-  height: 250px;
+  height: 255px;
   position: absolute;
   box-shadow: 0 2px 2px rgba(154, 160, 185, 0.05),
     0 2px 3px rgba(166, 173, 201, 0.2);
@@ -50,4 +50,17 @@
 .paper:nth-child(4) {
   transform: rotate(-20deg) translateY(9px);
   background: rgb(230, 230, 230);
+}
+
+.labelInfo {
+  color: #d3d3d3;
+  padding-left: 10px;
+}
+
+.extraInfo div:nth-child(odd) {
+  text-align: left;
+}
+
+.extraInfo div:nth-child(even) {
+  text-align: right;
 }

@@ -2,13 +2,13 @@ import styles from "./Header.module.scss";
 import { Heading } from "@chakra-ui/core";
 
 interface Props {
-  name: string;
+  fontSize?: string;
 }
 
-const Header: React.FC<Props> = ({ name }) => {
+const Header: React.FC<Props> = ({ children, fontSize = "12px" }) => {
   return (
-    <Heading size="md" className={styles.container}>
-      {name}
+    <Heading fontSize={fontSize} className={styles.container}>
+      {children}
       <div />
     </Heading>
   );

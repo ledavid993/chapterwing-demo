@@ -64,7 +64,7 @@ export default function Home() {
               <p>Start hosting your novel on ChapterWing and</p>
               <p>be Discovered.</p>
             </div>
-            <Header name="Top Discussions" />
+            <Header fontSize="16px">Top Discussions</Header>
             <Box padding="5px">
               {discussions.length !== 0
                 ? discussions.map((discussion) => (
@@ -77,7 +77,7 @@ export default function Home() {
                 : loadingDiscussions()}
             </Box>
             <Divider w="90%" margin="5px auto" borderColor="background.300" />
-            <Header name="Recommended Releases" />
+            <Header fontSize="16px">Recommended Releases</Header>
             <Box padding="5px">
               {releases.length !== 0
                 ? releases.map((novel) => <Release novel={novel} />)

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Box, Heading, Divider } from "@chakra-ui/core";
 import { reject, isNil } from "ramda";
 import clsx from "clsx";
@@ -87,17 +88,19 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
       className={clsx(styles.container, isOpen && styles.active)}
       backgroundColor="background.400"
     >
-      <Heading
-        as="h2"
-        size="md"
-        color="white"
-        height="80px"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        {config.title.name}
-      </Heading>
+      <Link as="/" href="/">
+        <Heading
+          as="h2"
+          size="md"
+          color="white"
+          height="80px"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          {config.title.name}
+        </Heading>
+      </Link>
       {getSections().map((section) => {
         return Object.entries(section).map(([key, value]) => {
           if (key === "category")
