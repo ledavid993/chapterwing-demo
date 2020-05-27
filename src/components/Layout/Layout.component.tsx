@@ -1,22 +1,14 @@
-import { useDisclosure, Box, Text } from "@chakra-ui/core";
-import Head from "next/head";
-import MenuBar from "../MenuBar/MenuBar.component";
-import SideBar from "../SideBar/SideBar.component";
-import Backdrop from "../Backdrop/Backdrop";
-import Registry from "../Registry/Registry.component";
+import { useDisclosure, Box, Text } from '@chakra-ui/core';
+import Head from 'next/head';
+import MenuBar from '../MenuBar/MenuBar.component';
+import SideBar from '../SideBar/SideBar.component';
+import Backdrop from '../Backdrop/Backdrop';
+import Registry from '../Registry/Registry.component';
 
 export default function Layout({ children }: any) {
-  const {
-    isOpen: isMenuBarOpen,
-    onOpen: onMenuBarOpen,
-    onClose: onMenuBarClose,
-  } = useDisclosure();
+  const { isOpen: isMenuBarOpen, onOpen: onMenuBarOpen, onClose: onMenuBarClose } = useDisclosure();
 
-  const {
-    isOpen: isRegistryOpen,
-    onOpen: onRegistryOpen,
-    onClose: onRegistryClose,
-  } = useDisclosure();
+  const { isOpen: isRegistryOpen, onOpen: onRegistryOpen, onClose: onRegistryClose } = useDisclosure();
 
   return (
     <div>
