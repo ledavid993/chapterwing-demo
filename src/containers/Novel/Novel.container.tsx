@@ -8,6 +8,7 @@ export default function Novel() {
     <Layout>
       <Head>
         <title>Second Coming </title>
+        <meta name="second coming" content="Synopsis here" />
       </Head>
       <Box h="325px" w="100%" position="relative">
         <div className={styles.shade} />
