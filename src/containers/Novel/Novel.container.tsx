@@ -1,13 +1,17 @@
 import { Box, Image, Heading, Text, SimpleGrid, Divider, Flex } from '@chakra-ui/core';
+import Head from 'next/head';
 import { Layout, Header, Table, Review, Discussion } from '../../components';
 import styles from './Novel.module.scss';
 
 export default function Novel() {
   return (
     <Layout>
+      <Head>
+        <title>Second Coming </title>
+      </Head>
       <Box h="325px" w="100%" position="relative">
         <div className={styles.shade} />
-        <Image src="/wood.jpg" h="100%" w="100%" />
+        <Image src="/wood.jpg" h="100%" w="100%" alt="background" />
         <div className={styles.stack}>
           <div className={styles.paper} />
           <div className={styles.paper} />
