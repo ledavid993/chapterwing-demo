@@ -24,6 +24,7 @@ export default function Novel() {
               w="100%"
               borderRadius="5px"
               border="1px solid rgba(122,122,122)"
+              alt="novel"
             />
           </div>
         </div>

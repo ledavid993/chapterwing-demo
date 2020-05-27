@@ -62,7 +62,7 @@ const TableList = ({ chapter, title, likes, navigatePage }: any) => (
       Chapter {chapter}: {title}
     </Text>
     <Flex alignItems="center" justifyContent="center">
-      <Image src="/icons/heart.png" alt="image" h="22px" w="22px" />
+      <Image src="/icons/heart.png" alt="heart" h="22px" w="22px" />
       <Text paddingLeft="5px" color="#d3d3d390" fontSize="12px">
         {likes} Likes
       </Text>
