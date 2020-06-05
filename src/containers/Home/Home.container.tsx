@@ -1,4 +1,5 @@
 import { Box, Divider, Heading, Flex, Image, Button } from '@chakra-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 import {
   Layout,
@@ -11,8 +12,11 @@ import {
   ReleaseSkeleton,
 } from '../../components';
 import styles from './Home.module.scss';
+import { useEffect } from 'react';
+import { fetchNovels } from '../../redux/actions/novel.action';
+import getStore from '../../store';
 
-const discussions = [
+const discussions: any[] = [
   // {
   //   title: "Hello Me",
   //   likes: 4,
@@ -31,9 +35,19 @@ const discussions = [
   // },
 ];
 
-const releases = [];
+const releases: any[] = [];
 
-export default function Home() {
+const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchNovels());
+  }, []);
+
+  const s = useSelector((state) => state);
+
+  const select = useSelector((state) => state);
+
   const loadingDiscussions = () => {
     const arr = [];
     for (let i = 0; i < 3; i++) {
@@ -58,6 +72,7 @@ export default function Home() {
       <Box boxSizing="border-box">
         <Layout>
           <HeroBanner />
+          <Image src="https://chapterwing.b-cdn.net/images/logo.png" h="50px" w="50px" />
           <div className={styles.container}>
             <Showcase />
             <div className={styles.content1}>
@@ -147,4 +162,6 @@ export default function Home() {
       </Box>
     </>
   );
-}
+};
+
+export default Home;
