@@ -70,7 +70,7 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
     return reject(
       (v) => isNil(v),
       Object.entries(config).map(([key, value]) => {
-        if (key.includes('section')) value;
+        if (key.includes('section')) return value;
       })
     );
   };
@@ -104,20 +104,26 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
       {getSections().map((section) => {
         return Object.entries(section as any).map(([key, value]: any) => {
           if (key === 'category')
-            <div className={styles.category} key={key}>
-              {value.name}
-            </div>;
+            return (
+              <div className={styles.category} key={key}>
+                {value.name}
+              </div>
+            );
           else if (key.includes('EX'))
-            <div className={styles.extra} key={key}>
-              {value.name}
-            </div>;
+            return (
+              <div className={styles.extra} key={key}>
+                {value.name}
+              </div>
+            );
           else if (key.includes('sectionDivider'))
-            <Divider borderColor="background.300" key={key} />;
+            return <Divider borderColor="background.300" key={key} />;
           else
-            <div className={styles.categoryType} key={key}>
-              <span>{value.icon}</span>
-              <div>{value.name}</div>
-            </div>;
+            return (
+              <div className={styles.categoryType} key={key}>
+                <span>{value.icon}</span>
+                <div>{value.name}</div>
+              </div>
+            );
         });
       })}
     </Box>

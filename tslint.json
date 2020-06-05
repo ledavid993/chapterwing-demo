@@ -8,6 +8,7 @@
     "no-increment-decrement": false,
     "curly": false,
     "no-trailing-whitespace": false,
+    "no-else-after-return": false,
     "max-line-length": false,
     "function-name": [
       true,
