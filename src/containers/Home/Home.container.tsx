@@ -1,4 +1,5 @@
 import { Box, Divider, Heading, Flex, Image, Button } from '@chakra-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 import {
   Layout,
@@ -11,8 +12,11 @@ import {
   ReleaseSkeleton,
 } from '../../components';
 import styles from './Home.module.scss';
+import { useEffect } from 'react';
+import { fetchPopularNovels } from '../../redux/actions/novel.action';
+import getStore from '../../store';
 
-const discussions = [
+const discussions: any[] = [
   // {
   //   title: "Hello Me",
   //   likes: 4,
@@ -31,13 +35,20 @@ const discussions = [
   // },
 ];
 
-const releases = [];
+const releases: any[] = [];
 
-export default function Home() {
+const Home = () => {
+  const { popularNovels } = useSelector(({ novel }: any) => novel);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPopularNovels());
+  }, []);
+
   const loadingDiscussions = () => {
     const arr = [];
     for (let i = 0; i < 3; i++) {
-      arr.push(<DiscussionSkeleton />);
+      arr.push(<DiscussionSkeleton key={i} />);
     }
     return arr;
   };
@@ -45,7 +56,7 @@ export default function Home() {
   const loadingReleases = () => {
     const arr = [];
     for (let i = 0; i < 8; i++) {
-      arr.push(<ReleaseSkeleton />);
+      arr.push(<ReleaseSkeleton key={i} />);
     }
     return arr;
   };
@@ -59,7 +70,7 @@ export default function Home() {
         <Layout>
           <HeroBanner />
           <div className={styles.container}>
-            <Showcase />
+            <Showcase popularNovels={popularNovels} />
             <div className={styles.content1}>
               <p>Start hosting your novel on ChapterWing and</p>
               <p>be Discovered.</p>
@@ -69,6 +80,7 @@ export default function Home() {
               {discussions.length !== 0
                 ? discussions.map((discussion) => (
                     <Discussion
+                      key={discussion.title}
                       title={discussion.title}
                       content={discussion.content}
                       likes={discussion.likes}
@@ -147,4 +159,6 @@ export default function Home() {
       </Box>
     </>
   );
-}
+};
+
+export default Home;
