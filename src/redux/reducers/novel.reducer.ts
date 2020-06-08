@@ -1,19 +1,30 @@
 import * as types from '../types/novel.type';
 
 const initialState = {
-  novels: [],
+  popularNovels: [],
   loading: false,
   error: null,
 };
 
 const reducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case types.GET_NOVELS_SUCCESS: {
-      console.log(state);
+    case types.GET_POPULAR_NOVELS_REQUEST: {
       return {
         ...state,
-        novels: action.payload.novels,
-        loading: action.payload.loading,
+        loading: true,
+      };
+    }
+    case types.GET_POPULAR_NOVELS_SUCCESS: {
+      return {
+        ...state,
+        popularNovels: action.payload.novels,
+        loading: false,
+      };
+    }
+    case types.GET_POPULAR_NOVELS_FAILURE: {
+      return {
+        ...state,
+        loading: false,
       };
     }
     default:

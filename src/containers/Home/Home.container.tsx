@@ -13,7 +13,7 @@ import {
 } from '../../components';
 import styles from './Home.module.scss';
 import { useEffect } from 'react';
-import { fetchNovels } from '../../redux/actions/novel.action';
+import { fetchPopularNovels } from '../../redux/actions/novel.action';
 import getStore from '../../store';
 
 const discussions: any[] = [
@@ -38,20 +38,17 @@ const discussions: any[] = [
 const releases: any[] = [];
 
 const Home = () => {
+  const { popularNovels } = useSelector(({ novel }: any) => novel);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchNovels());
+    dispatch(fetchPopularNovels());
   }, []);
-
-  const s = useSelector((state) => state);
-
-  const select = useSelector((state) => state);
 
   const loadingDiscussions = () => {
     const arr = [];
     for (let i = 0; i < 3; i++) {
-      arr.push(<DiscussionSkeleton />);
+      arr.push(<DiscussionSkeleton key={i} />);
     }
     return arr;
   };
@@ -59,7 +56,7 @@ const Home = () => {
   const loadingReleases = () => {
     const arr = [];
     for (let i = 0; i < 8; i++) {
-      arr.push(<ReleaseSkeleton />);
+      arr.push(<ReleaseSkeleton key={i} />);
     }
     return arr;
   };
@@ -72,9 +69,8 @@ const Home = () => {
       <Box boxSizing="border-box">
         <Layout>
           <HeroBanner />
-          <Image src="https://chapterwing.b-cdn.net/images/logo.png" h="50px" w="50px" />
           <div className={styles.container}>
-            <Showcase />
+            <Showcase popularNovels={popularNovels} />
             <div className={styles.content1}>
               <p>Start hosting your novel on ChapterWing and</p>
               <p>be Discovered.</p>
@@ -84,6 +80,7 @@ const Home = () => {
               {discussions.length !== 0
                 ? discussions.map((discussion) => (
                     <Discussion
+                      key={discussion.title}
                       title={discussion.title}
                       content={discussion.content}
                       likes={discussion.likes}

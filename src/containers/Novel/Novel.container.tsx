@@ -12,7 +12,7 @@ export default function Novel() {
       </Head>
       <Box h="325px" w="100%" position="relative">
         <div className={styles.shade} />
-        <Image src="/wood.jpg" h="100%" w="100%" alt="background" />
+        <Image src="/wood.webp" h="100%" w="100%" alt="background" />
         <div className={styles.stack}>
           <div className={styles.paper} />
           <div className={styles.paper} />

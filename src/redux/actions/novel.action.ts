@@ -1,20 +1,23 @@
 import * as types from '../types/novel.type';
 import { novelService } from '../services';
 
-export const fetchNovels = () => async (dispatch: any) => {
+export const fetchPopularNovels = () => async (dispatch: any) => {
   try {
+    dispatch({
+      type: types.GET_POPULAR_NOVELS_REQUEST,
+    });
+
     const res = await novelService.getNovels();
 
     dispatch({
-      type: types.GET_NOVELS_SUCCESS,
+      type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
         novels: res.data,
-        loading: false,
       },
     });
   } catch (e) {
     dispatch({
-      type: types.GET_NOVELS_FAILURE,
+      type: types.GET_POPULAR_NOVELS_FAILURE,
       payload: {
         loading: false,
       },

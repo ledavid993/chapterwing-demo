@@ -40,7 +40,7 @@ export default class BaseHttpService {
   }
 
   handleHttpError(error: any) {
-    return error;
+    throw Error(error);
   }
 
   getCommonOptions() {
