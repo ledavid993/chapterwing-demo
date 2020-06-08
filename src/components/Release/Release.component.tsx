@@ -34,8 +34,6 @@ const Release: React.FC<Props> = ({ novel }) => {
               <Chapter likes={chapter.likes} title={chapter.title} number={chapter.number} />
             );
 
-            console.log(index !== 0);
-
             return index !== 0 ? (
               <>
                 <Divider borderColor="background.300" />
