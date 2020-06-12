@@ -12,9 +12,6 @@ import {
   ReleaseSkeleton,
 } from '../../components';
 import styles from './Home.module.scss';
-import { useEffect } from 'react';
-import { fetchPopularNovels } from '../../redux/actions/novel.action';
-import getStore from '../../store';
 
 const discussions: any[] = [
   // {
