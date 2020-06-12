@@ -1,23 +1,20 @@
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import App from 'next/app';
-import { Provider } from 'react-redux';
+import { wrapper } from '../store';
 import theme from '../theme';
-import withReduxStore from '../lib/with-redux-store';
 import '../styles/global.css';
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CSSReset />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <CSSReset />
+        <Component {...pageProps} />
+      </ThemeProvider>
     );
   }
 }
 
-export default withReduxStore(MyApp);
+export default wrapper.withRedux(MyApp);

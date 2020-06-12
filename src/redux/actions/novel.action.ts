@@ -18,9 +18,27 @@ export const fetchPopularNovels = () => async (dispatch: any) => {
   } catch (e) {
     dispatch({
       type: types.GET_POPULAR_NOVELS_FAILURE,
+    });
+  }
+};
+
+export const fetchNovel = (novelTitle: string) => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: types.GET_NOVEL_REQUEST,
+    });
+
+    const res = await novelService.getNovel(novelTitle);
+
+    dispatch({
+      type: types.GET_NOVEL_SUCCESS,
       payload: {
-        loading: false,
+        novel: res.data,
       },
+    });
+  } catch (e) {
+    dispatch({
+      type: types.GET_NOVEL_FAILURE,
     });
   }
 };

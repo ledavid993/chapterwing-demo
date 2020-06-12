@@ -1,16 +1,25 @@
 import { Box, Image, Heading, Text, SimpleGrid, Divider, Flex } from '@chakra-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 import Head from 'next/head';
-import { Layout, Header, Table, Review, Discussion } from '../../components';
+import { Layout, Header, Table, Review, Discussion, Genres, Tags } from '../../components';
 import styles from './Novel.module.scss';
+import { NovelState } from '../../interface/novel.interface';
 
 export default function Novel() {
+  const novelState: NovelState = useSelector(({ novel }: any) => novel);
+  const {
+    currentNovel: { novel, volumes },
+  } = novelState;
+  const { title, author, createdDate, rating, image } = novel;
+
   return (
     <Layout>
       <Head>
-        <title>Second Coming </title>
-        <meta name="second coming" content="Synopsis here" />
+        <title>{title}</title>
+        <meta name={title} content="Synopsis here" />
       </Head>
-      <Box h="325px" w="100%" position="relative">
+      <Box className={styles.imageBanner}>
         <div className={styles.shade} />
         <Image src="/wood.webp" h="100%" w="100%" alt="background" fallbackSrc="/wood.jpg" />
         <div className={styles.stack}>
@@ -20,7 +29,7 @@ export default function Novel() {
           <div className={styles.paper} />
           <div className={styles.paper}>
             <Image
-              src="https://cdn.novelupdates.com/images/2019/01/The-Second-Coming-of-Avarice.jpg"
+              src={`https://chapterwing.b-cdn.net/images/${novel.image}`}
               h="100%"
               w="100%"
               borderRadius="5px"
@@ -30,67 +39,40 @@ export default function Novel() {
           </div>
         </div>
       </Box>
-      <Box padding="10px">
+      <div className={styles.novelBody}>
         <Heading size="md" color="#d3d3d3" margin="15px 0" textDecoration="underline">
-          Second Coming of Gluttony
+          {novel.title}
         </Heading>
         <Text marginTop="5%" whiteSpace="pre-line" color="white" fontSize="12px" lineHeight=".9rem">
-          {`Space complexity time is not the only thing that matters in an algorithm. We might also care about the amount of memort - or space requried by an algorithm
-
-                Space complexity is a parallel concept to time compleixty if we need to create an array of size n this weill requires o n space if we need a two dimensinal array of size n this will rqeuired n2 space
-
-                Stack space in recurcives 
-
-                Int sum int n
-                If n 
-
-                Drop the non-dominant terms 
-
-                What do you do about an expression such as o n2 + n that second n isnt exacly a constant. But it is not especially important
-
-                We already said that we drop constants therefore on2 
-
-                Amortized time
-
-                An array list or a dynamically resizeing array allows you to have the benefits of an array while oferring flexibilty in size
-
-                You wont run out of space in the arraylust since its capacity will grow as you inser elements
-
-                When the array list class will create a new array with doble the capacity and copy all the lement over to the new array
-
-                The array could be full if the array container n elmenets, then insering a new elemnt will take on time
-                `}
+          {novel.description}
         </Text>
-        <SimpleGrid
-          columns={[2, 3]}
-          spacing={5}
-          padding="80px 2px"
-          color="#d3d3d360"
-          fontWeight="bold"
-          fontSize="11px"
-          className={styles.extraInfo}
-        >
+        <Genres genres={novel.genres} />
+        <Tags tags={novel.tags} />
+        <SimpleGrid className={styles.extraInfo}>
           <Box>
-            Released <span className={styles.labelInfo}>March 20th, 2020</span>
+            Released:{' '}
+            <span className={styles.labelInfo}>{dayjs(createdDate).format('MM/DD/YYYY')}</span>
           </Box>
           <Box>
-            Language <span className={styles.labelInfo}>English</span>
+            Language: <span className={styles.labelInfo}>English</span>
           </Box>
           <Box>
-            Genre <span className={styles.labelInfo}>Adventure, Fantasy</span>
+            Author: <span className={styles.labelInfo}>{author || '---'}</span>
           </Box>
           <Box>
-            Author <span className={styles.labelInfo}>Seok-em</span>
+            Public Rating: <span className={styles.labelInfo}>{rating || '---'}</span>
           </Box>
           <Box>
-            Public Rating <span className={styles.labelInfo}>4.1</span>
-          </Box>
-          <Box>
-            Feathermeter <span className={styles.labelInfo}>---</span>
+            Feathermeter: <span className={styles.labelInfo}>---</span>
           </Box>
         </SimpleGrid>
-        <Table name="Volume 1 - Demon Heart" />
-        <Table name="Volume 2 - Red Heart" />
+        {volumes?.map((volume, index) => (
+          <Table
+            key={volume.title}
+            name={`Volume ${index + 1} - ${volume.title}`}
+            chapters={volume.contents}
+          />
+        ))}
         <Divider w="90%" margin="30px auto" borderColor="background.300" />
         <Box>
           <Header fontSize="14px">Reviews</Header>
@@ -100,7 +82,7 @@ export default function Novel() {
           <Header fontSize="14px">Discussions</Header>
           <Discussion title="" content="" likes={0} />
         </Box>
-      </Box>
+      </div>
     </Layout>
   );
 }

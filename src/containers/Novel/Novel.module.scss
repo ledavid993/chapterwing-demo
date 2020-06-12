@@ -1,9 +1,5 @@
 .shade {
-  background: linear-gradient(
-    133.58deg,
-    rgba(6, 6, 6, 0.3) 18.73%,
-    rgba(196, 196, 196, 0) 122.05%
-  );
+  background: linear-gradient(133.58deg, rgba(6, 6, 6, 0.3) 18.73%, rgba(196, 196, 196, 0) 122.05%);
   position: absolute;
   height: 100%;
   width: 100%;
@@ -19,17 +15,26 @@
   left: 50%;
 }
 
+.imageBanner {
+  height: 325px;
+  width: 100%;
+  position: relative;
+}
+
 .paper {
   width: 180px;
   border-radius: 1px;
   height: 255px;
   position: absolute;
-  box-shadow: 0 2px 2px rgba(154, 160, 185, 0.05),
-    0 2px 3px rgba(166, 173, 201, 0.2);
+  box-shadow: 0 2px 2px rgba(154, 160, 185, 0.05), 0 2px 3px rgba(166, 173, 201, 0.2);
 
   img {
     box-shadow: 4px 3px 7px 1px rgba(0, 0, 0, 0.5);
   }
+}
+
+.novelBody {
+  padding: 10px;
 }
 
 .paper:nth-child(1) {
@@ -57,10 +62,49 @@
   padding-left: 10px;
 }
 
+.extraInfo {
+  grid-template-columns: 1fr 1fr;
+  justify-content: flex-end;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 30px 2px;
+  gap: 5;
+  color: #d3d3d360;
+}
+
 .extraInfo div:nth-child(odd) {
   text-align: left;
 }
 
 .extraInfo div:nth-child(even) {
   text-align: right;
+}
+
+@media (min-width: 730px) {
+  .novelBody {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .extraInfo {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .imageBanner {
+    height: 550px;
+  }
+
+  .paper {
+    width: 300px;
+    border-radius: 1px;
+    height: 430px;
+    position: absolute;
+    box-shadow: 0 2px 2px rgba(154, 160, 185, 0.05), 0 2px 3px rgba(166, 173, 201, 0.2);
+    margin-top: 15px;
+
+    img {
+      box-shadow: 4px 3px 7px 1px rgba(0, 0, 0, 0.5);
+    }
+  }
 }

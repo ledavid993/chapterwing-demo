@@ -2,6 +2,7 @@ import { Box, Grid, Skeleton, Image } from '@chakra-ui/core';
 import Link from 'next/link';
 import { isEmpty } from 'ramda';
 import styles from './Showcase.module.scss';
+import { BUNNY_IMAGE_URL } from '../../constants';
 
 const props = {
   title: 'Popular Releases',
@@ -22,21 +23,14 @@ const Showcase: React.FC<Props> = ({ style, popularNovels }) => {
             <img src="/icons/feather.png" alt="feather" />
             <span>{props.title}</span>
           </div>
-          <Grid templateColumns="repeat(4, 1fr)" gap={6} padding="10px" textAlign="center">
+          <Grid className={styles.grid}>
             {popularNovels.map((novel) => (
               <Link href="/novels/[title]" as={`/novels/${novel.title}`}>
                 <a>
-                  <Box
-                    key={novel.id}
-                    w="100%"
-                    maxWidth="80px"
-                    h="110px"
-                    bg="blue.500"
-                    margin="0 auto"
-                    borderRadius="5px"
-                  >
-                    <Image src={novel.image} />
-                  </Box>
+                  <Image
+                    src="https://cdn.wuxiaworld.com/images/covers/scog.jpg?ver=76e28d7a189f23b39b980c9f881309570478a32b"
+                    className={styles.popularNovels}
+                  />
                 </a>
               </Link>
             ))}

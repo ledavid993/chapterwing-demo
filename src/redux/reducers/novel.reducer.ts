@@ -1,9 +1,11 @@
 import * as types from '../types/novel.type';
+import { CurrentNovel } from '../../interface/novel.interface';
 
-const initialState = {
+const initialState: CurrentNovel = {
   popularNovels: [],
   loading: false,
   error: null,
+  currentNovel: null,
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -22,6 +24,25 @@ const reducer = (state = initialState, action: any) => {
       };
     }
     case types.GET_POPULAR_NOVELS_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    case types.GET_NOVEL_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case types.GET_NOVEL_SUCCESS: {
+      return {
+        ...state,
+        currentNovel: action.payload.data,
+        loading: false,
+      };
+    }
+    case types.GET_NOVEL_FAILURE: {
       return {
         ...state,
         loading: false,

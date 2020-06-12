@@ -41,10 +41,6 @@ const Home = () => {
   const { popularNovels } = useSelector(({ novel }: any) => novel);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchPopularNovels());
-  }, []);
-
   const loadingDiscussions = () => {
     const arr = [];
     for (let i = 0; i < 3; i++) {

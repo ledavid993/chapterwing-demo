@@ -7,6 +7,8 @@ import Release, { ReleaseSkeleton } from './Release/Release.component';
 import Registry from './Registry/Registry.component';
 import Table from './Table/Table.component';
 import Review from './Review/Review.component';
+import Genres from './Genres/Genres.component';
+import Tags from './Tags/Tags.component';
 
 export {
   Layout,
@@ -20,4 +22,6 @@ export {
   Registry,
   Table,
   Review,
+  Genres,
+  Tags,
 };

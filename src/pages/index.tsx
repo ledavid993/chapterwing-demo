@@ -1,16 +1,20 @@
 import { Home } from '../containers';
 import { fetchPopularNovels } from '../redux/actions/novel.action';
-import getStore from '../store';
+import { wrapper } from '../store';
+import { novelService } from '../redux/services';
+import * as types from '../redux/types/novel.type';
 
 export default function HomePage() {
   return <Home />;
 }
 
-export async function getServerSideProps() {
-  const store = getStore();
-  store.dispatch(fetchPopularNovels());
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req, ...etc }) => {
+  const res = await novelService.getNovels();
 
-  return {
-    props: {},
-  };
-}
+  store.dispatch({
+    type: types.GET_POPULAR_NOVELS_SUCCESS,
+    payload: {
+      novels: res.data,
+    },
+  });
+});
