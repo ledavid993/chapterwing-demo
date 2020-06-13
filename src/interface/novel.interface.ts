@@ -3,6 +3,7 @@ export interface NovelState {
   currentNovel: CurrentNovel;
   loading: boolean;
   error: string;
+  currentChapter: ContentsEntity;
 }
 
 export interface CurrentNovel {
@@ -47,4 +48,5 @@ export interface ContentsEntity {
   isPublish: boolean;
   views: number;
   taskId: string;
+  document?: string;
 }

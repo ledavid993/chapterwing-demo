@@ -1,31 +1,24 @@
 import { Text, Heading, Box } from '@chakra-ui/core';
+import { useSelector } from 'react-redux';
 import { Layout } from '../../components';
+import { ContentsEntity, NovelState } from '../../interface/novel.interface';
+import { nodesToHtml } from '../../utils';
+import styles from './Chapter.module.scss';
 
 const Chapter = () => {
+  const novelState: NovelState = useSelector(({ novel }: any) => novel);
+  const {
+    currentChapter: { title, document, chapterNumber },
+  } = novelState;
+
   return (
     <Layout>
-      <Box padding="10px" marginTop="25px">
+      <Box padding="10px" marginTop="25px" className={styles.contentContainer}>
         <Heading color="white" fontSize="1.5rem">
-          Chapter 56: I am a Dragon
+          Chapter {chapterNumber}: {title}
         </Heading>
-        <Text
-          margin="40px 0"
-          color="#d3d3d3"
-          fontSize="18px"
-          lineHeight="22px"
-          letterSpacing=".03em"
-          whiteSpace="pre-wrap"
-        >
-          {`The same works for table columns, too, but then there has to be an element in the document that corresponds to the column. HTML provides COL for that. The table has to start with one COL for every column:
 
-<table>
-<col><col><col><col><col><col><col><col><col><col>
-<tr><th>Month<th>'94<th>'95<th>'96...
-(COL can be used for other things than style, but in this case all we need is that the COL elements are present.) The following rules give the first column a yellow background, and then every second column starting from column 3 a gray one:
-
-col:first-child {background: #FF0}
-col:nth-child(2n+3) {background: #CCC}`}
-        </Text>
+        {nodesToHtml(document)}
       </Box>
     </Layout>
   );

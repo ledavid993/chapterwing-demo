@@ -8,14 +8,11 @@ import { isEmpty } from 'ramda';
 interface Props {
   name: string;
   chapters: ContentsEntity[];
+  onNavigatePage: (volumeTitle: string, chapterNumber: number) => void;
+  volumeTitle: string;
 }
 
-const Table: React.FC<Props> = ({ name, chapters }) => {
-  const router = useRouter();
-  const navigatePage = (chapter: number) => {
-    router.push(`${router.asPath}/${chapter}`);
-  };
-
+const Table: React.FC<Props> = ({ name, chapters, volumeTitle, onNavigatePage }) => {
   return (
     <div>
       <Box width="100%" backgroundColor="#c4c4c410">
@@ -29,7 +26,7 @@ const Table: React.FC<Props> = ({ name, chapters }) => {
               chapterNumber={chapter.chapterNumber}
               title={chapter.title}
               likes="0"
-              navigatePage={navigatePage}
+              navigatePage={() => onNavigatePage(volumeTitle, chapter.chapterNumber)}
             />
           ))}
         </Box>

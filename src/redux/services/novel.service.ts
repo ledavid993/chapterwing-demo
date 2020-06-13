@@ -3,11 +3,18 @@ import { pathOr } from 'ramda';
 
 export default class NovelService extends BaseHttpService {
   async getNovels() {
-    return await this.get('read/popular');
+    const url = 'read/popular';
+    return await this.get(url);
   }
 
   async getNovel(novelTitle: string) {
-    return await this.get(`read/novel/${novelTitle}`);
+    const url = `read/novel/${novelTitle}`;
+    return await this.get(url);
+  }
+
+  async getChapter(novelTitle: string, volumeTitle: string, chapterNumber: number) {
+    const url = `read/novel/${novelTitle}/${volumeTitle}/${chapterNumber}`;
+    return await this.get(url);
   }
 }
 

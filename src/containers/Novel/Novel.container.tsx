@@ -2,6 +2,7 @@ import { Box, Image, Heading, Text, SimpleGrid, Divider, Flex } from '@chakra-ui
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { Layout, Header, Table, Review, Discussion, Genres, Tags } from '../../components';
 import styles from './Novel.module.scss';
 import { NovelState } from '../../interface/novel.interface';
@@ -12,6 +13,11 @@ export default function Novel() {
     currentNovel: { novel, volumes },
   } = novelState;
   const { title, author, createdDate, rating, image } = novel;
+
+  const router = useRouter();
+  const navigatePage = (volumeTitle: string, chapter: number) => {
+    router.push(`${router.asPath}/${volumeTitle}/${chapter}`);
+  };
 
   return (
     <Layout>
@@ -71,6 +77,8 @@ export default function Novel() {
             key={volume.title}
             name={`Volume ${index + 1} - ${volume.title}`}
             chapters={volume.contents}
+            volumeTitle={volume.title}
+            onNavigatePage={navigatePage}
           />
         ))}
         <Divider w="90%" margin="30px auto" borderColor="background.300" />

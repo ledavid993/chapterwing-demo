@@ -6,6 +6,7 @@ const initialState: CurrentNovel = {
   loading: false,
   error: null,
   currentNovel: null,
+  currentChapter: null,
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -19,7 +20,7 @@ const reducer = (state = initialState, action: any) => {
     case types.GET_POPULAR_NOVELS_SUCCESS: {
       return {
         ...state,
-        popularNovels: action.payload.novels,
+        popularNovels: action.payload.data,
         loading: false,
       };
     }
@@ -43,6 +44,19 @@ const reducer = (state = initialState, action: any) => {
       };
     }
     case types.GET_NOVEL_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    case types.GET_CHAPTER_SUCCESS: {
+      return {
+        ...state,
+        currentChapter: action.payload.data,
+        loading: false,
+      };
+    }
+    case types.GET_CHAPTER_FAILURE: {
       return {
         ...state,
         loading: false,

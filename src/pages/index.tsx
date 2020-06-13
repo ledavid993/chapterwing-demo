@@ -1,5 +1,4 @@
 import { Home } from '../containers';
-import { fetchPopularNovels } from '../redux/actions/novel.action';
 import { wrapper } from '../store';
 import { novelService } from '../redux/services';
 import * as types from '../redux/types/novel.type';
@@ -15,7 +14,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
-        novels: res.data,
+        data: res.data,
       },
     });
   } catch (e) {}
