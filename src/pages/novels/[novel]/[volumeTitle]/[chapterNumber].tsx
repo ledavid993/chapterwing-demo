@@ -25,7 +25,5 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
         data: updatedRes.data,
       },
     });
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 });

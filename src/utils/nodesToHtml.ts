@@ -7,7 +7,6 @@ export default function nodesToHtml(nodes: any) {
     switch (outerContent.type) {
       case 'paragraph':
         const innerContent = outerContent.content.map((node: any) => {
-          console.log(node.text);
           switch (node.type) {
             case 'text':
               return `<p>${node.text}</p>`;
