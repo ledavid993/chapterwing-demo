@@ -9,12 +9,14 @@ export default function HomePage() {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req, ...etc }) => {
-  const res = await novelService.getNovels();
+  try {
+    const res = await novelService.getNovels();
 
-  store.dispatch({
-    type: types.GET_POPULAR_NOVELS_SUCCESS,
-    payload: {
-      novels: res.data,
-    },
-  });
+    store.dispatch({
+      type: types.GET_POPULAR_NOVELS_SUCCESS,
+      payload: {
+        novels: res.data,
+      },
+    });
+  } catch (e) {}
 });
