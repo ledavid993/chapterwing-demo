@@ -8,14 +8,25 @@ export default function HomePage() {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req, ...etc }) => {
-  const res = await novelService.getPopularNovels(8, 0);
+  try {
+    const res = await novelService.getPopularNovels(8, 0);
 
-  // store.dispatch({
-  //   type: types.GET_POPULAR_NOVELS_SUCCESS,
-  //   payload: {
-  //     data: res.data,
-  //   },
-  // });
+    store.dispatch({
+      type: types.GET_POPULAR_NOVELS_SUCCESS,
+      payload: {
+        data: res.data,
+      },
+    });
 
-  return {};
+    return {};
+  } catch (e) {
+    store.dispatch({
+      type: types.GET_POPULAR_NOVELS_FAILURE,
+      payload: {
+        data: 'Popular Novels Failed on server side',
+      },
+    });
+
+    return {};
+  }
 });

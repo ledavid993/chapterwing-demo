@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 export default class BaseHttpService {
-  BASE_URL = 'http://localhost:3000';
+  BASE_URL = 'https://localhost:3000';
   _accessToken: string | null = null;
 
   constructor() {}
