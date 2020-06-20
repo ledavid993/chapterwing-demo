@@ -38,6 +38,11 @@ const Home = () => {
     router.push(`/novels/${novelTitle}/${volumeTitle}/${chapterNumber}`);
   };
 
+  const navigateToNovelPage = (novelTitle: string) => {
+    console.log(router);
+    router.push(`/novels/${novelTitle}`);
+  };
+
   const loadingDiscussions = () => {
     const arr = [];
     for (let i = 0; i < 3; i++) {
@@ -86,7 +91,12 @@ const Home = () => {
             <Box padding="5px">
               {recommendedNovels.length !== 0
                 ? recommendedNovels.map((novel) => (
-                    <Release novel={novel} navigateToChapterPage={navigateToChapterPage} />
+                    <Release
+                      novel={novel}
+                      navigateToNovelPage={navigateToNovelPage}
+                      navigateToChapterPage={navigateToChapterPage}
+                      key={novel.id}
+                    />
                   ))
                 : loadingReleases()}
             </Box>

@@ -19,8 +19,6 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
       },
     };
 
-    console.log(updatedRes.data);
-
     store.dispatch({
       type: types.GET_CHAPTER_SUCCESS,
       payload: {

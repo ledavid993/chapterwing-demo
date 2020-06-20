@@ -5,15 +5,17 @@ import { BUNNY_IMAGE_URL } from '../../constants';
 interface Props {
   novel: any;
   navigateToChapterPage: (novelTitle: string, volumeTitle: string, chapterNumber: number) => void;
+  navigateToNovelPage: (novelTitle: string) => void;
 }
 
-const Release: React.FC<Props> = ({ novel, navigateToChapterPage }) => {
+const Release: React.FC<Props> = ({ novel, navigateToChapterPage, navigateToNovelPage }) => {
   return (
     <Box w="100%" className={styles.container}>
       <Flex alignItems="center" height="100%">
         <Image
           src={`${BUNNY_IMAGE_URL}/${novel.image}`}
           className={styles.imageCover}
+          onClick={() => navigateToNovelPage(novel.title)}
           alt="novel"
         />
         <Flex flexDirection="column" justifyContent="center" padding="0 15px" width="100%">
@@ -23,6 +25,7 @@ const Release: React.FC<Props> = ({ novel, navigateToChapterPage }) => {
             .map((chapter: any, index: number) => {
               const chapterComponent = (
                 <div
+                  key={chapter.title}
                   className={styles.volumeContainer}
                   onClick={() =>
                     navigateToChapterPage(
