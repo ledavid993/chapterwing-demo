@@ -6,13 +6,14 @@ import { useRouter } from 'next/router';
 import { Layout, Header, Table, Review, Discussion, Genres, Tags } from '../../components';
 import styles from './Novel.module.scss';
 import { NovelState } from '../../interface/novel.interface';
+import { isEmpty } from 'ramda';
 
 export default function Novel() {
   const novelState: NovelState = useSelector(({ novel }: any) => novel);
   const {
     currentNovel: { novel, volumes },
   } = novelState;
-  const { title, author, createdDate, rating, image } = novel;
+  const { title, author, createdDate, rating, image, description } = novel;
 
   const router = useRouter();
   const navigatePage = (volumeTitle: string, chapter: number) => {
@@ -23,7 +24,7 @@ export default function Novel() {
     <Layout>
       <Head>
         <title>{title}</title>
-        <meta name={title} content="Synopsis here" />
+        <meta name={title} content={description} />
       </Head>
       <Box className={styles.imageBanner}>
         <div className={styles.shade} />
@@ -34,14 +35,17 @@ export default function Novel() {
           <div className={styles.paper} />
           <div className={styles.paper} />
           <div className={styles.paper}>
-            <Image
-              src={`https://chapterwing.b-cdn.net/images/${novel.image}`}
-              h="100%"
-              w="100%"
-              borderRadius="5px"
-              border="1px solid rgba(122,122,122)"
-              alt="novel"
-            />
+            {
+              <Image
+                src={`https://chapterwing.b-cdn.net/images/${novel.image}`}
+                h="100%"
+                w="100%"
+                borderRadius="5px"
+                border="1px solid rgba(122,122,122)"
+                alt="novel"
+                fallbackSrc="/chapterwing.jpg"
+              />
+            }
           </div>
         </div>
       </Box>
@@ -72,15 +76,27 @@ export default function Novel() {
             Feathermeter: <span className={styles.labelInfo}>---</span>
           </Box>
         </SimpleGrid>
-        {volumes?.map((volume, index) => (
-          <Table
-            key={volume.title}
-            name={`Volume ${index + 1} - ${volume.title}`}
-            chapters={volume.contents}
-            volumeTitle={volume.title}
-            onNavigatePage={navigatePage}
-          />
-        ))}
+        {!isEmpty(volumes) ? (
+          volumes?.map((volume, index) => (
+            <Table
+              key={volume.title}
+              name={`Volume ${index + 1} - ${volume.title}`}
+              chapters={volume.contents}
+              volumeTitle={volume.title}
+              onNavigatePage={navigatePage}
+            />
+          ))
+        ) : (
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            margin="20px"
+            fontWeight="bold"
+            color="#d3d3d3"
+          >
+            No Volumes Found
+          </Flex>
+        )}
         <Divider w="90%" margin="30px auto" borderColor="background.300" />
         <Box>
           <Header fontSize="14px">Reviews</Header>

@@ -8,6 +8,22 @@
   box-sizing: border-box;
   border-radius: 5px;
 
+  .imageCover {
+    width: 54px;
+    border-radius: 5px;
+  }
+
+  .imageCover:hover {
+    cursor: pointer;
+  }
+
+  .volumeTitle {
+    color: white;
+    font-weight: bold;
+    display: flex;
+    font-size: 12px;
+  }
+
   span {
     font-size: 10px;
     color: #d3d3d3;
@@ -15,5 +31,47 @@
     justify-content: center;
     align-items: center;
     padding-left: 4px;
+  }
+
+  .footerContainer {
+    font-size: 10px;
+    font-weight: bold;
+  }
+}
+
+.volumeContainer {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 9px;
+  border-radius: 3px;
+}
+
+.volumeContainer:hover {
+  cursor: pointer;
+}
+
+.chapterLabel {
+  color: #d3d3d3;
+  font-size: 12px;
+  width: 70%;
+}
+
+@media (min-width: 730px) {
+  .container {
+    .imageCover {
+      width: 112px;
+    }
+
+    .volumeTitle {
+      font-size: 24px;
+    }
+
+    .footerContainer {
+      font-size: 16px;
+    }
+  }
+
+  .chapterLabel {
+    font-size: 13px;
+    padding-left: 5px;
   }
 }

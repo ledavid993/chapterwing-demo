@@ -3,6 +3,7 @@ import { CurrentNovel } from '../../interface/novel.interface';
 
 const initialState: CurrentNovel = {
   popularNovels: [],
+  recommendedNovels: [],
   loading: false,
   error: null,
   currentNovel: null,
@@ -44,6 +45,25 @@ const reducer = (state = initialState, action: any) => {
       };
     }
     case types.GET_NOVEL_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    case types.GET_NOVELS_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case types.GET_NOVELS_SUCCESS: {
+      return {
+        ...state,
+        recommendedNovels: action.payload.data,
+        loading: false,
+      };
+    }
+    case types.GET_NOVELS_FAILURE: {
       return {
         ...state,
         loading: false,

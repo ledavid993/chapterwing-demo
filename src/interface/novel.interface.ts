@@ -1,5 +1,6 @@
 export interface NovelState {
   popularNovels: any[];
+  recommendedNovels: any[];
   currentNovel: CurrentNovel;
   loading: boolean;
   error: string;

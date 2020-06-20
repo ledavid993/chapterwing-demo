@@ -19,11 +19,15 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
       },
     };
 
+    console.log(updatedRes.data);
+
     store.dispatch({
       type: types.GET_CHAPTER_SUCCESS,
       payload: {
         data: updatedRes.data,
       },
     });
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 });

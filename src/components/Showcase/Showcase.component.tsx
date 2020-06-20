@@ -28,8 +28,9 @@ const Showcase: React.FC<Props> = ({ style, popularNovels }) => {
               <Link href="/novels/[title]" as={`/novels/${novel.title}`}>
                 <a>
                   <Image
-                    src="https://cdn.wuxiaworld.com/images/covers/scog.jpg?ver=76e28d7a189f23b39b980c9f881309570478a32b"
+                    src={`https://chapterwing.b-cdn.net/images/${novel.image}`}
                     className={styles.popularNovels}
+                    fallbackSrc="/chapterwing.jpg"
                   />
                 </a>
               </Link>

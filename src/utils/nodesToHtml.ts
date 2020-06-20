@@ -3,9 +3,12 @@ import htmlParse from 'html-react-parser';
 export default function nodesToHtml(nodes: any) {
   if (!nodes) return '';
 
+  console.log(nodes);
+
   const htmlMap = nodes.content.map((outerContent: any) => {
     switch (outerContent.type) {
       case 'paragraph':
+        if (!outerContent.content) return `<p></p>`;
         const innerContent = outerContent.content.map((node: any) => {
           switch (node.type) {
             case 'text':
@@ -19,4 +22,5 @@ export default function nodesToHtml(nodes: any) {
   });
 
   return htmlParse(htmlMap.join(''));
+  return '';
 }

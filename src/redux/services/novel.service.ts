@@ -2,9 +2,19 @@ import BaseHttpService from './basehttp.service';
 import { pathOr } from 'ramda';
 
 export default class NovelService extends BaseHttpService {
-  async getNovels() {
-    const url = 'read/popular';
-    return await this.get(url);
+  async getPopularNovels(limit: number, offset: number) {
+    const url = `read/popular`;
+    return await this.get(url, { params: { limit, offset } });
+  }
+
+  async getNovels(
+    category: string = 'Novel',
+    limit: number = 12,
+    removeDefaultImage: boolean = false,
+    isPublish: boolean = true
+  ) {
+    const url = 'read';
+    return await this.get(url, { params: { category, limit, removeDefaultImage, isPublish } });
   }
 
   async getNovel(novelTitle: string) {

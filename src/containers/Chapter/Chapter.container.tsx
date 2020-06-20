@@ -7,18 +7,16 @@ import styles from './Chapter.module.scss';
 
 const Chapter = () => {
   const novelState: NovelState = useSelector(({ novel }: any) => novel);
-  const {
-    currentChapter: { title, document, chapterNumber },
-  } = novelState;
+  const { currentChapter } = novelState;
 
   return (
     <Layout>
       <Box padding="10px" marginTop="25px" className={styles.contentContainer}>
         <Heading color="white" fontSize="1.5rem">
-          Chapter {chapterNumber}: {title}
+          Chapter {currentChapter?.chapterNumber}: {currentChapter?.title}
         </Heading>
 
-        {nodesToHtml(document)}
+        {nodesToHtml(currentChapter?.document)}
       </Box>
     </Layout>
   );
