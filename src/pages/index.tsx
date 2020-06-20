@@ -19,7 +19,11 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
         data: res.data,
       },
     });
+
+    return {};
   } catch (e) {
     console.log(e);
+
+    return {};
   }
 });
