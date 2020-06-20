@@ -34,12 +34,10 @@ const Home = () => {
     volumeTitle: string,
     chapterNumber: number
   ) => {
-    console.log(router);
     router.push(`/novels/${novelTitle}/${volumeTitle}/${chapterNumber}`);
   };
 
   const navigateToNovelPage = (novelTitle: string) => {
-    console.log(router);
     router.push(`/novels/${novelTitle}`);
   };
 

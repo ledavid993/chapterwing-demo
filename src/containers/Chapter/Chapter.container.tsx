@@ -11,11 +11,11 @@ const Chapter = () => {
 
   return (
     <Layout>
-      <Box padding="10px" marginTop="25px" className={styles.contentContainer}>
-        <Heading color="white" fontSize="1.5rem">
+      <Box className={styles.contentContainer}>
+        <Heading color="white" fontSize="1.5rem" marginTop="25px">
           Chapter {currentChapter?.chapterNumber}: {currentChapter?.title}
         </Heading>
-
+        <Box marginTop="60px" />
         {nodesToHtml(currentChapter?.document)}
       </Box>
     </Layout>

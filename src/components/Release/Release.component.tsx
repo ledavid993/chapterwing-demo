@@ -36,7 +36,8 @@ const Release: React.FC<Props> = ({ novel, navigateToChapterPage, navigateToNove
                   }
                 >
                   <div className={styles.volumeTitle}>
-                    Volume - "<h4>{novel.tasks.slice(-1)[0].title}</h4>"
+                    Volume {novel.tasks.slice(-1)[0].number}- "
+                    <h4>{novel.tasks.slice(-1)[0].title}</h4>"
                   </div>
                   <Chapter
                     likes={chapter.likes}

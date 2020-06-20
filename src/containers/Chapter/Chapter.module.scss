@@ -1,6 +1,9 @@
 .contentContainer {
   width: 100%;
   margin: 0 auto;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 15px;
   p {
     margin: 15px 0;
     line-height: 30px;
@@ -16,5 +19,6 @@
 @media (min-width: 730px) {
   .contentContainer {
     width: 80%;
+    padding: 40px 60px;
   }
 }
