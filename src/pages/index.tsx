@@ -9,18 +9,23 @@ export default function HomePage() {
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req, ...etc }) => {
   try {
-    // const res = await novelService.getPopularNovels(8, 0);
+    const res = await novelService.getPopularNovels(8, 0);
 
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
-        data: 'hello',
+        data: res.data,
       },
     });
 
     return {};
   } catch (e) {
-    console.log(e);
+    store.dispatch({
+      type: types.GET_POPULAR_NOVELS_FAILURE,
+      payload: {
+        data: e,
+      },
+    });
 
     return {};
   }
