@@ -28,6 +28,7 @@ const reducer = (state = initialState, action: any) => {
     case types.GET_POPULAR_NOVELS_FAILURE: {
       return {
         ...state,
+        error: action.payload.data,
         loading: false,
       };
     }
