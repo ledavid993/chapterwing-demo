@@ -23,7 +23,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_FAILURE,
       payload: {
-        data: e,
+        data: JSON.stringify(e) + 'hello',
       },
     });
 
