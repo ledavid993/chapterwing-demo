@@ -8,7 +8,7 @@ export default function nodesToHtml(nodes: any) {
   const htmlMap = nodes.content.map((outerContent: any) => {
     switch (outerContent.type) {
       case 'paragraph':
-        if (!outerContent.content) return `<p></p>`;
+        if (!outerContent.content) return '<p></p>';
         const innerContent = outerContent.content.map((node: any) => {
           switch (node.type) {
             case 'text':

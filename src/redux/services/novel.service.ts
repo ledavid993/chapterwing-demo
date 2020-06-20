@@ -3,7 +3,7 @@ import { pathOr } from 'ramda';
 
 export default class NovelService extends BaseHttpService {
   async getPopularNovels(limit: number, offset: number) {
-    const url = `read/popular`;
+    const url = 'read/popular';
     return await this.get(url, { params: { limit, offset } });
   }
 
