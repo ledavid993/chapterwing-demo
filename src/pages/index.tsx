@@ -11,6 +11,8 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
   try {
     const res = await novelService.getPopularNovels(8, 0);
 
+    console.log(res);
+
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
