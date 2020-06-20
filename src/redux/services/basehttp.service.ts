@@ -40,6 +40,7 @@ export default class BaseHttpService {
   }
 
   handleHttpError(error: any) {
+    console.log(error);
     throw Error(error);
   }
 
