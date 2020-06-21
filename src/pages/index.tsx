@@ -11,7 +11,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
   try {
     // const res = await novelService.getPopularNovels(8, 0);
 
-    const res = await fetch('https://localhost:3000/read?category=Novel');
+    const res = await fetch('https://swapi.dev/api/people/1');
 
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
