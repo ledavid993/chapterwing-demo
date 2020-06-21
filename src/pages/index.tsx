@@ -13,6 +13,8 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
 
     const res = await fetch('https://swapi.dev/api/people/1');
 
+    console.log(res);
+
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
