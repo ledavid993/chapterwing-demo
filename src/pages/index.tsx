@@ -18,7 +18,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
-        data: res.data,
+        data: res,
       },
     });
 
