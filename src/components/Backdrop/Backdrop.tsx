@@ -7,7 +7,15 @@ interface Props {
 }
 
 const Backdrop = ({ onClose, isOpen }: any) => {
-  return <div className={clsx(isOpen && styles.backDrop)} onClick={() => onClose()} />;
+  return (
+    <div
+      className={clsx(isOpen && styles.backDrop)}
+      onClick={() => {
+        console.log('click');
+        onClose();
+      }}
+    />
+  );
 };
 
 export default Backdrop;
