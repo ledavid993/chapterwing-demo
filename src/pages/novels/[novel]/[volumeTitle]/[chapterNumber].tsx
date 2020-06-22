@@ -26,6 +26,11 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
       },
     });
   } catch (e) {
-    console.log(e);
+    store.dispatch({
+      type: types.GET_CHAPTER_SUCCESS,
+      payload: {
+        data: e,
+      },
+    });
   }
 });
