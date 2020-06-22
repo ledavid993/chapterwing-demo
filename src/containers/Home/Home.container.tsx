@@ -1,6 +1,6 @@
 import { Box, Divider, Heading, Flex, Image, Button } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import {
@@ -23,11 +23,11 @@ const Home = () => {
   const { popularNovels, recommendedNovels }: NovelState = useSelector(({ novel }: any) => novel);
   const dispatch = useDispatch();
 
+  const router = useRouter();
+
   useEffect(() => {
     dispatch(fetchNovels());
-  }, []);
-
-  const router = useRouter();
+  }, [router.asPath]);
 
   const navigateToChapterPage = (
     novelTitle: string,
