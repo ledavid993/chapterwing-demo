@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 export default class BaseHttpService {
-  BASE_URL = 'http://wingpen-env.eba-8uiqhem9.us-east-2.elasticbeanstalk.com';
+  BASE_URL = 'https://www.wingpen.name';
   _accessToken: string | null = null;
 
   constructor() {}
