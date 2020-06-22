@@ -11,18 +11,10 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
   try {
     const res = await novelService.getChapter(query.novel, query.volumeTitle, query.chapterNumber);
 
-    const updatedRes = {
-      ...res,
-      data: {
-        ...res.data,
-        document: JSON.parse(res.data.document),
-      },
-    };
-
     store.dispatch({
       type: types.GET_CHAPTER_SUCCESS,
       payload: {
-        data: updatedRes.data,
+        data: 'hello',
       },
     });
   } catch (e) {
