@@ -147,9 +147,9 @@ const Home = () => {
                   <p>
                     <span>-</span> Show others your story to thousands
                   </p>
-                  <p>
+                  {/* <p>
                     <span>-</span> Get pay to write your story
-                  </p>
+                  </p> */}
                 </Box>
                 <Image src="/icons/write.svg" alt="write" />
               </Flex>
