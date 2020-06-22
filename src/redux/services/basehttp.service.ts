@@ -2,7 +2,8 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 export default class BaseHttpService {
-  BASE_URL = 'https://www.wingpen.name';
+  BASE_URL =
+    process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.wingpen.name';
   _accessToken: string | null = null;
 
   constructor() {}
