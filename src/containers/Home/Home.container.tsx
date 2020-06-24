@@ -27,7 +27,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchNovels());
-  }, [router.asPath]);
+  }, []);
 
   const navigateToChapterPage = (
     novelTitle: string,
