@@ -39,9 +39,6 @@ export const fetchNovel = (novelTitle: string) => async (dispatch: any) => {
   } catch (e) {
     dispatch({
       type: types.GET_NOVEL_FAILURE,
-      payload: {
-        data: JSON.stringify(e),
-      },
     });
   }
 };
@@ -63,6 +60,9 @@ export const fetchNovels = () => async (dispatch: any) => {
   } catch (e) {
     dispatch({
       type: types.GET_NOVELS_FAILURE,
+      payload: {
+        error: JSON.stringify(e),
+      },
     });
   }
 };

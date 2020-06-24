@@ -69,7 +69,7 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
-        novelsError: action.payload.data,
+        novelsError: action.payload.error,
       };
     }
     case types.GET_CHAPTER_SUCCESS: {
