@@ -67,6 +67,15 @@ export const fetchNovels = () => async (dispatch: any) => {
   }
 };
 
+export const clearNovels = () => async (dispatch: any) => {
+  dispatch({
+    type: types.GET_NOVELS_SUCCESS,
+    payload: {
+      data: [],
+    },
+  });
+};
+
 export const fetchChapter = (
   novelTitle: string,
   volumeTitle: string,
