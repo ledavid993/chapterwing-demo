@@ -28,6 +28,7 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
+    alert('hello');
     dispatch(fetchNovels());
   }, []);
 
@@ -100,7 +101,6 @@ const Home = () => {
                   ))
                 : loadingReleases()}
             </Box>
-            {novelsError}
             <Divider w="90%" margin="5px auto" borderColor="background.300" />
             <Box margin="20px">
               <Heading

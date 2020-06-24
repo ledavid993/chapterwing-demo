@@ -44,18 +44,27 @@ export const fetchNovel = (novelTitle: string) => async (dispatch: any) => {
 };
 
 export const fetchNovels = () => async (dispatch: any) => {
-  dispatch({
-    type: types.GET_NOVELS_REQUEST,
-  });
+  try {
+    dispatch({
+      type: types.GET_NOVELS_REQUEST,
+    });
 
-  const res = await novelService.getNovels('Novel', 12, true, true);
+    const res = await novelService.getNovels('Novel', 12, true, true);
 
-  dispatch({
-    type: types.GET_NOVELS_SUCCESS,
-    payload: {
-      data: res.data,
-    },
-  });
+    dispatch({
+      type: types.GET_NOVELS_SUCCESS,
+      payload: {
+        data: res.data,
+      },
+    });
+  } catch (e) {
+    dispatch({
+      type: types.GET_NOVELS_FAILURE,
+      payload: {
+        error: JSON.stringify(e),
+      },
+    });
+  }
 };
 
 export const fetchChapter = (
