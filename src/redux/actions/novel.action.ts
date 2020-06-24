@@ -55,6 +55,7 @@ export const fetchNovels = () => async (dispatch: any) => {
       type: types.GET_NOVELS_SUCCESS,
       payload: {
         data: res.data,
+        error: 'check error',
       },
     });
   } catch (e) {

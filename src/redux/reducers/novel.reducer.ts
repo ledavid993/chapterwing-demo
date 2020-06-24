@@ -62,6 +62,7 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         recommendedNovels: action.payload.data,
+        novelsError: action.payload.error,
         loading: false,
       };
     }
