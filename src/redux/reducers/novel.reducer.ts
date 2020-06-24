@@ -8,6 +8,7 @@ const initialState: CurrentNovel = {
   error: null,
   currentNovel: null,
   currentChapter: null,
+  novelsError: 'err',
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -68,6 +69,7 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
+        novelsError: action.payload.data,
       };
     }
     case types.GET_CHAPTER_SUCCESS: {

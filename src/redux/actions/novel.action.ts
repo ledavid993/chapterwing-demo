@@ -39,6 +39,9 @@ export const fetchNovel = (novelTitle: string) => async (dispatch: any) => {
   } catch (e) {
     dispatch({
       type: types.GET_NOVEL_FAILURE,
+      payload: {
+        data: JSON.stringify(e),
+      },
     });
   }
 };

@@ -20,7 +20,9 @@ import { NovelState } from '../../interface/novel.interface';
 const releases: any[] = [];
 
 const Home = () => {
-  const { popularNovels, recommendedNovels }: NovelState = useSelector(({ novel }: any) => novel);
+  const { popularNovels, recommendedNovels, novelsError }: NovelState = useSelector(
+    ({ novel }: any) => novel
+  );
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -98,6 +100,7 @@ const Home = () => {
                   ))
                 : loadingReleases()}
             </Box>
+            {novelsError}
             <Divider w="90%" margin="5px auto" borderColor="background.300" />
             <Box margin="20px">
               <Heading
