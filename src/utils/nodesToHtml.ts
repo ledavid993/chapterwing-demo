@@ -11,16 +11,19 @@ export default function nodesToHtml(nodes: any) {
           switch (node.type) {
             case 'text':
               return `<p>${node.text}</p>`;
+            case 'hard_break':
+              return '<br>';
+            default:
+              return node?.text;
           }
         });
         return innerContent;
-      case 'hard_break':
-        return '<br>';
       default:
         return '';
     }
   });
 
-  return htmlParse(htmlMap.join(''));
-  return '';
+  const htmlString = htmlMap.join('');
+
+  return htmlString;
 }
