@@ -15,7 +15,7 @@ export default function nodesToHtml(nodes: any) {
         });
         return innerContent;
       case 'hard_break':
-        return '<p></p>';
+        return '<br>';
       default:
         return '';
     }
