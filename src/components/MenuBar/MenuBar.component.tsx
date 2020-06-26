@@ -7,10 +7,25 @@ import styles from './MenuBar.module.scss';
 interface Props {
   onMenuBarOpen: () => void;
   onRegistryOpen: () => void;
-  auth: any;
+  onRegistryClose: () => void;
+  isRegistryOpen: boolean;
+  user: any;
 }
 
-const MenuBar: React.FC<Props> = ({ onMenuBarOpen, onRegistryOpen, auth }) => {
+const MenuBar: React.FC<Props> = ({
+  onMenuBarOpen,
+  onRegistryOpen,
+  user,
+  onRegistryClose,
+  isRegistryOpen,
+}) => {
+  const onLogOutClick = () => {
+    if (isRegistryOpen) {
+      onRegistryClose();
+    } else {
+      onRegistryOpen();
+    }
+  };
   return (
     <Box className={styles.container} backgroundColor="primary.300">
       <div>
@@ -21,8 +36,8 @@ const MenuBar: React.FC<Props> = ({ onMenuBarOpen, onRegistryOpen, auth }) => {
           </a>
         </Link>
       </div>
-      {auth ? (
-        <IoMdLogOut color="white" onClick={() => onRegistryOpen()} />
+      {user ? (
+        <IoMdLogOut color="white" onClick={() => onLogOutClick()} />
       ) : (
         <IoMdLogIn color="white" onClick={() => onRegistryOpen()} />
       )}

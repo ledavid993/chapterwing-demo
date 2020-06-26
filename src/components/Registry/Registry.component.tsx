@@ -10,24 +10,38 @@ import {
   InputLeftElement,
   Icon,
   Spinner,
+  List,
+  ListItem,
 } from '@chakra-ui/core';
 import clsx from 'clsx';
 import styles from './Registry.module.scss';
 import { useEffect, useState } from 'react';
+import { isNil, isEmpty } from 'ramda';
 
 interface Props {
   isOpen: boolean;
   onRegistryClose: () => void;
   onSignIn: (email: string, password: string) => void;
+  onRegister: (email: string, password: string) => void;
   pending: boolean;
+  errors: string[];
 }
 
-const Registry: React.FC<Props> = ({ isOpen, onRegistryClose, onSignIn, pending }) => {
+const Registry: React.FC<Props> = ({
+  isOpen,
+  onRegistryClose,
+  onSignIn,
+  pending,
+  onRegister,
+  errors,
+}) => {
   const [isSignIn, toggleSignIn] = useState(true);
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
   });
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   useEffect(() => {
     if (isOpen) {
@@ -46,6 +60,15 @@ const Registry: React.FC<Props> = ({ isOpen, onRegistryClose, onSignIn, pending 
 
   const onClick = () => {
     toggleSignIn(!isSignIn);
+  };
+
+  const onRegisterSubmit = () => {
+    setConfirmPasswordError('');
+    if (inputs.password !== inputs.confirmPassword) {
+      setConfirmPasswordError('Passwords does not match');
+    } else {
+      onRegister(inputs.email, inputs.password);
+    }
   };
 
   return (
@@ -71,17 +94,51 @@ const Registry: React.FC<Props> = ({ isOpen, onRegistryClose, onSignIn, pending 
         {isSignIn ? (
           <SignIn message=" Welcome, Please Sign in!" onInputChange={onInputChange} />
         ) : (
-          <CreateAccount message="New? Please Create Around." onInputChange={onInputChange} />
+          <CreateAccount message="New? Please Create an Account." onInputChange={onInputChange} />
         )}
       </Box>
-      <Flex justifyContent="space-around" marginTop="30px" className={styles.buttons}>
+      <List
+        margin="5px 0"
+        styleType="disc"
+        display="flex"
+        justifyContent="flex-start"
+        alignItems="center"
+        flexDirection="column"
+        textAlign="center"
+      >
+        {!isNil(errors) && !isEmpty(errors)
+          ? errors.map((error) => (
+              <ListItem color="#cc0000" fontSize="12px" whiteSpace="pre-wrap">
+                {error}
+              </ListItem>
+            ))
+          : null}
+      </List>
+
+      {!isEmpty(confirmPasswordError) && (
+        <List
+          margin="5px 0"
+          styleType="disc"
+          display="flex"
+          justifyContent="flex-start"
+          alignItems="center"
+          flexDirection="column"
+          textAlign="center"
+        >
+          <ListItem color="#cc0000" fontSize="12px" whiteSpace="pre-wrap">
+            {confirmPasswordError}
+          </ListItem>
+        </List>
+      )}
+
+      <Flex justifyContent="space-around" className={styles.buttons}>
         <Button onClick={() => onRegistryClose()}>Cancel</Button>
         {isSignIn ? (
           <Button variantColor="primary" onClick={() => onSignIn(inputs.email, inputs.password)}>
             {pending ? <Spinner /> : 'Sign In'}
           </Button>
         ) : (
-          <Button variantColor="primary" onClick={() => onRegistryClose()}>
+          <Button variantColor="primary" onClick={() => onRegisterSubmit()}>
             Create Account
           </Button>
         )}
@@ -141,7 +198,7 @@ const CreateAccount = ({
       <Text margin="10px 0" color="#d3d3d3" fontWeight="bold">
         {message}
       </Text>
-      <Box width="80%">
+      <Box className={styles.inputField}>
         <Stack spacing={4}>
           <InputGroup>
             <InputLeftElement fontSize="1.2em" children={<Icon name="email" color="gray.300" />} />
@@ -164,7 +221,12 @@ const CreateAccount = ({
           </InputGroup>
           <InputGroup>
             <InputLeftElement fontSize="1.2em" children={<Icon name="lock" color="gray.300" />} />
-            <Input type="password" placeholder="Confirm Password" />
+            <Input
+              type="password"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              onChange={({ target: { value, name } }: any) => onInputChange(name, value)}
+            />
           </InputGroup>
         </Stack>
       </Box>

@@ -41,7 +41,12 @@ export default class BaseHttpService {
   }
 
   handleHttpError(error: any) {
-    console.log(error);
+    if (error?.response) {
+      throw {
+        statusCode: error?.response?.data?.statusCode,
+        message: error?.response?.data?.message,
+      };
+    }
     throw Error(error);
   }
 

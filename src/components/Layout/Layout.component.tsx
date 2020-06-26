@@ -5,14 +5,15 @@ import MenuBar from '../MenuBar/MenuBar.component';
 import SideBar from '../SideBar/SideBar.component';
 import Backdrop from '../Backdrop/Backdrop';
 import Registry from '../Registry/Registry.component';
-import { signIn, validateToken } from '../../redux/actions/auth.action';
+import { signIn, validateToken, register, signOut } from '../../redux/actions/auth.action';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import SettingBox from '../SettingBox/SettingBox.component';
 
 export default function Layout({ children }: any) {
   const { isOpen: isMenuBarOpen, onOpen: onMenuBarOpen, onClose: onMenuBarClose } = useDisclosure();
   const dispatch = useDispatch();
-  const { pending, auth } = useSelector(({ auth }: any) => auth);
+  const { pending, user, errors } = useSelector(({ auth }: any) => auth);
 
   const {
     isOpen: isRegistryOpen,
@@ -34,6 +35,18 @@ export default function Layout({ children }: any) {
     }
   };
 
+  const onSignOut = async () => {
+    dispatch(signOut());
+    onRegistryClose();
+  };
+
+  const onRegister = async (email: string, password: string) => {
+    const isSuccess = await dispatch(register(email, password));
+    if (isSuccess && !pending) {
+      onRegistryClose();
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -44,15 +57,31 @@ export default function Layout({ children }: any) {
            place for writers to share with readers and readers to discuss their favorite book"
         />
       </Head>
-      <MenuBar onMenuBarOpen={onMenuBarOpen} onRegistryOpen={onRegistryOpen} auth={auth} />
+      <MenuBar
+        onMenuBarOpen={onMenuBarOpen}
+        onRegistryOpen={onRegistryOpen}
+        isRegistryOpen={isRegistryOpen}
+        user={user}
+        onRegistryClose={onRegistryClose}
+      />
       <Backdrop onClose={onMenuBarClose} isOpen={isMenuBarOpen} />
       <SideBar isOpen={isMenuBarOpen} />
-      <Registry
-        isOpen={isRegistryOpen}
-        onRegistryClose={onRegistryClose}
-        onSignIn={onSignIn}
-        pending={pending}
-      />
+      {!user ? (
+        <Registry
+          isOpen={isRegistryOpen}
+          onRegistryClose={onRegistryClose}
+          onSignIn={onSignIn}
+          pending={pending}
+          onRegister={onRegister}
+          errors={errors}
+        />
+      ) : (
+        <SettingBox
+          isOpen={isRegistryOpen}
+          onRegistryClose={onRegistryClose}
+          onSignOut={onSignOut}
+        />
+      )}
       {children}
       <Box
         backgroundColor="#c4c4c420"

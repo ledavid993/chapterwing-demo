@@ -11,7 +11,7 @@ export default class AuthService extends BaseHttpService {
     this.saveToken(pathOr('', ['data', 'accessToken'], result));
   }
 
-  async signUp({ email, password }: any) {
+  async register(email: string, password: string) {
     const result = await this.post('auth/signup', {
       email,
       password,
