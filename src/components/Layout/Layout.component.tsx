@@ -7,6 +7,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import Registry from '../Registry/Registry.component';
 import { signIn, validateToken } from '../../redux/actions/auth.action';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Layout({ children }: any) {
   const { isOpen: isMenuBarOpen, onOpen: onMenuBarOpen, onClose: onMenuBarClose } = useDisclosure();
@@ -18,12 +19,13 @@ export default function Layout({ children }: any) {
     onOpen: onRegistryOpen,
     onClose: onRegistryClose,
   } = useDisclosure();
+  const router = useRouter();
 
   useEffect(() => {
     if (localStorage.getItem('accessToken')) {
       dispatch(validateToken());
     }
-  }, []);
+  }, [router]);
 
   const onSignIn = async (email: string, password: string) => {
     const isSuccess = await dispatch(signIn(email, password));
