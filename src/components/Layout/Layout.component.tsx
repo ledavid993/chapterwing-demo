@@ -66,23 +66,21 @@ export default function Layout({ children }: any) {
       />
       <Backdrop onClose={onMenuBarClose} isOpen={isMenuBarOpen} />
       <SideBar isOpen={isMenuBarOpen} />
-      {!user ? (
-        <Registry
-          isOpen={isRegistryOpen}
-          onRegistryClose={onRegistryClose}
-          onSignIn={onSignIn}
-          pending={pending}
-          onRegister={onRegister}
-          errors={errors}
-        />
-      ) : (
-        <SettingBox
-          isOpen={isRegistryOpen}
-          onRegistryClose={onRegistryClose}
-          onSignOut={onSignOut}
-          user={user}
-        />
-      )}
+
+      <Registry
+        isOpen={isRegistryOpen && !user}
+        onRegistryClose={onRegistryClose}
+        onSignIn={onSignIn}
+        pending={pending}
+        onRegister={onRegister}
+        errors={errors}
+      />
+      <SettingBox
+        isOpen={isRegistryOpen && user}
+        onRegistryClose={onRegistryClose}
+        onSignOut={onSignOut}
+        user={user}
+      />
       {children}
       <Box
         backgroundColor="#c4c4c420"

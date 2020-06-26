@@ -25,16 +25,16 @@ const SettingBox: React.FC<Props> = ({ isOpen, onRegistryClose, onSignOut, user 
           <Text fontWeight="bold" margin="5px 0">
             Welcome
           </Text>
-          <Text margin="5px 0">{user.email}</Text>
+          <Text margin="5px 0">{user?.email}</Text>
           <Button onClick={() => onSignOut()} margin="5px 0">
             Sign Out
           </Button>
         </Flex>
       </div>
-      {/* <div
+      <div
         className={clsx(styles.backdrop, !isOpen && styles.none)}
         onClick={() => onRegistryClose()}
-      /> */}
+      />
     </>
   );
 };
