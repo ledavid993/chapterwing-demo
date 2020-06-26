@@ -139,7 +139,7 @@ const Registry: React.FC<Props> = ({
           </Button>
         ) : (
           <Button variantColor="primary" onClick={() => onRegisterSubmit()}>
-            Create Account
+            {pending ? <Spinner /> : 'Create Account'}
           </Button>
         )}
       </Flex>

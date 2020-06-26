@@ -80,6 +80,7 @@ export default function Layout({ children }: any) {
           isOpen={isRegistryOpen}
           onRegistryClose={onRegistryClose}
           onSignOut={onSignOut}
+          user={user}
         />
       )}
       {children}

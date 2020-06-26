@@ -3,6 +3,7 @@ import { Box, Heading, Divider } from '@chakra-ui/core';
 import { reject, isNil } from 'ramda';
 import clsx from 'clsx';
 import { IoMdLogIn, IoIosSearch } from 'react-icons/io';
+import { GiBookPile, GiBurningBook } from 'react-icons/gi';
 import styles from './SideBar.module.scss';
 import { useEffect } from 'react';
 
@@ -14,10 +15,6 @@ const config = {
     name: 'ChapterWing',
   },
   section1: {
-    signIn: {
-      name: 'Sign In',
-      icon: <IoMdLogIn />,
-    },
     search: {
       name: 'Search',
       icon: <IoIosSearch />,
@@ -32,11 +29,11 @@ const config = {
     },
     popularNovels: {
       name: 'Popular Novels',
-      icon: <IoMdLogIn />,
+      icon: <GiBurningBook />,
     },
     library: {
       name: 'Library',
-      icon: <IoIosSearch />,
+      icon: <GiBookPile />,
     },
   },
   sectionDivider3: {
