@@ -31,10 +31,10 @@ const SettingBox: React.FC<Props> = ({ isOpen, onRegistryClose, onSignOut, user 
           </Button>
         </Flex>
       </div>
-      <div
+      {/* <div
         className={clsx(styles.backdrop, !isOpen && styles.none)}
         onClick={() => onRegistryClose()}
-      />
+      /> */}
     </>
   );
 };
