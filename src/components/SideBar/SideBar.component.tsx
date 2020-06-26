@@ -72,6 +72,14 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
     );
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+
   return (
     <Box
       className={clsx(styles.container, isOpen && styles.active)}
