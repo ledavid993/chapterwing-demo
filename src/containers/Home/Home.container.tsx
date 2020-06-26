@@ -17,8 +17,6 @@ import styles from './Home.module.scss';
 import { fetchNovels } from '../../redux/actions/novel.action';
 import { NovelState } from '../../interface/novel.interface';
 
-const releases: any[] = [];
-
 const Home = () => {
   const { popularNovels, recommendedNovels }: NovelState = useSelector(({ novel }: any) => novel);
   const dispatch = useDispatch();

@@ -1,18 +1,36 @@
 import { useDisclosure, Box, Text } from '@chakra-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 import MenuBar from '../MenuBar/MenuBar.component';
 import SideBar from '../SideBar/SideBar.component';
 import Backdrop from '../Backdrop/Backdrop';
 import Registry from '../Registry/Registry.component';
+import { signIn, validateToken } from '../../redux/actions/auth.action';
+import { useEffect } from 'react';
 
 export default function Layout({ children }: any) {
   const { isOpen: isMenuBarOpen, onOpen: onMenuBarOpen, onClose: onMenuBarClose } = useDisclosure();
+  const dispatch = useDispatch();
+  const { pending, auth } = useSelector(({ auth }: any) => auth);
 
   const {
     isOpen: isRegistryOpen,
     onOpen: onRegistryOpen,
     onClose: onRegistryClose,
   } = useDisclosure();
+
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      dispatch(validateToken());
+    }
+  }, []);
+
+  const onSignIn = async (email: string, password: string) => {
+    const isSuccess = await dispatch(signIn(email, password));
+    if (isSuccess && !pending) {
+      onRegistryClose();
+    }
+  };
 
   return (
     <div>
@@ -24,10 +42,15 @@ export default function Layout({ children }: any) {
            place for writers to share with readers and readers to discuss their favorite book"
         />
       </Head>
-      <MenuBar onMenuBarOpen={onMenuBarOpen} onRegistryOpen={onRegistryOpen} />
+      <MenuBar onMenuBarOpen={onMenuBarOpen} onRegistryOpen={onRegistryOpen} auth={auth} />
       <Backdrop onClose={onMenuBarClose} isOpen={isMenuBarOpen} />
       <SideBar isOpen={isMenuBarOpen} />
-      <Registry isOpen={isRegistryOpen} onRegistryClose={onRegistryClose} />
+      <Registry
+        isOpen={isRegistryOpen}
+        onRegistryClose={onRegistryClose}
+        onSignIn={onSignIn}
+        pending={pending}
+      />
       {children}
       <Box
         backgroundColor="#c4c4c420"

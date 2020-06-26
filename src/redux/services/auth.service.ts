@@ -2,7 +2,7 @@ import BaseHttpService from './basehttp.service';
 import { pathOr } from 'ramda';
 
 export default class AuthService extends BaseHttpService {
-  async signin({ email, password }: any) {
+  async signIn(email: string, password: string) {
     const result = await this.post('auth/signin', {
       email,
       password,
@@ -11,7 +11,7 @@ export default class AuthService extends BaseHttpService {
     this.saveToken(pathOr('', ['data', 'accessToken'], result));
   }
 
-  async signup({ email, password }: any) {
+  async signUp({ email, password }: any) {
     const result = await this.post('auth/signup', {
       email,
       password,
@@ -20,14 +20,11 @@ export default class AuthService extends BaseHttpService {
     this.saveToken(pathOr('', ['data', 'accessToken'], result));
   }
 
-  async signout() {
+  async signOut() {
     this.removeToken();
   }
 
   async validateToken() {
-    if (!localStorage.getItem('accessToken')) {
-      throw Error;
-    }
     await this.post('auth/validate', {
       accessToken: this.accessToken,
     });

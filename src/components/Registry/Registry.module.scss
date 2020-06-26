@@ -39,6 +39,25 @@
   width: 100px;
 }
 
+.inputField {
+  width: 80%;
+}
+
 .hide {
   transform: translateY(-115%);
+}
+
+.buttons {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media (min-width: 730px) {
+  .inputField {
+    width: 30%;
+  }
+
+  .buttons {
+    width: 50%;
+  }
 }

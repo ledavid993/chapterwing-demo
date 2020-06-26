@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import { MdMenu } from 'react-icons/md';
-import { IoMdLogIn } from 'react-icons/io';
+import { IoMdLogIn, IoMdLogOut } from 'react-icons/io';
 import { Box } from '@chakra-ui/core';
 import styles from './MenuBar.module.scss';
 
 interface Props {
   onMenuBarOpen: () => void;
   onRegistryOpen: () => void;
+  auth: any;
 }
 
-const MenuBar: React.FC<Props> = ({ onMenuBarOpen, onRegistryOpen }) => {
+const MenuBar: React.FC<Props> = ({ onMenuBarOpen, onRegistryOpen, auth }) => {
   return (
     <Box className={styles.container} backgroundColor="primary.300">
       <div>
@@ -20,7 +21,11 @@ const MenuBar: React.FC<Props> = ({ onMenuBarOpen, onRegistryOpen }) => {
           </a>
         </Link>
       </div>
-      <IoMdLogIn color="white" onClick={() => onRegistryOpen()} />
+      {auth ? (
+        <IoMdLogOut color="white" onClick={() => onRegistryOpen()} />
+      ) : (
+        <IoMdLogIn color="white" onClick={() => onRegistryOpen()} />
+      )}
     </Box>
   );
 };

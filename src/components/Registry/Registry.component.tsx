@@ -9,6 +9,7 @@ import {
   Button,
   InputLeftElement,
   Icon,
+  Spinner,
 } from '@chakra-ui/core';
 import clsx from 'clsx';
 import styles from './Registry.module.scss';
@@ -17,10 +18,16 @@ import { useEffect, useState } from 'react';
 interface Props {
   isOpen: boolean;
   onRegistryClose: () => void;
+  onSignIn: (email: string, password: string) => void;
+  pending: boolean;
 }
 
-const Registry: React.FC<Props> = ({ isOpen, onRegistryClose }) => {
+const Registry: React.FC<Props> = ({ isOpen, onRegistryClose, onSignIn, pending }) => {
   const [isSignIn, toggleSignIn] = useState(true);
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -29,6 +36,13 @@ const Registry: React.FC<Props> = ({ isOpen, onRegistryClose }) => {
       document.body.style.overflow = 'auto';
     }
   }, [isOpen]);
+
+  const onInputChange = (name: string, value: string) => {
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
 
   const onClick = () => {
     toggleSignIn(!isSignIn);
@@ -55,16 +69,16 @@ const Registry: React.FC<Props> = ({ isOpen, onRegistryClose }) => {
       >
         <Image src="/icons/owl.svg" h="100px" w="100px" alt="owl" />
         {isSignIn ? (
-          <SignIn message=" Welcome, Please Sign in!" />
+          <SignIn message=" Welcome, Please Sign in!" onInputChange={onInputChange} />
         ) : (
-          <CreateAccount message="New? Please Create Around." />
+          <CreateAccount message="New? Please Create Around." onInputChange={onInputChange} />
         )}
       </Box>
-      <Flex justifyContent="space-around" marginTop="30px">
+      <Flex justifyContent="space-around" marginTop="30px" className={styles.buttons}>
         <Button onClick={() => onRegistryClose()}>Cancel</Button>
         {isSignIn ? (
-          <Button variantColor="primary" onClick={() => onRegistryClose()}>
-            Sign In
+          <Button variantColor="primary" onClick={() => onSignIn(inputs.email, inputs.password)}>
+            {pending ? <Spinner /> : 'Sign In'}
           </Button>
         ) : (
           <Button variantColor="primary" onClick={() => onRegistryClose()}>
@@ -76,22 +90,38 @@ const Registry: React.FC<Props> = ({ isOpen, onRegistryClose }) => {
   );
 };
 
-const SignIn = ({ message }: { message: string }) => {
+const SignIn = ({
+  message,
+  onInputChange,
+}: {
+  message: string;
+  onInputChange: (name: string, value: string) => void;
+}) => {
   return (
     <>
       <Text margin="10px 0" color="#d3d3d3" fontWeight="bold">
         {message}
       </Text>
-      <Box width="80%">
+      <Box className={styles.inputField}>
         <Stack spacing={4}>
           <InputGroup>
             <InputLeftElement fontSize="1.2em" children={<Icon name="email" color="gray.300" />} />
-            <Input type="text" placeholder="Email" />
+            <Input
+              type="text"
+              placeholder="Email"
+              name="email"
+              onChange={({ target: { value, name } }: any) => onInputChange(name, value)}
+            />
           </InputGroup>
 
           <InputGroup>
             <InputLeftElement fontSize="1.2em" children={<Icon name="lock" color="gray.300" />} />
-            <Input type="password" placeholder="Password" />
+            <Input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={({ target: { value, name } }: any) => onInputChange(name, value)}
+            />
           </InputGroup>
         </Stack>
       </Box>
@@ -99,7 +129,13 @@ const SignIn = ({ message }: { message: string }) => {
   );
 };
 
-const CreateAccount = ({ message }: { message: string }) => {
+const CreateAccount = ({
+  message,
+  onInputChange,
+}: {
+  message: string;
+  onInputChange: (name: string, value: string) => void;
+}) => {
   return (
     <>
       <Text margin="10px 0" color="#d3d3d3" fontWeight="bold">
@@ -109,12 +145,22 @@ const CreateAccount = ({ message }: { message: string }) => {
         <Stack spacing={4}>
           <InputGroup>
             <InputLeftElement fontSize="1.2em" children={<Icon name="email" color="gray.300" />} />
-            <Input type="text" placeholder="Email" />
+            <Input
+              type="text"
+              placeholder="Email"
+              name="email"
+              onChange={({ target: { value, name } }: any) => onInputChange(name, value)}
+            />
           </InputGroup>
 
           <InputGroup>
             <InputLeftElement fontSize="1.2em" children={<Icon name="lock" color="gray.300" />} />
-            <Input type="password" placeholder="Password" />
+            <Input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={({ target: { value, name } }: any) => onInputChange(name, value)}
+            />
           </InputGroup>
           <InputGroup>
             <InputLeftElement fontSize="1.2em" children={<Icon name="lock" color="gray.300" />} />
