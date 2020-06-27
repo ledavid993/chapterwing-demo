@@ -7,6 +7,7 @@ import {
   Box,
   Text,
   Spinner,
+  Flex,
 } from '@chakra-ui/core';
 import { Layout, NovelList } from '@components';
 import { navigateToNovelPage } from '@utils/navigate';
@@ -63,7 +64,9 @@ const Library = () => {
             </Text>
           )
         ) : (
-          <Spinner />
+          <Flex justifyContent="center" alignItems="center">
+            <Spinner />
+          </Flex>
         )}
       </Box>
     </Layout>
