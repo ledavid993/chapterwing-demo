@@ -9,6 +9,7 @@ import Table from './Table/Table.component';
 import Review from './Review/Review.component';
 import Genres from './Genres/Genres.component';
 import Tags from './Tags/Tags.component';
+import NovelList from './NovelList/NovelList.component';
 
 export {
   Layout,
@@ -24,4 +25,5 @@ export {
   Review,
   Genres,
   Tags,
+  NovelList,
 };

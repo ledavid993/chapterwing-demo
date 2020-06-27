@@ -7,13 +7,18 @@ export default class NovelService extends BaseHttpService {
     return await this.get(url, { params: { limit, offset } });
   }
 
-  async getNovels(
+  async getNovels(offset: number, limit: number) {
+    const url = 'read';
+    return await this.get(url, { params: { offset, limit } });
+  }
+
+  async getRecommendedNovels(
     category: string = 'Novel',
     limit: number = 12,
     removeDefaultImage: boolean = false,
     isPublish: boolean = true
   ) {
-    const url = 'read';
+    const url = 'read/recommended';
     return await this.get(url, { params: { category, limit, removeDefaultImage, isPublish } });
   }
 

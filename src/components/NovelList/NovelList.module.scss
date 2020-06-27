@@ -1,0 +1,23 @@
+.innerContainer {
+  padding: 10px 0;
+  img {
+    min-height: 125px;
+    min-width: 110px;
+    max-height: 125px;
+    max-width: 110px;
+    padding: 0 10px;
+    border-radius: 5px;
+  }
+}
+
+.detail {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  color: #d3d3d3;
+  font-weight: bold;
+
+  .label {
+    color: #d3d3d390;
+  }
+}

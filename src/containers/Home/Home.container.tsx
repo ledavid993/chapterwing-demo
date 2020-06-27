@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useMemo } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import styles from './Home.module.scss';
 import {
   Layout,
   HeroBanner,
@@ -13,8 +14,8 @@ import {
   Release,
   ReleaseSkeleton,
 } from '@components';
-import styles from './Home.module.scss';
-import { fetchNovels } from '@redux/actions/novel.action';
+import { navigateToChapterPage, navigateToNovelPage } from '@utils/navigate';
+import { fetchRecommendedNovels } from '@redux/actions/novel.action';
 import { NovelState } from '@interface/novel.interface';
 
 const Home = () => {
@@ -27,19 +28,19 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    dispatch(fetchNovels());
+    dispatch(fetchRecommendedNovels(12, true, true));
   }, [router]);
 
-  const navigateToChapterPage = (
+  const onNavigateToChapterPage = (
     novelTitle: string,
     volumeTitle: string,
     chapterNumber: number
   ) => {
-    router.push(`/novels/${novelTitle}/${volumeTitle}/${chapterNumber}`);
+    navigateToChapterPage(router, '/novels', novelTitle, volumeTitle, chapterNumber);
   };
 
-  const navigateToNovelPage = (novelTitle: string) => {
-    router.push(`/novels/${novelTitle}`);
+  const onNavigateToNovelPage = (novelTitle: string) => {
+    navigateToNovelPage(router, '/novels', novelTitle);
   };
 
   const loadingDiscussions = () => {
@@ -92,9 +93,10 @@ const Home = () => {
                 ? recommendedNovels.map((novel) => (
                     <Release
                       novel={novel}
-                      navigateToNovelPage={navigateToNovelPage}
-                      navigateToChapterPage={navigateToChapterPage}
+                      navigateToNovelPage={onNavigateToNovelPage}
+                      navigateToChapterPage={onNavigateToChapterPage}
                       key={novel.id}
+                      showChapters
                     />
                   ))
                 : loadingReleases()}

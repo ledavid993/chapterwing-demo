@@ -49,6 +49,18 @@
     border-radius: 5px;
     cursor: pointer;
   }
+
+  .categoryType:active {
+    color: #84b7c7;
+  }
+
+  .logo:hover {
+    cursor: pointer;
+  }
+
+  .logo:active {
+    color: #84b7c7;
+  }
 }
 
 .active {

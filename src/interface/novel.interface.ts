@@ -1,11 +1,11 @@
 export interface NovelState {
   popularNovels: any[];
   recommendedNovels: any[];
+  library: { count: number; results: [] };
   currentNovel: CurrentNovel;
   loading: boolean;
   error: string;
   currentChapter: ContentsEntity;
-  novelsError: string;
 }
 
 export interface CurrentNovel {

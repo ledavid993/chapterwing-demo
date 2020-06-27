@@ -4,11 +4,17 @@ import { BUNNY_IMAGE_URL } from '../../constants';
 
 interface Props {
   novel: any;
-  navigateToChapterPage: (novelTitle: string, volumeTitle: string, chapterNumber: number) => void;
+  showChapters?: boolean;
+  navigateToChapterPage?: (novelTitle: string, volumeTitle: string, chapterNumber: number) => void;
   navigateToNovelPage: (novelTitle: string) => void;
 }
 
-const Release: React.FC<Props> = ({ novel, navigateToChapterPage, navigateToNovelPage }) => {
+const Release: React.FC<Props> = ({
+  novel,
+  navigateToChapterPage,
+  navigateToNovelPage,
+  showChapters,
+}) => {
   return (
     <Box w="100%" className={styles.container}>
       <Flex alignItems="center" height="100%">
@@ -19,43 +25,44 @@ const Release: React.FC<Props> = ({ novel, navigateToChapterPage, navigateToNove
           alt="novel"
         />
         <Flex flexDirection="column" justifyContent="center" padding="0 15px" width="100%">
-          {novel.tasks
-            .slice(-1)[0]
-            .contents.slice(0, 2)
-            .map((chapter: any, index: number) => {
-              const chapterComponent = (
-                <div
-                  key={chapter.title}
-                  className={styles.volumeContainer}
-                  onClick={() =>
-                    navigateToChapterPage(
-                      novel.title,
-                      novel.tasks.slice(-1)[0].title,
-                      chapter.chapterNumber
-                    )
-                  }
-                >
-                  <div className={styles.volumeTitle}>
-                    Volume {novel.tasks.slice(-1)[0].number}- "
-                    <h4>{novel.tasks.slice(-1)[0].title}</h4>"
+          {showChapters &&
+            novel.tasks
+              .slice(-1)[0]
+              .contents.slice(0, 2)
+              .map((chapter: any, index: number) => {
+                const chapterComponent = (
+                  <div
+                    key={chapter.title}
+                    className={styles.volumeContainer}
+                    onClick={() =>
+                      navigateToChapterPage(
+                        novel.title,
+                        novel.tasks.slice(-1)[0].title,
+                        chapter.chapterNumber
+                      )
+                    }
+                  >
+                    <div className={styles.volumeTitle}>
+                      Volume {novel.tasks.slice(-1)[0].number}- "
+                      <h4>{novel.tasks.slice(-1)[0].title}</h4>"
+                    </div>
+                    <Chapter
+                      likes={chapter.likes}
+                      title={chapter.title}
+                      chapterNumber={chapter.chapterNumber}
+                    />
                   </div>
-                  <Chapter
-                    likes={chapter.likes}
-                    title={chapter.title}
-                    chapterNumber={chapter.chapterNumber}
-                  />
-                </div>
-              );
+                );
 
-              return index !== 0 ? (
-                <>
-                  <Divider borderColor="background.300" />
-                  {chapterComponent}
-                </>
-              ) : (
-                chapterComponent
-              );
-            })}
+                return index !== 0 ? (
+                  <>
+                    <Divider borderColor="background.300" />
+                    {chapterComponent}
+                  </>
+                ) : (
+                  chapterComponent
+                );
+              })}
         </Flex>
       </Flex>
       <Flex alignItems="center" height="30px" justifyContent="space-between" margin="8px 0">
@@ -67,7 +74,7 @@ const Release: React.FC<Props> = ({ novel, navigateToChapterPage, navigateToNove
             {novel.author}
           </Text>
         </Box>
-        <Image src="/icons/overflowmenu.svg" />
+        {/* <Image src="/icons/overflowmenu.svg" /> */}
       </Flex>
     </Box>
   );

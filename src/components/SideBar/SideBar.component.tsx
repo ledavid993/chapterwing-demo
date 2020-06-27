@@ -14,25 +14,14 @@ const config = {
   title: {
     name: 'ChapterWing',
   },
-  section1: {
-    search: {
-      name: 'Search',
-      icon: <IoIosSearch />,
-    },
-  },
-  sectionDivider2: {
-    sectionDivider: true,
-  },
+  // section 1
   section2: {
     category: {
       name: 'Novels',
     },
-    popularNovels: {
-      name: 'Popular Novels',
-      icon: <GiBurningBook />,
-    },
     library: {
       name: 'Library',
+      url: 'library',
       icon: <GiBookPile />,
     },
   },
@@ -42,18 +31,23 @@ const config = {
   extrasection: {
     aboutEX: {
       name: 'About',
+      url: 'about',
     },
     contactEX: {
       name: 'Contact',
+      url: 'contact',
     },
     feedbackEX: {
       name: 'Feedback',
+      url: 'feedback',
     },
     termOfUseEX: {
       name: 'Term Of Use',
+      url: 'termofuser',
     },
     privacyEX: {
       name: 'Privacy',
+      url: 'privacy',
     },
   },
 };
@@ -94,6 +88,7 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
           display="flex"
           justifyContent="center"
           alignItems="center"
+          className={styles.logo}
         >
           {config.title.name}
         </Heading>
@@ -116,10 +111,12 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
             return <Divider borderColor="background.300" key={key} />;
           else
             return (
-              <div className={styles.categoryType} key={key}>
-                <span>{value.icon}</span>
-                <div>{value.name}</div>
-              </div>
+              <Link href="/[page]" as={`/${value.url}`}>
+                <div className={styles.categoryType} key={key}>
+                  <span>{value.icon}</span>
+                  <div>{value.name}</div>
+                </div>
+              </Link>
             );
         });
       })}

@@ -43,23 +43,32 @@ export const fetchNovel = (novelTitle: string) => async (dispatch: any) => {
   }
 };
 
-export const fetchNovels = () => async (dispatch: any) => {
+export const fetchRecommendedNovels = (
+  limit: number,
+  removeDefaultImage: boolean,
+  isPublish: boolean
+) => async (dispatch: any) => {
   try {
     dispatch({
-      type: types.GET_NOVELS_REQUEST,
+      type: types.GET_RECOMMENDED_NOVELS_REQUEST,
     });
 
-    const res = await novelService.getNovels('Novel', 12, true, true);
+    const res = await novelService.getRecommendedNovels(
+      'Novel',
+      limit,
+      removeDefaultImage,
+      isPublish
+    );
 
     dispatch({
-      type: types.GET_NOVELS_SUCCESS,
+      type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
       payload: {
         data: res.data,
       },
     });
   } catch (e) {
     dispatch({
-      type: types.GET_NOVELS_FAILURE,
+      type: types.GET_RECOMMENDED_NOVELS_FAILURE,
       payload: {
         error: JSON.stringify(e),
       },
@@ -88,6 +97,27 @@ export const fetchChapter = (
   } catch (e) {
     dispatch({
       type: types.GET_CHAPTER_FAILURE,
+    });
+  }
+};
+
+export const fetchNovels = (offset: number, limit: number) => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: types.GET_NOVELS_REQUEST,
+    });
+
+    const res = await novelService.getNovels(offset, limit);
+
+    dispatch({
+      type: types.GET_NOVELS_SUCCESS,
+      payload: {
+        data: res.data,
+      },
+    });
+  } catch (e) {
+    dispatch({
+      type: types.GET_NOVELS_FAILURE,
     });
   }
 };

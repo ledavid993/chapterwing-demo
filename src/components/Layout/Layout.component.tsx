@@ -48,7 +48,7 @@ export default function Layout({ children }: any) {
   };
 
   return (
-    <div>
+    <div style={{ position: 'relative', minHeight: '100vh' }}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -89,8 +89,9 @@ export default function Layout({ children }: any) {
         justifyContent="center"
         flexDirection="column"
         padding="15px;"
-        position="relative"
-        bottom="0"
+        position="absolute"
+        width="100%"
+        bottom="-70px"
       >
         <Text fontSize="14px" color="white">
           chapterwing.@gmail.com

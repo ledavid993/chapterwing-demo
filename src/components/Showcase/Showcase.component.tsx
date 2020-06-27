@@ -4,11 +4,6 @@ import { isEmpty } from 'ramda';
 import styles from './Showcase.module.scss';
 import { BUNNY_IMAGE_URL } from '../../constants';
 
-const props = {
-  title: 'Popular Releases',
-  novels: [],
-};
-
 interface Props {
   style?: any;
   popularNovels: any[];
@@ -21,7 +16,7 @@ const Showcase: React.FC<Props> = ({ style, popularNovels }) => {
         <Box className={styles.container} style={style}>
           <div className={styles.heading}>
             <img src="/icons/feather.png" alt="feather" />
-            <span>{props.title}</span>
+            <span>Popular Releases</span>
           </div>
           <Grid className={styles.grid}>
             {popularNovels.map((novel) => (
@@ -68,7 +63,7 @@ const ShowcaseSkeleton = ({ style }: any) => {
     <Box className={styles.container} style={style}>
       <div className={styles.heading}>
         <img src="/icons/feather.png" alt="feather" />
-        <span>{props.title}</span>
+        <span>Popular Releases</span>
       </div>
       <Grid templateColumns="repeat(4, 1fr)" gap={6} padding="10px" textAlign="center">
         {skeletonGrid()}
