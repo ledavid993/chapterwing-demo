@@ -1315,6 +1315,11 @@
     "@types/domutils" "*"
     "@types/node" "*"
 
+"@types/humps@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/humps/-/humps-2.0.0.tgz#9ad07801cd34f9d9ce379fa66f62d3049937d815"
+  integrity sha512-bP/s9HUT2oTJ0c3XGcHGISwTNs6r8eUPNfU6DuOSU8EHgtHqwvoDEyj76jPhKT/0MszS1PF/hHolxRrHSLYUPQ==
+
 "@types/jwt-decode@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@types/jwt-decode/-/jwt-decode-2.2.1.tgz#afdf5c527fcfccbd4009b5fd02d1e18241f2d2f2"
@@ -3519,6 +3524,11 @@ https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
+
+humps@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/humps/-/humps-2.0.1.tgz#dd02ea6081bd0568dc5d073184463957ba9ef9aa"
+  integrity sha1-3QLqYIG9BWjcXQcxhEY5V7qe+ao=
 
 husky@^4.2.5:
   version "4.2.5"

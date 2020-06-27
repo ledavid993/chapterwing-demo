@@ -1,5 +1,5 @@
 import BaseHttpService from './basehttp.service';
-import { pathOr } from 'ramda';
+import { camelizeKeys } from 'humps';
 
 export default class NovelService extends BaseHttpService {
   async getPopularNovels(limit: number, offset: number) {
@@ -9,7 +9,9 @@ export default class NovelService extends BaseHttpService {
 
   async getNovels(offset: number, limit: number) {
     const url = 'read';
-    return await this.get(url, { params: { offset, limit } });
+    const res = await this.get(url, { params: { offset, limit } });
+
+    return camelizeKeys(res);
   }
 
   async getRecommendedNovels(
