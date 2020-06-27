@@ -13,10 +13,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "./src",
+    "baseUrl": "./src/",
     "paths": {
-      "@components/*": ["./components/*"],
-      "@redux/*": ["./redux/*"]
+      "@components/*": ["components/*"],
+      "@components": ["components/index"],
+      "@redux/*": ["redux/*"],
+      "@redux": ["redux/index"],
+      "@containers/*": ["containers/*"],
+      "@containers": ["containers/index"],
+      "@utils/*": ["utils/*"],
+      "@utils": ["utils/index"],
+      "@interface/*": ["interface/*"]
     }
   },
   "exclude": ["node_modules"],

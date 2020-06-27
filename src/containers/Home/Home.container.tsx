@@ -12,10 +12,10 @@ import {
   DiscussionSkeleton,
   Release,
   ReleaseSkeleton,
-} from '../../components';
+} from '@components';
 import styles from './Home.module.scss';
-import { fetchNovels } from '../../redux/actions/novel.action';
-import { NovelState } from '../../interface/novel.interface';
+import { fetchNovels } from '@redux/actions/novel.action';
+import { NovelState } from '@interface/novel.interface';
 
 const Home = () => {
   const { novel, auth }: any = useSelector((state) => state);

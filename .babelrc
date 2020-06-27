@@ -4,10 +4,13 @@
     [
       "module-resolver",
       {
-        "root": ["./src"],
+        "root": ["./src/"],
         "alias": {
-          "@components": "./components",
-          "@redux": "./redux"
+          "@components": "components",
+          "@redux": "redux",
+          "@containers": "containers",
+          "@interface": "interface",
+          "@utils": "utils"
         }
       }
     ]
