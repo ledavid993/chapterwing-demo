@@ -11,7 +11,6 @@ const Backdrop = ({ onClose, isOpen }: any) => {
     <div
       className={clsx(isOpen && styles.backDrop)}
       onClick={() => {
-        console.log('click');
         onClose();
       }}
     />

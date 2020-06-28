@@ -7,9 +7,9 @@ export default class NovelService extends BaseHttpService {
     return await this.get(url, { params: { limit, offset } });
   }
 
-  async getNovels(offset: number, limit: number) {
+  async getNovels(params: { offset: number; limit: number; search?: string }) {
     const url = 'read';
-    const res = await this.get(url, { params: { offset, limit } });
+    const res = await this.get(url, { params });
 
     return camelizeKeys(res);
   }

@@ -4,9 +4,8 @@ import styles from './NovelList.module.scss';
 import { BUNNY_IMAGE_URL } from '../../constants';
 
 const NovelList = ({ novel }: any) => {
-  console.log(novel);
   return (
-    <Box background="rgba(0,0,0,.1)" margin="5px 0" borderRadius="3px">
+    <Box background="rgba(0,0,0,.1)" margin="5px 0" borderRadius="3px" className={styles.container}>
       <Flex className={styles.innerContainer}>
         <Box>
           <Image fallbackSrc="/chapterwing.jpg" src={`${BUNNY_IMAGE_URL}/${novel.image}`} />

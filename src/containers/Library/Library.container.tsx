@@ -20,6 +20,8 @@ import { fetchNovels } from '@redux/actions/novel.action';
 const Library = () => {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(20);
+  const [search, setSearch] = useState('');
+  const [message, setMessage] = useState('');
   const { novel } = useSelector((state: any) => state);
   const { library, loading }: NovelState = novel;
   const { count, results } = library;
@@ -27,11 +29,19 @@ const Library = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchNovels(offset, limit));
+    dispatch(fetchNovels({ offset, limit }));
   }, [router]);
 
   const onNavigateToNovelPage = (novelTitle: string) => {
     navigateToNovelPage(router, '/novels', novelTitle);
+  };
+
+  const searchNovel = () => {
+    if (search.length === 0) dispatch(fetchNovels({ offset, limit }));
+    else if (search.length < 3) {
+      setMessage('Please enter at least three letters');
+      return;
+    } else dispatch(fetchNovels({ offset, limit, search }));
   };
 
   return (
@@ -45,12 +55,41 @@ const Library = () => {
         <Stack margin="10px 0">
           <InputGroup>
             <InputLeftElement children={<Icon name="search" color="gray.300" />} />
-            <Input type="search" placeholder="Search Book" focusBorderColor="primary.500" />
+            <Input
+              type="text"
+              placeholder="Search Book"
+              focusBorderColor="primary.500"
+              onChange={({ target: { value } }: any) => {
+                if (message) {
+                  setMessage('');
+                }
+                setSearch(value);
+              }}
+              onKeyDown={(e: any) => {
+                if (e.key === 'Enter') {
+                  searchNovel();
+                }
+              }}
+            />
           </InputGroup>
         </Stack>
+        <Text
+          background="#84B7C7"
+          padding="0px 20px"
+          borderRadius="5px"
+          color="#fff"
+          fontSize="13px"
+          fontWeight="bold"
+        >
+          {message}
+        </Text>
         {!loading ? (
           results.length !== 0 ? (
-            results.map((novel: any) => <NovelList novel={novel} />)
+            results.map((novel: any) => (
+              <div onClick={() => onNavigateToNovelPage(novel.title)}>
+                <NovelList novel={novel} />
+              </div>
+            ))
           ) : (
             <Text
               display="flex"

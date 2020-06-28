@@ -101,13 +101,15 @@ export const fetchChapter = (
   }
 };
 
-export const fetchNovels = (offset: number, limit: number) => async (dispatch: any) => {
+export const fetchNovels = (params: { offset: number; limit: number; search?: string }) => async (
+  dispatch: any
+) => {
   try {
     dispatch({
       type: types.GET_NOVELS_REQUEST,
     });
 
-    const res = await novelService.getNovels(offset, limit);
+    const res = await novelService.getNovels(params);
 
     dispatch({
       type: types.GET_NOVELS_SUCCESS,
