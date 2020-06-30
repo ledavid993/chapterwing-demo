@@ -1,0 +1,19 @@
+.reviewBoxContainer {
+  .reviewBoxInnerContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-between;
+
+    .header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      color: #d3d3d3;
+      font-weight: bold;
+
+      .starRating span {
+        display: inline-block;
+      }
+    }
+  }
+}

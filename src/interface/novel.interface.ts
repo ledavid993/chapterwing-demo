@@ -2,6 +2,7 @@ export interface NovelState {
   popularNovels: any[];
   recommendedNovels: any[];
   library: { count: number; results: [] };
+  reviews: ReviewEntity[];
   currentNovel: CurrentNovel;
   loading: boolean;
   error: string;
@@ -51,4 +52,15 @@ export interface ContentsEntity {
   views: number;
   taskId: string;
   document?: string;
+}
+
+export interface ReviewEntity {
+  id: string;
+  text: string;
+  rating: number;
+  createdDate: Date;
+  updatedDate: Date;
+  projectId: string;
+  userId: string;
+  username?: any;
 }

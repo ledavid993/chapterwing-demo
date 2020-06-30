@@ -123,3 +123,44 @@ export const fetchNovels = (params: { offset: number; limit: number; search?: st
     });
   }
 };
+
+export const fetchReviews = (novelId: string) => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: types.GET_REVIEWS_REQUEST,
+    });
+
+    const res = await novelService.getReviews(novelId);
+
+    dispatch({
+      type: types.GET_REVIEWS_SUCCESS,
+      payload: {
+        data: res.data,
+      },
+    });
+  } catch (e) {
+    dispatch({
+      type: types.GET_REVIEWS_FAILURE,
+    });
+  }
+};
+
+export const postReview = (novelId: string, data: { text: string; rating: number }) => async (
+  dispatch: any
+) => {
+  try {
+    dispatch({
+      type: types.POST_REVIEW_REQUEST,
+    });
+
+    const res = await novelService.postReview(novelId, data);
+
+    dispatch({
+      type: types.POST_REVIEW_SUCCESS,
+    });
+  } catch (e) {
+    dispatch({
+      type: types.POST_REVIEW_FAILURE,
+    });
+  }
+};

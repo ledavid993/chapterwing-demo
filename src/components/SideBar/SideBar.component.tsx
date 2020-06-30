@@ -97,22 +97,22 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
         return Object.entries(section as any).map(([key, value]: any) => {
           if (key === 'category')
             return (
-              <div className={styles.category} key={key}>
+              <div className={styles.category} key={value.name}>
                 {value.name}
               </div>
             );
           else if (key.includes('EX'))
             return (
-              <div className={styles.extra} key={key}>
+              <div className={styles.extra} key={value.name}>
                 {value.name}
               </div>
             );
           else if (key.includes('sectionDivider'))
-            return <Divider borderColor="background.300" key={key} />;
+            return <Divider borderColor="background.300" key={value.name} />;
           else
             return (
               <Link href={`/${value.url}`}>
-                <div className={styles.categoryType} key={key}>
+                <div className={styles.categoryType} key={value.name}>
                   <span>{value.icon}</span>
                   <div>{value.name}</div>
                 </div>

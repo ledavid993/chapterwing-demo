@@ -7,13 +7,22 @@ import { Layout, Header, Table, Review, Discussion, Genres, Tags } from '@compon
 import styles from './Novel.module.scss';
 import { NovelState } from '@interface/novel.interface';
 import { isEmpty } from 'ramda';
+import { useEffect } from 'react';
+import { fetchReviews } from '@redux/actions/novel.action';
 
 export default function Novel() {
   const novelState: NovelState = useSelector(({ novel }: any) => novel);
   const {
+    reviews,
     currentNovel: { novel, volumes },
   } = novelState;
   const { title, author, createdDate, rating, image, description } = novel;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchReviews(novel.id));
+  }, []);
 
   const router = useRouter();
   const navigatePage = (volumeTitle: string, chapter: number) => {
@@ -100,7 +109,7 @@ export default function Novel() {
         <Divider w="90%" margin="30px auto" borderColor="background.300" />
         <Box>
           <Header fontSize="14px">Reviews</Header>
-          <Review />
+          <Review reviews={reviews} />
         </Box>
         <Box>
           <Header fontSize="14px">Discussions</Header>

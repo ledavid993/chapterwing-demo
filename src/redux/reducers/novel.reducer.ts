@@ -5,6 +5,7 @@ const initialState: CurrentNovel = {
   popularNovels: [],
   recommendedNovels: [],
   library: { count: 0, results: [] },
+  reviews: [],
   loading: false,
   error: null,
   currentNovel: null,
@@ -101,6 +102,43 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
+      };
+    }
+    case types.GET_REVIEWS_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case types.GET_REVIEWS_SUCCESS: {
+      return {
+        ...state,
+        reviews: action.payload.data,
+        loading: false,
+      };
+    }
+    case types.GET_REVIEWS_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    case types.POST_REVIEW_REQUEST: {
+      return {
+        ...state,
+        pending: true,
+      };
+    }
+    case types.POST_REVIEW_SUCCESS: {
+      return {
+        ...state,
+        pending: false,
+      };
+    }
+    case types.POST_REVIEW_FAILURE: {
+      return {
+        ...state,
+        pending: false,
       };
     }
     default:

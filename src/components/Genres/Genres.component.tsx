@@ -7,7 +7,10 @@ interface Props {
 
 const Genres: React.FC<Props> = ({ genres }) => {
   return (
-    <Box margin="35px 0"> {!isNil(genres) && genres.map((genre) => <Genre>{genre}</Genre>)}</Box>
+    <Box margin="35px 0">
+      {' '}
+      {!isNil(genres) && genres.map((genre) => <Genre key={genre}>{genre}</Genre>)}
+    </Box>
   );
 };
 
