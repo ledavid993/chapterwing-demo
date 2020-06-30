@@ -1,4 +1,5 @@
 import htmlParse from 'html-react-parser';
+import { flatten, join } from 'ramda';
 
 export default function nodesToHtml(nodes: any) {
   if (!nodes) return '';
@@ -10,20 +11,18 @@ export default function nodesToHtml(nodes: any) {
         const innerContent = outerContent.content.map((node: any) => {
           switch (node.type) {
             case 'text':
-              return `<p>${node.text}</p>`;
+              return node.text;
             case 'hard_break':
               return '<br>';
             default:
-              return node?.text;
+              return '';
           }
         });
-        return innerContent;
+        return `<p>${join('', flatten(innerContent))}</p>`;
       default:
         return '';
     }
   });
 
-  const htmlString = htmlMap.join('');
-
-  return htmlString;
+  return htmlMap.join('');
 }
