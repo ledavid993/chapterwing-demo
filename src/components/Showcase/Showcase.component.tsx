@@ -20,7 +20,7 @@ const Showcase: React.FC<Props> = ({ style, popularNovels }) => {
           </div>
           <Grid className={styles.grid}>
             {popularNovels.map((novel) => (
-              <Link href="/novels/[title]" as={`/novels/${novel.title}`}>
+              <Link href="/novels/[novel]" as={`/novels/${novel.title}`}>
                 <a>
                   <Image
                     src={`https://chapterwing.b-cdn.net/images/${novel.image}`}
