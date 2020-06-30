@@ -10,6 +10,7 @@ import Review from './Review/Review.component';
 import Genres from './Genres/Genres.component';
 import Tags from './Tags/Tags.component';
 import NovelList from './NovelList/NovelList.component';
+import StarRating from './StarRating';
 
 export {
   Layout,
@@ -26,4 +27,5 @@ export {
   Genres,
   Tags,
   NovelList,
+  StarRating,
 };

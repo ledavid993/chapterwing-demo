@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import ReactStarsRating from 'react-awesome-stars-rating';
 import { ReviewEntity } from '@interface/novel.interface';
 import styles from './Review.module.scss';
+import { StarRating } from '..';
 
 interface Props {
   reviews: ReviewEntity[];
@@ -37,9 +38,18 @@ const ReviewBox = ({ review }: { review: ReviewEntity }) => {
           <Text display="flex" justifyContent="flex-end">
             {dayjs(review.createdDate).format('MMMM DD, YYYY')}
           </Text>
-          <Text>
-            <ReactStarsRating value={review.rating} size="10" className={styles.starRating} />
-            {review.rating}
+          <Text></Text>
+          <Text display="flex" justifyContent="flex-end" alignItems="center">
+            <StarRating
+              value={review.rating}
+              size={14}
+              className={styles.starRating}
+              isEdit={false}
+              primaryColor="#84B7C7"
+            />
+            <Text paddingLeft="10px" color="#d3d3d3" fontWeight="normal" fontSize="15px">
+              {review.rating}
+            </Text>
           </Text>
         </Box>
         <Box>
