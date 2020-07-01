@@ -23,6 +23,7 @@ export default function Layout({ children }: any) {
   const router = useRouter();
 
   useEffect(() => {
+    alert(user);
     if (!user) {
       dispatch(validateToken());
     }
