@@ -26,6 +26,7 @@ const Showcase: React.FC<Props> = ({ style, popularNovels }) => {
                     src={`https://chapterwing.b-cdn.net/images/${novel.image}`}
                     className={styles.popularNovels}
                     fallbackSrc="/chapterwing.jpg"
+                    alt={novel.title}
                   />
                 </a>
               </Link>

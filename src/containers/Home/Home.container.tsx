@@ -1,6 +1,6 @@
 import { Box, Divider, Heading, Flex, Image, Button } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styles from './Home.module.scss';
@@ -9,7 +9,6 @@ import {
   HeroBanner,
   Showcase,
   Header,
-  Discussion,
   DiscussionSkeleton,
   Release,
   ReleaseSkeleton,

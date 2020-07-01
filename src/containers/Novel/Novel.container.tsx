@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Layout, Header, Table, Review, Discussion, Genres, Tags } from '@components';
+import { Layout, Header, Table, Review, Genres, Tags } from '@components';
 import styles from './Novel.module.scss';
 import { NovelState } from '@interface/novel.interface';
 import { isEmpty } from 'ramda';

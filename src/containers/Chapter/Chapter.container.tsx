@@ -1,8 +1,7 @@
-import { Text, Heading, Box } from '@chakra-ui/core';
+import { Heading, Box } from '@chakra-ui/core';
 import { useSelector } from 'react-redux';
 import { Layout } from '@components';
-import { ContentsEntity, NovelState } from '@interface/novel.interface';
-import InnerHTML from 'dangerously-set-inner-html';
+import { NovelState } from '@interface/novel.interface';
 import { nodesToHtml } from '@utils';
 import styles from './Chapter.module.scss';
 

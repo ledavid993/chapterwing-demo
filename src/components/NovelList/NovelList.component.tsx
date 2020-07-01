@@ -8,7 +8,11 @@ const NovelList = ({ novel }: any) => {
     <Box background="rgba(0,0,0,.1)" margin="5px 0" borderRadius="3px" className={styles.container}>
       <Flex className={styles.innerContainer}>
         <Box>
-          <Image fallbackSrc="/chapterwing.jpg" src={`${BUNNY_IMAGE_URL}/${novel.image}`} />
+          <Image
+            fallbackSrc="/chapterwing.jpg"
+            src={`${BUNNY_IMAGE_URL}/${novel.image}`}
+            alt={novel.title}
+          />
         </Box>
         <Box
           position="relative"
