@@ -80,10 +80,6 @@ export const register = (email: string, password: string) => async (
 
 export const validateToken = () => async (dispatch: any) => {
   try {
-    dispatch({
-      type: types.VALIDATE_TOKEN_REQUEST,
-    });
-
     const decoded: { email: string; iat: number; exp: number } = authService.decodeToken();
 
     if (Date.now() >= decoded.exp * 1000) {
@@ -97,6 +93,7 @@ export const validateToken = () => async (dispatch: any) => {
       },
     });
   } catch (e) {
+    alert(e);
     dispatch({
       type: types.VALIDATE_TOKEN_FAILURE,
     });
