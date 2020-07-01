@@ -1,7 +1,7 @@
 export const navigateToChapterPage = (
   router: any,
   pageUrl: string,
-  novelTitle: string,
+  novelTitle: string | string[],
   volumeTitle: string,
   chapterNumber: number
 ) => {

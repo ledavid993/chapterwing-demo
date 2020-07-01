@@ -6,28 +6,58 @@ import { ReviewEntity } from '@interface/novel.interface';
 import styles from './Review.module.scss';
 import { StarRating } from '..';
 import PostReview from './PostReview';
+import { useState } from 'react';
 
 interface Props {
   reviews: ReviewEntity[];
   count: number;
+  onReviewSubmit: (
+    text: string,
+    rating: number
+  ) => Promise<{ success: boolean; statusCode?: number }>;
+  isAuth: boolean;
 }
 
-const Review: React.FC<Props> = ({ reviews, count }) => {
+const Review: React.FC<Props> = ({ reviews, count, onReviewSubmit, isAuth }) => {
   return (
     <Box margin="10px 0" width="100%">
-      <PostReview />
       {reviews.length !== 0 ? (
         reviews.map((review) => <ReviewBox review={review} key={review.id} />)
       ) : (
         <ReviewEmpty />
       )}
+      {isAuth && <PostReview onReviewSubmit={onReviewSubmit} />}
     </Box>
   );
 };
 
 const ReviewBox = ({ review }: { review: ReviewEntity }) => {
+  const [height, toggleHeightChange] = useState({
+    isMinimize: true,
+    length: '50px',
+  });
+
+  const onHeightChange = () => {
+    if (height.isMinimize) {
+      toggleHeightChange({
+        isMinimize: false,
+        length: 'auto',
+      });
+    } else {
+      toggleHeightChange({
+        isMinimize: true,
+        length: '10px',
+      });
+    }
+  };
+
   return (
-    <Box margin="5px 0" borderRadius="5px" className={styles.reviewBoxContainer}>
+    <Box
+      margin="5px 0"
+      borderRadius="5px"
+      className={styles.reviewBoxContainer}
+      onClick={() => onHeightChange()}
+    >
       <Flex padding="10px" className={styles.reviewBoxInnerContainer}>
         <Box padding="5px" className={styles.header}>
           <Text>{review.username || 'Anonymous'}</Text>
@@ -43,13 +73,21 @@ const ReviewBox = ({ review }: { review: ReviewEntity }) => {
               isEdit={false}
               primaryColor="#84B7C7"
             />
-            <Text paddingLeft="5px" color="#d3d3d3" fontWeight="normal">
+            <Text paddingLeft="5px" paddingTop="2px" color="#d3d3d3" fontWeight="normal">
               {review.rating}
             </Text>
           </Box>
         </Box>
         <Box>
-          <Text color="#d3d3d3" padding="5px">
+          <Text
+            color="#d3d3d3"
+            padding="10px"
+            borderRadius="5px"
+            whiteSpace="pre-line"
+            height={height.length}
+            overflow="auto"
+            border="1px solid rgba(122,122,122,.1)"
+          >
             {review.text}
           </Text>
         </Box>

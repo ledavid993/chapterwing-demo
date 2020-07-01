@@ -147,22 +147,29 @@ export const fetchReviews = (novelId: string, offset: number, limit: number) => 
   }
 };
 
-export const postReview = (novelId: string, data: { text: string; rating: number }) => async (
-  dispatch: any
-) => {
+export const postReview = (
+  novelId: string,
+  data: { text: string; rating: number }
+): Promise<boolean> => async (dispatch: any) => {
   try {
     dispatch({
       type: types.POST_REVIEW_REQUEST,
     });
-
     const res = await novelService.postReview(novelId, data);
-
     dispatch({
       type: types.POST_REVIEW_SUCCESS,
     });
+    return {
+      success: true,
+      statusCode: null,
+    };
   } catch (e) {
     dispatch({
       type: types.POST_REVIEW_FAILURE,
     });
+    return {
+      success: false,
+      statusCode: e.statusCode,
+    };
   }
 };

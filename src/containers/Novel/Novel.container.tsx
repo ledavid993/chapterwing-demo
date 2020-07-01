@@ -8,15 +8,19 @@ import styles from './Novel.module.scss';
 import { NovelState } from '@interface/novel.interface';
 import { isEmpty } from 'ramda';
 import { useEffect, useState } from 'react';
-import { fetchReviews } from '@redux/actions/novel.action';
+import { fetchReviews, postReview } from '@redux/actions/novel.action';
+import { navigateToChapterPage } from '@utils/navigate';
 
 export default function Novel() {
-  const novelState: NovelState = useSelector(({ novel }: any) => novel);
+  const { novel: novelState, auth }: { novel: NovelState; auth: any } = useSelector(
+    (state: any) => state
+  );
   const {
     loading,
     reviews,
     currentNovel: { novel, volumes },
   } = novelState;
+  const { user } = auth;
   const { title, author, createdDate, rating, image, description } = novel;
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(6);
@@ -27,8 +31,15 @@ export default function Novel() {
     dispatch(fetchReviews(novel.id, offset, limit));
   }, [router]);
 
-  const navigatePage = (volumeTitle: string, chapter: number) => {
-    router.push(`${router.asPath}/${volumeTitle}/${chapter}`);
+  const onNavigateToChapterPage = (volumeTitle: string, chapterNumber: number) => {
+    navigateToChapterPage(router, '/novels', router.query.novel, volumeTitle, chapterNumber);
+  };
+
+  const onReviewSubmit = (
+    text: string,
+    rating: number
+  ): Promise<{ success: boolean; statusCode?: number }> => {
+    return dispatch(postReview(novel.id, { text, rating }));
   };
 
   return (
@@ -94,7 +105,7 @@ export default function Novel() {
               name={`Volume ${index + 1} - ${volume.title}`}
               chapters={volume.contents}
               volumeTitle={volume.title}
-              onNavigatePage={navigatePage}
+              onNavigatePage={onNavigateToChapterPage}
             />
           ))
         ) : (
@@ -112,7 +123,12 @@ export default function Novel() {
         <Box>
           <Header fontSize="14px">Reviews</Header>
           {!loading ? (
-            <Review reviews={reviews.results} count={reviews.count} />
+            <Review
+              reviews={reviews.results}
+              count={reviews.count}
+              onReviewSubmit={onReviewSubmit}
+              isAuth={user || false}
+            />
           ) : (
             <Flex justifyContent="center" alignItems="center">
               <Spinner size="lg" />

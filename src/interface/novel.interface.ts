@@ -5,7 +5,6 @@ export interface NovelState {
   reviews: { count: number; results: ReviewEntity[] };
   currentNovel: CurrentNovel;
   loading: boolean;
-  error: string;
   currentChapter: ContentsEntity;
 }
 
