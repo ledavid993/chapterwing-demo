@@ -5,7 +5,10 @@ const initialState: CurrentNovel = {
   popularNovels: [],
   recommendedNovels: [],
   library: { count: 0, results: [] },
-  reviews: [],
+  reviews: {
+    count: 0,
+    results: [],
+  },
   loading: false,
   error: null,
   currentNovel: null,

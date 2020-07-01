@@ -1,9 +1,13 @@
 .reviewBoxContainer {
+  font-size: 13px;
+  width: 100%;
+
   .reviewBoxInnerContainer {
     display: flex;
     flex-direction: column;
     align-content: space-around;
     justify-content: space-between;
+    background: #c4c4c410;
 
     .header {
       display: grid;
@@ -15,5 +19,23 @@
         display: inline-block;
       }
     }
+  }
+}
+
+.postReviewContainer {
+  width: 100%;
+}
+
+@media (min-width: 730px) {
+  .reviewBoxContainer {
+    .reviewBoxInnerContainer {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+
+  .postReviewContainer {
+    width: 80%;
+    margin: 15px auto;
   }
 }

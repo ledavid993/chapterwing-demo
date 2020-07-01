@@ -111,8 +111,8 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
             return <Divider borderColor="background.300" key={value.name} />;
           else
             return (
-              <Link href={`/${value.url}`}>
-                <div className={styles.categoryType} key={value.name}>
+              <Link href={`/${value.url}`} key={value.name}>
+                <div className={styles.categoryType}>
                   <span>{value.icon}</span>
                   <div>{value.name}</div>
                 </div>

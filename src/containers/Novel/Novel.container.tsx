@@ -1,4 +1,4 @@
-import { Box, Image, Heading, Text, SimpleGrid, Divider, Flex } from '@chakra-ui/core';
+import { Box, Image, Heading, Text, SimpleGrid, Divider, Flex, Spinner } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import Head from 'next/head';
@@ -7,24 +7,26 @@ import { Layout, Header, Table, Review, Discussion, Genres, Tags } from '@compon
 import styles from './Novel.module.scss';
 import { NovelState } from '@interface/novel.interface';
 import { isEmpty } from 'ramda';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchReviews } from '@redux/actions/novel.action';
 
 export default function Novel() {
   const novelState: NovelState = useSelector(({ novel }: any) => novel);
   const {
+    loading,
     reviews,
     currentNovel: { novel, volumes },
   } = novelState;
   const { title, author, createdDate, rating, image, description } = novel;
-
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(6);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
-    dispatch(fetchReviews(novel.id));
-  }, []);
+    dispatch(fetchReviews(novel.id, offset, limit));
+  }, [router]);
 
-  const router = useRouter();
   const navigatePage = (volumeTitle: string, chapter: number) => {
     router.push(`${router.asPath}/${volumeTitle}/${chapter}`);
   };
@@ -109,12 +111,18 @@ export default function Novel() {
         <Divider w="90%" margin="30px auto" borderColor="background.300" />
         <Box>
           <Header fontSize="14px">Reviews</Header>
-          <Review reviews={reviews} />
+          {!loading ? (
+            <Review reviews={reviews.results} count={reviews.count} />
+          ) : (
+            <Flex justifyContent="center" alignItems="center">
+              <Spinner size="lg" />
+            </Flex>
+          )}
         </Box>
-        <Box>
+        {/* <Box>
           <Header fontSize="14px">Discussions</Header>
           <Discussion title="" content="" likes={0} />
-        </Box>
+        </Box> */}
       </div>
     </Layout>
   );

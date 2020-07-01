@@ -2,7 +2,7 @@ export interface NovelState {
   popularNovels: any[];
   recommendedNovels: any[];
   library: { count: number; results: [] };
-  reviews: ReviewEntity[];
+  reviews: { count: number; results: ReviewEntity[] };
   currentNovel: CurrentNovel;
   loading: boolean;
   error: string;

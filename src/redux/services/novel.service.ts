@@ -34,9 +34,9 @@ export default class NovelService extends BaseHttpService {
     return await this.get(url);
   }
 
-  async getReviews(novelId: string) {
+  async getReviews(novelId: string, offset: number, limit: number) {
     const url = `review/${novelId}`;
-    return await this.get(url);
+    return await this.get(url, { params: { limit, offset } });
   }
 
   async postReview(novelId: string, data: { text: string; rating: number }) {

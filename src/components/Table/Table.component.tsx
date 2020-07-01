@@ -51,6 +51,7 @@ const TableList = ({ chapterNumber, title, likes, navigatePage }: any) => (
     padding="10px"
     className={styles.listContainer}
     onClick={() => navigatePage(chapterNumber)}
+    borderBottom="1px solid gray"
   >
     <Text color="#d3d3d3" fontSize="13px" fontWeight="bold">
       <span className={styles.chapterTitle}>Chapter {chapterNumber}</span> : {title}

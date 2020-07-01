@@ -5,16 +5,19 @@ import ReactStarsRating from 'react-awesome-stars-rating';
 import { ReviewEntity } from '@interface/novel.interface';
 import styles from './Review.module.scss';
 import { StarRating } from '..';
+import PostReview from './PostReview';
 
 interface Props {
   reviews: ReviewEntity[];
+  count: number;
 }
 
-const Review: React.FC<Props> = ({ reviews }) => {
+const Review: React.FC<Props> = ({ reviews, count }) => {
   return (
-    <Box margin="10px 0">
+    <Box margin="10px 0" width="100%">
+      <PostReview />
       {reviews.length !== 0 ? (
-        reviews.map((review) => <ReviewBox review={review} />)
+        reviews.map((review) => <ReviewBox review={review} key={review.id} />)
       ) : (
         <ReviewEmpty />
       )}
@@ -24,14 +27,7 @@ const Review: React.FC<Props> = ({ reviews }) => {
 
 const ReviewBox = ({ review }: { review: ReviewEntity }) => {
   return (
-    <Box
-      width="100%"
-      background="rgba(177,177,177,.5)"
-      key={review.id}
-      margin="5px 0"
-      borderRadius="5px"
-      className={styles.reviewBoxContainer}
-    >
+    <Box margin="5px 0" borderRadius="5px" className={styles.reviewBoxContainer}>
       <Flex padding="10px" className={styles.reviewBoxInnerContainer}>
         <Box padding="5px" className={styles.header}>
           <Text>{review.username || 'Anonymous'}</Text>
@@ -39,7 +35,7 @@ const ReviewBox = ({ review }: { review: ReviewEntity }) => {
             {dayjs(review.createdDate).format('MMMM DD, YYYY')}
           </Text>
           <Text></Text>
-          <Text display="flex" justifyContent="flex-end" alignItems="center">
+          <Box display="flex" justifyContent="flex-end" alignItems="center">
             <StarRating
               value={review.rating}
               size={14}
@@ -47,13 +43,15 @@ const ReviewBox = ({ review }: { review: ReviewEntity }) => {
               isEdit={false}
               primaryColor="#84B7C7"
             />
-            <Text paddingLeft="10px" color="#d3d3d3" fontWeight="normal" fontSize="15px">
+            <Text paddingLeft="5px" color="#d3d3d3" fontWeight="normal">
               {review.rating}
             </Text>
-          </Text>
+          </Box>
         </Box>
         <Box>
-          <Text>{review.text}</Text>
+          <Text color="#d3d3d3" padding="5px">
+            {review.text}
+          </Text>
         </Box>
       </Flex>
     </Box>
