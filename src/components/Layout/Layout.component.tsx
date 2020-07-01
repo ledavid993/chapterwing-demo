@@ -23,8 +23,9 @@ export default function Layout({ children }: any) {
   const router = useRouter();
 
   useEffect(() => {
-    alert('hello');
-    dispatch(validateToken());
+    if (!user) {
+      dispatch(validateToken());
+    }
   }, [router]);
 
   const onSignIn = async (email: string, password: string) => {
