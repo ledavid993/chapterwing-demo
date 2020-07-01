@@ -14,7 +14,7 @@ export interface ReactStarsRatingProps {
   className?: string;
   starGap?: number;
   isArrowSubmit?: boolean;
-  onChange?: () => void;
+  onChange?: (value: number) => void;
 }
 
 export default ReactStarsRating;

@@ -69,7 +69,6 @@ const PostReview: React.FC<Props> = ({ onReviewSubmit }) => {
                 </Text>
               )}
               <StarRating
-                value={0}
                 size={14}
                 isHalf={false}
                 className={styles.starRating}
