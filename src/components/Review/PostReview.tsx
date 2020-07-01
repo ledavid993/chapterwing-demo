@@ -19,7 +19,6 @@ const PostReview = () => {
       padding="5px 12px"
       borderRadius="2px"
       flexDirection="column"
-      margin="15px 0"
     >
       <Flex justifyContent="space-between" alignItems="center" margin="5px 0">
         <Text fontWeight="bold" color="rgba(0,0,0,.7)">
@@ -34,7 +33,15 @@ const PostReview = () => {
           value={stars}
         />
       </Flex>
-      {stars > 0 && <Textarea placeholder="Enter Review Here" resize="none" minHeight="150px" />}
+      {stars > 0 && (
+        <Textarea
+          placeholder="Enter Review Here"
+          resize="none"
+          minHeight="150px"
+          paddingBottom="5px"
+          value={stars}
+        />
+      )}
     </Box>
   );
 };
