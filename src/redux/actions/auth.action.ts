@@ -80,7 +80,7 @@ export const register = (email: string, password: string) => async (
 
 export const validateToken = () => async (dispatch: any) => {
   try {
-    const decoded: { email: string; iat: number; exp: number } = authService.decodeToken();
+    const decoded: { email: string; iat: number; exp: number } = await authService.decodeToken();
 
     if (Date.now() >= decoded.exp * 1000) {
       localStorage.removeItem('accessToken');
@@ -89,7 +89,7 @@ export const validateToken = () => async (dispatch: any) => {
     dispatch({
       type: types.VALIDATE_TOKEN_SUCCESS,
       payload: {
-        data: { email: 'hello', iat: 43, exp: 45 },
+        data: decoded,
       },
     });
   } catch (e) {
