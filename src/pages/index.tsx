@@ -9,12 +9,25 @@ export default function HomePage() {
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req, ...etc }) => {
   try {
-    const res = await novelService.getPopularNovels(8, 0);
+    const res = await Promise.all([
+      novelService.getPopularNovels(8, 0),
+      novelService.getRecommendedNovels('Novel'),
+      12,
+      true,
+      true,
+    ]);
 
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
-        data: res.data,
+        data: res[0].data,
+      },
+    });
+
+    store.dispatch({
+      type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
+      payload: {
+        data: res[1].data,
       },
     });
 

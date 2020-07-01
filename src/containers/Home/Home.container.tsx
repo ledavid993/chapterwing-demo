@@ -26,9 +26,9 @@ const Home = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    dispatch(fetchRecommendedNovels(12, true, true));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchRecommendedNovels(12, true, true));
+  // }, []);
 
   const onNavigateToChapterPage = (
     novelTitle: string,
@@ -69,7 +69,6 @@ const Home = () => {
           <div className={styles.container}>
             <Showcase popularNovels={popularNovels} />
             <div className={styles.content1}>
-              <p>{JSON.stringify(novel, null, '\t')}</p>
               <p>Start hosting your novel on ChapterWing and</p>
               <p>be Discovered.</p>
             </div>
