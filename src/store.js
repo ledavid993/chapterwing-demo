@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import reducers from './redux/reducers';
 
 const bindMiddleware = (middleware) => {
-  if (true) {
+  if (process.env.NODE_ENV === 'development') {
     const { composeWithDevTools } = require('redux-devtools-extension');
     return composeWithDevTools(applyMiddleware(...middleware));
   }
