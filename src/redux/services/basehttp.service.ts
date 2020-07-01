@@ -78,7 +78,7 @@ export default class BaseHttpService {
   }
 
   decodeToken(): { email: string; iat: number; exp: number } {
-    const accessToken: string | null = this.accessToken;
+    const accessToken: string | null = this.accessToken ? this.accessToken : this.loadToken();
 
     if (accessToken) {
       return jwtDecode(accessToken);

@@ -84,10 +84,7 @@ export const validateToken = () => async (dispatch: any) => {
       type: types.VALIDATE_TOKEN_REQUEST,
     });
 
-    authService.loadToken();
     const decoded: { email: string; iat: number; exp: number } = authService.decodeToken();
-
-    console.log(Date.now() >= decoded.exp * 1000);
 
     if (Date.now() >= decoded.exp * 1000) {
       localStorage.removeItem('accessToken');
