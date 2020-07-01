@@ -86,8 +86,6 @@ export const validateToken = () => async (dispatch: any) => {
       localStorage.removeItem('accessToken');
     }
 
-    alert(JSON.stringify(decoded) + 'hello');
-
     dispatch({
       type: types.VALIDATE_TOKEN_SUCCESS,
       payload: {
