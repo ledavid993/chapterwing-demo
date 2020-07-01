@@ -79,11 +79,6 @@ export default function Layout({ children }: any) {
         onSignOut={onSignOut}
         user={user}
       />
-      {JSON.stringify(
-        useSelector((state) => state),
-        null,
-        4
-      )}
       {children}
       <Box
         backgroundColor="#c4c4c420"

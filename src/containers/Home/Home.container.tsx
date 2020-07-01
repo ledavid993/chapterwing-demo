@@ -22,13 +22,7 @@ const Home = () => {
   const { popularNovels, recommendedNovels }: NovelState = novel;
   const { user } = auth;
 
-  const dispatch = useDispatch();
-
   const router = useRouter();
-
-  // useEffect(() => {
-  //   dispatch(fetchRecommendedNovels(12, true, true));
-  // }, []);
 
   const onNavigateToChapterPage = (
     novelTitle: string,
