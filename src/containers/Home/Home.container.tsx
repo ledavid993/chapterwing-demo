@@ -69,6 +69,7 @@ const Home = () => {
           <div className={styles.container}>
             <Showcase popularNovels={popularNovels} />
             <div className={styles.content1}>
+              <p>{JSON.stringify(novel, null, '\t')}</p>
               <p>Start hosting your novel on ChapterWing and</p>
               <p>be Discovered.</p>
             </div>
