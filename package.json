@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start:dev": "export NODE_ENV=development && next dev -p 8080",
+    "start:dev": "export NODE_ENV=development && node server.js -p 8080",
     "build": "next build",
     "start": "next start",
     "tslint": "tslint -p . -c tslint.json"
@@ -18,9 +18,11 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "axios": "^0.19.2",
+    "cacheable-response": "^2.1.0",
     "clsx": "^1.1.0",
     "dayjs": "^1.8.28",
     "emotion-theming": "^10.0.27",
+    "express": "^4.17.1",
     "html-react-parser": "^0.13.0",
     "humps": "^2.0.1",
     "jwt-decode": "^2.2.0",
