@@ -84,7 +84,12 @@ export const validateToken = () => async (dispatch: any) => {
       type: types.VALIDATE_TOKEN_REQUEST,
     });
 
-    const decoded = await authService.validateToken();
+    const decoded: { email: string; iat: number; exp: number } = authService.decodeToken();
+
+    if (Date.now() >= decoded.exp * 1000) {
+      localStorage.removeItem('accessToken');
+      throw Error('Token Expired');
+    }
 
     dispatch({
       type: types.VALIDATE_TOKEN_SUCCESS,
@@ -93,6 +98,7 @@ export const validateToken = () => async (dispatch: any) => {
       },
     });
   } catch (e) {
+    console.log(e);
     dispatch({
       type: types.VALIDATE_TOKEN_FAILURE,
       payload: {

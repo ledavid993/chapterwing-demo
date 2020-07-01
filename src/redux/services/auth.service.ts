@@ -23,14 +23,6 @@ export default class AuthService extends BaseHttpService {
   async signOut() {
     this.removeToken();
   }
-
-  async validateToken() {
-    await this.post('auth/validate', {
-      accessToken: this.accessToken,
-    });
-
-    return this.decodeToken();
-  }
 }
 
 export const authService = new AuthService();

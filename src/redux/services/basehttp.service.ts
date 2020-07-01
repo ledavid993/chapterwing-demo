@@ -77,7 +77,7 @@ export default class BaseHttpService {
     localStorage.removeItem('accessToken');
   }
 
-  decodeToken() {
+  decodeToken(): { email: string; iat: number; exp: number } {
     const accessToken: string | null = this.accessToken;
 
     if (accessToken) {
