@@ -97,12 +97,8 @@ export const validateToken = () => async (dispatch: any) => {
       },
     });
   } catch (e) {
-    console.log(e);
     dispatch({
       type: types.VALIDATE_TOKEN_FAILURE,
-      payload: {
-        data: null,
-      },
     });
   }
 };
