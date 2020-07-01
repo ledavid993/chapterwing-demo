@@ -86,6 +86,8 @@ export const validateToken = () => async (dispatch: any) => {
       localStorage.removeItem('accessToken');
     }
 
+    alert(JSON.stringify(decoded) + 'hello');
+
     dispatch({
       type: types.VALIDATE_TOKEN_SUCCESS,
       payload: {
@@ -93,7 +95,6 @@ export const validateToken = () => async (dispatch: any) => {
       },
     });
   } catch (e) {
-    alert(e);
     dispatch({
       type: types.VALIDATE_TOKEN_FAILURE,
     });
