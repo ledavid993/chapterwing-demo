@@ -31,9 +31,7 @@ const MenuBar: React.FC<Props> = ({
       <div>
         <MdMenu color="white" onClick={() => onMenuBarOpen()} />
         <Link as="/" href="/">
-          <a>
-            <div>ChapterWing</div>
-          </a>
+          <div>ChapterWing</div>
         </Link>
       </div>
       {user ? (
