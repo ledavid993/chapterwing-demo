@@ -42,7 +42,7 @@ const reducer = (state = initialState, action: any) => {
       };
     }
     case types.VALIDATE_TOKEN_SUCCESS: {
-      alert(action.payload.data);
+      alert(JSON.stringify(action.payload.data));
       return {
         ...state,
         user: action.payload.data,

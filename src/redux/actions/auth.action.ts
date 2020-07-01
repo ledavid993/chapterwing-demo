@@ -89,7 +89,7 @@ export const validateToken = () => async (dispatch: any) => {
     dispatch({
       type: types.VALIDATE_TOKEN_SUCCESS,
       payload: {
-        data: decoded,
+        data: { email: 'hello', iat: 43, exp: 45 },
       },
     });
   } catch (e) {
