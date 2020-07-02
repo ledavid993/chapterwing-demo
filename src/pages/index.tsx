@@ -18,14 +18,14 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
-        data: camelizeKeys(res[0].data),
+        data: res[0].data,
       },
     });
 
     store.dispatch({
       type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
       payload: {
-        data: camelizeKeys(res[1].data),
+        data: res[1].data,
       },
     });
 
