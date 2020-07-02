@@ -29,7 +29,7 @@ const Release: React.FC<Props> = ({
         />
         <Flex flexDirection="column" justifyContent="center" padding="0 15px" width="100%">
           {showChapters &&
-            latestVolume !== 0 &&
+            latestVolume.length !== 0 &&
             latestVolume.contents.slice(0, 2).map((chapter: any, index: number) => {
               const chapterComponent = (
                 <div
