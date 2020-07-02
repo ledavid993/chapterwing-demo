@@ -16,7 +16,7 @@ const Release: React.FC<Props> = ({
   showChapters,
 }) => {
   const { tasks } = novel;
-  const latestVolume = tasks.length !== 0 ? tasks[novel.task - 1] : [];
+  const latestVolume = tasks.length !== 0 ? tasks[tasks - 1] : [];
 
   return (
     <Box w="100%" className={styles.container}>
