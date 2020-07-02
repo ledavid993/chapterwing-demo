@@ -9,12 +9,13 @@ export default function NovelPage() {
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req, query }: any) => {
   const res = await novelService.getChapter(query.novel, query.volumeTitle, query.chapterNumber);
+  const parsed = res.data.document ? JSON.parse(res.data.document) : null;
 
   const updatedRes = {
     ...res,
     data: {
       ...res.data,
-      document: JSON.parse(res.data.document),
+      document: parsed,
     },
   };
 
