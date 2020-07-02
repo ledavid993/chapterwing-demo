@@ -17,11 +17,10 @@ export default class NovelService extends BaseHttpService {
   async getRecommendedNovels(
     category: string = 'Novel',
     limit: number = 12,
-    removeDefaultImage: boolean = false,
-    isPublish: boolean = true
+    removeDefaultImage: boolean = false
   ) {
     const url = 'read/recommended';
-    return await this.get(url, { params: { category, limit, removeDefaultImage, isPublish } });
+    return await this.get(url, { params: { category, limit, removeDefaultImage } });
   }
 
   async getNovel(novelTitle: string) {

@@ -11,10 +11,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
   try {
     const res = await Promise.all([
       novelService.getPopularNovels(8, 0),
-      novelService.getRecommendedNovels('Novel'),
-      12,
-      true,
-      true,
+      novelService.getRecommendedNovels('Novel', 12, true),
     ]);
 
     store.dispatch({
