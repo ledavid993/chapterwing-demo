@@ -84,7 +84,9 @@ export const validateToken = () => async (dispatch: any) => {
 
     if (Date.now() >= decoded.exp * 1000) {
       localStorage.removeItem('accessToken');
+      throw Error();
     }
+    if (!decoded) throw Error();
 
     dispatch({
       type: types.VALIDATE_TOKEN_SUCCESS,
