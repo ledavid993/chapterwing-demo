@@ -14,19 +14,19 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
       novelService.getRecommendedNovels('Novel', 12, true),
     ]);
 
-    store.dispatch({
-      type: types.GET_POPULAR_NOVELS_SUCCESS,
-      payload: {
-        data: res[0].data,
-      },
-    });
+    // store.dispatch({
+    //   type: types.GET_POPULAR_NOVELS_SUCCESS,
+    //   payload: {
+    //     data: res[0].data,
+    //   },
+    // });
 
-    store.dispatch({
-      type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
-      payload: {
-        data: res[1].data,
-      },
-    });
+    // store.dispatch({
+    //   type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
+    //   payload: {
+    //     data: res[1].data,
+    //   },
+    // });
 
     return {};
   } catch (e) {
