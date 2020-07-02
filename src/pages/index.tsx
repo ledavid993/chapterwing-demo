@@ -2,7 +2,6 @@ import { Home } from '../containers';
 import { wrapper } from '../store';
 import { novelService } from '../redux/services';
 import * as types from '../redux/types/novel.type';
-import { camelizeKeys } from 'humps';
 
 export default function HomePage() {
   return <Home />;
@@ -18,14 +17,14 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
-        data: camelizeKeys(res[0].data),
+        data: res[0].data,
       },
     });
 
     store.dispatch({
       type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
       payload: {
-        data: camelizeKeys(res[1].data),
+        data: res[1].data,
       },
     });
 
