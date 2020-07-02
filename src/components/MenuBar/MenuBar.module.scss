@@ -28,6 +28,10 @@ $fontSize: 25px;
     }
   }
 
+  .object:hover {
+    cursor: pointer;
+  }
+
   svg {
     font-size: $fontSize;
   }

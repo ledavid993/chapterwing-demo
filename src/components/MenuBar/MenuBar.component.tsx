@@ -29,15 +29,15 @@ const MenuBar: React.FC<Props> = ({
   return (
     <Box className={styles.container} backgroundColor="primary.300">
       <div>
-        <MdMenu color="white" onClick={() => onMenuBarOpen()} />
+        <MdMenu color="white" onClick={() => onMenuBarOpen()} className={styles.object} />
         <Link as="/" href="/">
-          <div>ChapterWing</div>
+          <div className={styles.object}>ChapterWing</div>
         </Link>
       </div>
       {user ? (
-        <IoMdLogOut color="white" onClick={() => onLogOutClick()} />
+        <IoMdLogOut color="white" onClick={() => onLogOutClick()} className={styles.object} />
       ) : (
-        <IoMdLogIn color="white" onClick={() => onRegistryOpen()} />
+        <IoMdLogIn color="white" onClick={() => onRegistryOpen()} className={styles.object} />
       )}
     </Box>
   );
