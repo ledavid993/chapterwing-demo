@@ -26,6 +26,7 @@ const Release: React.FC<Props> = ({
         />
         <Flex flexDirection="column" justifyContent="center" padding="0 15px" width="100%">
           {showChapters &&
+            novel.tasks.length !== 0 &&
             novel.tasks[0].contents.slice(0, 2).map((chapter: any, index: number) => {
               const chapterComponent = (
                 <div

@@ -22,12 +22,12 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
       },
     });
 
-    // store.dispatch({
-    //   type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
-    //   payload: {
-    //     data: res[1].data,
-    //   },
-    // });
+    store.dispatch({
+      type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
+      payload: {
+        data: res[1].data,
+      },
+    });
 
     return {};
   } catch (e) {
