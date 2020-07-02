@@ -15,6 +15,9 @@ const Release: React.FC<Props> = ({
   navigateToNovelPage,
   showChapters,
 }) => {
+  const { tasks } = novel;
+  const latestVolume = tasks.length !== 0 ? tasks[novel.task - 1] : [];
+
   return (
     <Box w="100%" className={styles.container}>
       <Flex alignItems="center" height="100%">
@@ -26,18 +29,18 @@ const Release: React.FC<Props> = ({
         />
         <Flex flexDirection="column" justifyContent="center" padding="0 15px" width="100%">
           {showChapters &&
-            novel.tasks.length !== 0 &&
-            novel.tasks[0].contents.slice(0, 2).map((chapter: any, index: number) => {
+            latestVolume !== 0 &&
+            latestVolume.contents.slice(0, 2).map((chapter: any, index: number) => {
               const chapterComponent = (
                 <div
                   key={chapter.title}
                   className={styles.volumeContainer}
                   onClick={() =>
-                    navigateToChapterPage(novel.title, novel.tasks[0].title, chapter.chapterNumber)
+                    navigateToChapterPage(novel.title, latestVolume.title, chapter.chapterNumber)
                   }
                 >
                   <div className={styles.volumeTitle}>
-                    Volume {novel.tasks[0].number}- "<h4>{novel.tasks[0].title}</h4>"
+                    Volume {latestVolume.number}- "<h4>{latestVolume.title}</h4>"
                   </div>
                   <Chapter
                     likes={chapter.likes}
