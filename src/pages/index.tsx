@@ -14,6 +14,8 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
       novelService.getRecommendedNovels('Novel', 12, true),
     ]);
 
+    console.log(res);
+
     store.dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {
