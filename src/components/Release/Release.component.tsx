@@ -26,43 +26,35 @@ const Release: React.FC<Props> = ({
         />
         <Flex flexDirection="column" justifyContent="center" padding="0 15px" width="100%">
           {showChapters &&
-            novel.tasks
-              .slice(-1)[0]
-              .contents.slice(0, 2)
-              .map((chapter: any, index: number) => {
-                const chapterComponent = (
-                  <div
-                    key={chapter.title}
-                    className={styles.volumeContainer}
-                    onClick={() =>
-                      navigateToChapterPage(
-                        novel.title,
-                        novel.tasks.slice(-1)[0].title,
-                        chapter.chapterNumber
-                      )
-                    }
-                  >
-                    <div className={styles.volumeTitle}>
-                      Volume {novel.tasks.slice(-1)[0].number}- "
-                      <h4>{novel.tasks.slice(-1)[0].title}</h4>"
-                    </div>
-                    <Chapter
-                      likes={chapter.likes}
-                      title={chapter.title}
-                      chapterNumber={chapter.chapterNumber}
-                    />
+            novel.tasks[0].contents.slice(0, 2).map((chapter: any, index: number) => {
+              const chapterComponent = (
+                <div
+                  key={chapter.title}
+                  className={styles.volumeContainer}
+                  onClick={() =>
+                    navigateToChapterPage(novel.title, novel.tasks[0].title, chapter.chapterNumber)
+                  }
+                >
+                  <div className={styles.volumeTitle}>
+                    Volume {novel.tasks[0].number}- "<h4>{novel.tasks[0].title}</h4>"
                   </div>
-                );
+                  <Chapter
+                    likes={chapter.likes}
+                    title={chapter.title}
+                    chapterNumber={chapter.chapterNumber}
+                  />
+                </div>
+              );
 
-                return index !== 0 ? (
-                  <>
-                    <Divider borderColor="background.300" />
-                    {chapterComponent}
-                  </>
-                ) : (
-                  chapterComponent
-                );
-              })}
+              return index !== 0 ? (
+                <>
+                  <Divider borderColor="background.300" />
+                  {chapterComponent}
+                </>
+              ) : (
+                chapterComponent
+              );
+            })}
         </Flex>
       </Flex>
       <Flex alignItems="center" height="30px" justifyContent="space-between" margin="8px 0">

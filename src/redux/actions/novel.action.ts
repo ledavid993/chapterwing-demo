@@ -43,39 +43,6 @@ export const fetchNovel = (novelTitle: string) => async (dispatch: any) => {
   }
 };
 
-export const fetchRecommendedNovels = (
-  limit: number,
-  removeDefaultImage: boolean,
-  isPublish: boolean
-) => async (dispatch: any) => {
-  try {
-    dispatch({
-      type: types.GET_RECOMMENDED_NOVELS_REQUEST,
-    });
-
-    const res = await novelService.getRecommendedNovels(
-      'Novel',
-      limit,
-      removeDefaultImage,
-      isPublish
-    );
-
-    dispatch({
-      type: types.GET_RECOMMENDED_NOVELS_SUCCESS,
-      payload: {
-        data: res.data,
-      },
-    });
-  } catch (e) {
-    dispatch({
-      type: types.GET_RECOMMENDED_NOVELS_FAILURE,
-      payload: {
-        error: JSON.stringify(e),
-      },
-    });
-  }
-};
-
 export const fetchChapter = (
   novelTitle: string,
   volumeTitle: string,

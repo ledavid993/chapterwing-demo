@@ -14,7 +14,6 @@ import {
   ReleaseSkeleton,
 } from '@components';
 import { navigateToChapterPage, navigateToNovelPage } from '@utils/navigate';
-import { fetchRecommendedNovels } from '@redux/actions/novel.action';
 import { NovelState } from '@interface/novel.interface';
 
 const Home = () => {
