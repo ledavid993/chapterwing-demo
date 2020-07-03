@@ -22,7 +22,7 @@ interface Props {
   isOpen: boolean;
   onRegistryClose: () => void;
   onSignIn: (email: string, password: string) => void;
-  onRegister: (email: string, password: string) => void;
+  onRegister: (email: string, username: string, password: string) => void;
   pending: boolean;
   errors: string[];
 }
@@ -38,6 +38,7 @@ const Registry: React.FC<Props> = ({
   const [isSignIn, toggleSignIn] = useState(true);
   const [inputs, setInputs] = useState({
     email: '',
+    username: '',
     password: '',
     confirmPassword: '',
   });
@@ -67,7 +68,7 @@ const Registry: React.FC<Props> = ({
     if (inputs.password !== inputs.confirmPassword) {
       setConfirmPasswordError('Passwords does not match');
     } else {
-      onRegister(inputs.email, inputs.password);
+      onRegister(inputs.email, inputs.username, inputs.password);
     }
   };
 
@@ -209,7 +210,15 @@ const CreateAccount = ({
               onChange={({ target: { value, name } }: any) => onInputChange(name, value)}
             />
           </InputGroup>
-
+          <InputGroup>
+            <InputLeftElement fontSize="1.2em" children={<Icon name="email" color="gray.300" />} />
+            <Input
+              type="text"
+              placeholder="Username"
+              name="username"
+              onChange={({ target: { value, name } }: any) => onInputChange(name, value)}
+            />
+          </InputGroup>
           <InputGroup>
             <InputLeftElement fontSize="1.2em" children={<Icon name="lock" color="gray.300" />} />
             <Input

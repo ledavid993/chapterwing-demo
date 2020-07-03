@@ -44,7 +44,7 @@ export const signOut = () => async (dispatch: any) => {
   });
 };
 
-export const register = (email: string, password: string) => async (
+export const register = (email: string, username: string, password: string) => async (
   dispatch: any
 ): Promise<boolean> => {
   try {
@@ -52,7 +52,7 @@ export const register = (email: string, password: string) => async (
       type: types.GET_SIGN_IN_REQUEST,
     });
 
-    await authService.register(email, password);
+    await authService.register(email, username, password);
 
     const decoded = localStorage.getItem('accessToken') || '';
 
@@ -82,7 +82,7 @@ export const validateToken = () => async (dispatch: any) => {
   try {
     const decoded: { email: string; iat: number; exp: number } = await authService.decodeToken();
 
-    if (Date.now() >= decoded.exp * 1000) {
+    if (Date.now() >= decoded.exp * 1000 || !localStorage.getItem('accessToken')) {
       localStorage.removeItem('accessToken');
       throw Error();
     }

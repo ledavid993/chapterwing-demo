@@ -11,9 +11,10 @@ export default class AuthService extends BaseHttpService {
     this.saveToken(pathOr('', ['data', 'accessToken'], result));
   }
 
-  async register(email: string, password: string) {
+  async register(email: string, username: string, password: string) {
     const result = await this.post('auth/signup', {
       email,
+      username,
       password,
     });
 

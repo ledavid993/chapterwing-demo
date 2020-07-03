@@ -38,8 +38,8 @@ export default function Layout({ children }: any) {
     onRegistryClose();
   };
 
-  const onRegister = async (email: string, password: string) => {
-    const isSuccess = await dispatch(register(email, password));
+  const onRegister = async (email: string, username: string, password: string) => {
+    const isSuccess = await dispatch(register(email, username, password));
     if (isSuccess && !pending) {
       onRegistryClose();
     }
