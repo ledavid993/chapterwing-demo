@@ -94,6 +94,7 @@ export default function Novel() {
           <Box>
             Public Rating: <span className={styles.labelInfo}>{rating || '---'}</span>
           </Box>
+          {JSON.stringify(auth, null, 4)}
         </SimpleGrid>
         {!isEmpty(volumes) ? (
           volumes?.map((volume) => (
