@@ -36,6 +36,7 @@ const PostReview: React.FC<Props> = ({ onReviewSubmit }) => {
         message: 'You have already reviewed this novel',
       });
     } else if (statusCode) {
+      alert(statusCode);
       return;
     } else {
       toggleShowPost({
