@@ -46,7 +46,12 @@ const Chapter = () => {
           >
             Prev
           </Button>
-          <Button onClick={() => onNavigateChapter(1)}>Next</Button>
+          <Button
+            isDisabled={currentChapter.chapterNumber === currentChapter.count}
+            onClick={() => onNavigateChapter(1)}
+          >
+            Next
+          </Button>
         </Flex>
       </Box>
     </Layout>

@@ -53,6 +53,7 @@ export interface ContentsEntity {
   taskId: string;
   document?: string;
   task: VolumesEntity;
+  count?: number;
 }
 
 export interface ReviewEntity {
