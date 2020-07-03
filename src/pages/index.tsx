@@ -3,9 +3,11 @@ import { wrapper } from '../store';
 import { novelService } from '../redux/services';
 import * as types from '../redux/types/novel.type';
 import { camelizeKeys } from 'humps';
+import withErrors from '../helpers/withError';
 
-export default function HomePage() {
-  return <Home />;
+export default function HomePage({ statusCode }: any) {
+  const HomeWithErrors = withErrors(statusCode, Home);
+  return <HomeWithErrors />;
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req, ...etc }) => {
@@ -29,15 +31,12 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
       },
     });
 
-    return {};
+    return {
+      props: { statusCode: 200 },
+    };
   } catch (e) {
-    store.dispatch({
-      type: types.GET_POPULAR_NOVELS_FAILURE,
-      payload: {
-        data: 'Popular Novels Failed on server side',
-      },
-    });
-
-    return {};
+    return {
+      props: { statusCode: e.statusCode },
+    };
   }
 });

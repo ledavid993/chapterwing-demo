@@ -11,6 +11,7 @@ import Genres from './Genres/Genres.component';
 import Tags from './Tags/Tags.component';
 import NovelList from './NovelList/NovelList.component';
 import StarRating from './StarRating';
+import Error from './Error/Error';
 
 export {
   Layout,
@@ -28,4 +29,5 @@ export {
   Tags,
   NovelList,
   StarRating,
+  Error,
 };

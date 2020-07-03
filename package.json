@@ -17,6 +17,7 @@
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "@sentry/node": "^5.19.0",
     "axios": "^0.19.2",
     "cacheable-response": "^2.1.0",
     "clsx": "^1.1.0",
