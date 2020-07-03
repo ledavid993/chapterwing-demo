@@ -1,4 +1,4 @@
-import { Heading, Box } from '@chakra-ui/core';
+import { Heading, Box, Text } from '@chakra-ui/core';
 import { useSelector } from 'react-redux';
 import { Layout } from '@components';
 import { NovelState } from '@interface/novel.interface';
@@ -14,11 +14,18 @@ const Chapter = () => {
   return (
     <Layout>
       <Box className={styles.contentContainer}>
-        <Heading display="flex" justifyContent="center" alignItems="center" color="#d3d3d3">
-          {router.query.volumeTitle}
+        <Heading
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          color="#d3d3d3"
+          className={styles.volumeHeader}
+        >
+          {currentChapter.task.title}
         </Heading>
         <Heading color="white" fontSize="1.5rem" marginTop="25px">
-          Chapter {currentChapter?.chapterNumber}: {currentChapter?.title}
+          <span>Chapter {currentChapter?.chapterNumber}:</span>
+          <div>{currentChapter?.title}</div>
         </Heading>
         <Box marginTop="60px" />
         <div dangerouslySetInnerHTML={{ __html: nodesToHtml(currentChapter?.document) }} />

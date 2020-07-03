@@ -4,7 +4,7 @@ import { flatten, join } from 'ramda';
 export default function nodesToHtml(nodes: any) {
   if (!nodes) return '';
 
-  const htmlMap = nodes.content.map((outerContent: any) => {
+  const htmlMap = JSON.parse(nodes).content.map((outerContent: any) => {
     switch (outerContent.type) {
       case 'paragraph':
         if (!outerContent.content) return '<p></p>';

@@ -51,6 +51,7 @@ export interface ContentsEntity {
   views: number;
   taskId: string;
   document?: string;
+  task: VolumesEntity;
 }
 
 export interface ReviewEntity {

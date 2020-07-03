@@ -23,12 +23,8 @@ const Home = () => {
 
   const router = useRouter();
 
-  const onNavigateToChapterPage = (
-    novelTitle: string,
-    volumeTitle: string,
-    chapterNumber: number
-  ) => {
-    navigateToChapterPage(router, '/novels', novelTitle, volumeTitle, chapterNumber);
+  const onNavigateToChapterPage = (novelTitle: string, chapterNumber: number) => {
+    navigateToChapterPage(router, '/novels', novelTitle, chapterNumber);
   };
 
   const onNavigateToNovelPage = (novelTitle: string) => {

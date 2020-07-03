@@ -5,7 +5,7 @@ import { BUNNY_IMAGE_URL } from '../../constants';
 interface Props {
   novel: any;
   showChapters?: boolean;
-  navigateToChapterPage?: (novelTitle: string, volumeTitle: string, chapterNumber: number) => void;
+  navigateToChapterPage?: (novelTitle: string, chapterNumber: number) => void;
   navigateToNovelPage: (novelTitle: string) => void;
 }
 
@@ -15,8 +15,7 @@ const Release: React.FC<Props> = ({
   navigateToNovelPage,
   showChapters,
 }) => {
-  const { tasks } = novel;
-  const latestVolume = tasks[0];
+  const { contents } = novel;
 
   return (
     <Box w="100%" className={styles.container}>
@@ -29,18 +28,13 @@ const Release: React.FC<Props> = ({
         />
         <Flex flexDirection="column" justifyContent="center" padding="0 15px" width="100%">
           {showChapters &&
-            latestVolume.contents.slice(0, 2).map((chapter: any, index: number) => {
+            contents.slice(0, 2).map((chapter: any, index: number) => {
               const chapterComponent = (
                 <div
                   key={chapter.title}
                   className={styles.volumeContainer}
-                  onClick={() =>
-                    navigateToChapterPage(novel.title, latestVolume.title, chapter.chapterNumber)
-                  }
+                  onClick={() => navigateToChapterPage(novel.title, chapter.chapterNumber)}
                 >
-                  <div className={styles.volumeTitle}>
-                    Volume {latestVolume.number}- "<h4>{latestVolume.title}</h4>"
-                  </div>
                   <Chapter
                     likes={chapter.likes}
                     title={chapter.title}

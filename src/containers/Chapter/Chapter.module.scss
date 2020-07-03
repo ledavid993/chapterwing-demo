@@ -4,6 +4,12 @@
   background: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 15px;
+
+  .volumeHeader {
+    margin: 5px auto;
+    text-align: center;
+  }
+
   p {
     margin: 15px 0;
     line-height: 30px;
@@ -21,5 +27,9 @@
   .contentContainer {
     width: 80%;
     padding: 40px 60px;
+  }
+
+  .volumeHeader {
+    max-width: 60%;
   }
 }

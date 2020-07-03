@@ -1,14 +1,14 @@
-import { Chapter } from '../../../../containers';
-import { wrapper } from '../../../../store';
-import { novelService } from '../../../../redux/services';
-import * as types from '../../../../redux/types/novel.type';
+import { Chapter } from '@containers';
+import { wrapper } from '../../../store';
+import { novelService } from '@redux/services';
+import * as types from '@redux/types/novel.type';
 
 export default function NovelPage() {
   return <Chapter />;
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req, query }: any) => {
-  const res = await novelService.getChapter(query.novel, query.volumeTitle, query.chapterNumber);
+  const res = await novelService.getChapter(query.novel, query.chapterNumber);
 
   const updatedRes = {
     ...res,

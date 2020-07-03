@@ -28,8 +28,8 @@ export default class NovelService extends BaseHttpService {
     return await this.get(url);
   }
 
-  async getChapter(novelTitle: string, volumeTitle: string, chapterNumber: number) {
-    const url = `read/novel/${novelTitle}/${volumeTitle}/${chapterNumber}`;
+  async getChapter(novelTitle: string, chapterNumber: number) {
+    const url = `read/novel/${novelTitle}/${chapterNumber}`;
     return await this.get(url);
   }
 
