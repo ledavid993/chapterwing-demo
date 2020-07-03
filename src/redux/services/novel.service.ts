@@ -42,6 +42,11 @@ export default class NovelService extends BaseHttpService {
     const url = `review/${novelId}`;
     return await this.post(url, data);
   }
+
+  async likeChapter(chapterId: string) {
+    const url = `read/like/${chapterId}`;
+    return await this.put(url);
+  }
 }
 
 export const novelService = new NovelService();

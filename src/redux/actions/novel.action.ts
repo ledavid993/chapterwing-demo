@@ -114,6 +114,24 @@ export const fetchReviews = (novelId: string, offset: number, limit: number) => 
   }
 };
 
+export const likeChapter = (chapterId: string) => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: types.LIKE_CHAPTER_REQUEST,
+    });
+
+    await novelService.likeChapter(chapterId);
+
+    dispatch({
+      type: types.LIKE_CHAPTER_SUCCESS,
+    });
+  } catch (e) {
+    dispatch({
+      type: types.LIKE_CHAPTER_FAILURE,
+    });
+  }
+};
+
 export const postReview = (
   novelId: string,
   data: { text: string; rating: number }

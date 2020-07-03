@@ -54,6 +54,7 @@ export interface ContentsEntity {
   document?: string;
   task: VolumesEntity;
   count?: number;
+  userEmailLiked: string[];
 }
 
 export interface ReviewEntity {
