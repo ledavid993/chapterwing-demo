@@ -32,6 +32,7 @@ export interface Novel {
   userId: string;
 }
 export interface VolumesEntity {
+  number: any;
   id: string;
   title: string;
   category: string;

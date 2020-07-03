@@ -31,8 +31,8 @@ export default function Novel() {
     dispatch(fetchReviews(novel.id, offset, limit));
   }, [router]);
 
-  const onNavigateToChapterPage = (volumeTitle: string, chapterNumber: number) => {
-    navigateToChapterPage(router, '/novels', router.query.novel, volumeTitle, chapterNumber);
+  const onNavigateToChapterPage = (chapterNumber: number) => {
+    navigateToChapterPage(router, '/novels', router.query.novel, chapterNumber);
   };
 
   const onReviewSubmit = (
@@ -102,9 +102,8 @@ export default function Novel() {
           volumes?.map((volume, index) => (
             <Table
               key={volume.title}
-              name={`Volume ${index + 1} - ${volume.title}`}
+              name={`Volume ${volume.number} - ${volume.title}`}
               chapters={volume.contents}
-              volumeTitle={volume.title}
               onNavigatePage={onNavigateToChapterPage}
             />
           ))
