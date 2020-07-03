@@ -27,13 +27,14 @@ const Error: React.FC<Props> = ({ statusCode }) => {
 
   return (
     <Layout>
-      <Box w="100%" h="100vh">
+      <Box w="100%" h="calc(100vh - 69px)">
         <Flex
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
           textAlign="center"
           color="#d3d3d3"
+          h="100%"
         >
           {statusPage()}
         </Flex>
