@@ -35,8 +35,9 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store, req
       props: { statusCode: 200 },
     };
   } catch (e) {
+    console.log(e);
     return {
-      props: { statusCode: e.statusCode },
+      props: { statusCode: e.statusCode ? e.statusCode : 500 },
     };
   }
 });

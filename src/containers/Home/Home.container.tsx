@@ -1,6 +1,5 @@
 import { Box, Divider, Heading, Flex, Image, Button } from '@chakra-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styles from './Home.module.scss';
