@@ -94,12 +94,9 @@ export default function Novel() {
           <Box>
             Public Rating: <span className={styles.labelInfo}>{rating || '---'}</span>
           </Box>
-          <Box>
-            Feathermeter: <span className={styles.labelInfo}>---</span>
-          </Box>
         </SimpleGrid>
         {!isEmpty(volumes) ? (
-          volumes?.map((volume, index) => (
+          volumes?.map((volume) => (
             <Table
               key={volume.title}
               name={`Volume ${volume.number} - ${volume.title}`}

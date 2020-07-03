@@ -51,6 +51,7 @@ export interface ContentsEntity {
   isPublish: boolean;
   views: number;
   taskId: string;
+  likes: number;
   document?: string;
   task: VolumesEntity;
   count?: number;

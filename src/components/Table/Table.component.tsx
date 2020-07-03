@@ -24,7 +24,7 @@ const Table: React.FC<Props> = ({ name, chapters, onNavigatePage }) => {
               key={chapter.title}
               chapterNumber={chapter.chapterNumber}
               title={chapter.title}
-              likes="0"
+              likes={chapter.likes}
               navigatePage={() => onNavigatePage(chapter.chapterNumber)}
             />
           ))}
