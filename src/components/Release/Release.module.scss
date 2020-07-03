@@ -17,13 +17,6 @@
     cursor: pointer;
   }
 
-  .volumeTitle {
-    color: white;
-    font-weight: bold;
-    display: flex;
-    font-size: 12px;
-  }
-
   span {
     font-size: 10px;
     color: #d3d3d3;
@@ -41,7 +34,7 @@
 
 .volumeContainer {
   background: rgba(0, 0, 0, 0.1);
-  padding: 9px;
+  padding: 20px 9px;
   border-radius: 3px;
 }
 
@@ -51,7 +44,8 @@
 
 .chapterLabel {
   color: #d3d3d3;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: bold;
   width: 70%;
 }
 
@@ -71,7 +65,6 @@
   }
 
   .chapterLabel {
-    font-size: 13px;
-    padding-left: 5px;
+    font-size: 15px;
   }
 }

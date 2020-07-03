@@ -74,7 +74,7 @@ const Chapter = ({ likes, title, chapterNumber }: any) => (
     <Text className={styles.chapterLabel}>
       Chapter {chapterNumber}: {title}
     </Text>
-    <Box display="flex" width="30%" justifyContent="flex-end">
+    <Box display="flex" width="30%" justifyContent="flex-end" alignItems="center">
       <Image src="/icons/heart.png" alt="heart" w="20px" h="20px" />
       <span>{likes} Likes</span>
     </Box>
