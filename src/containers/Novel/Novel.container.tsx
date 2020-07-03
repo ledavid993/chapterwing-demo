@@ -83,7 +83,7 @@ export default function Novel() {
         <SimpleGrid className={styles.extraInfo}>
           <Box>
             Released:
-            <span className={styles.labelInfo}>{dayjs(createdDate).format('MMMM/DD/YYYY')}</span>
+            <span className={styles.labelInfo}>{dayjs(createdDate).format('MMMM DD, YYYY')}</span>
           </Box>
           <Box>
             Language: <span className={styles.labelInfo}>English</span>
