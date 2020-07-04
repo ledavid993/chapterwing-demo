@@ -6,8 +6,6 @@ dotenvLoad();
 
 const withNextEnv = nextEnv();
 
-const env = process.env.ENV || 'development';
-
 module.exports = withNextEnv({
   typescript: {
     // !! WARN !!

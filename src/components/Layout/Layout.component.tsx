@@ -64,7 +64,6 @@ export default function Layout({ children }: any) {
       />
       <Backdrop onClose={onMenuBarClose} isOpen={isMenuBarOpen} />
       <SideBar isOpen={isMenuBarOpen} />
-
       <Registry
         isOpen={isRegistryOpen && !user}
         onRegistryClose={onRegistryClose}
