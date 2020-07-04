@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start:dev": "export NODE_ENV=development && node server.js -p 8080",
     "build": "next build",
-    "start": "env NODE_ENV=development node server.js",
-    "start:dev-prod": "env NODE_ENV=development node server.js",
+    "start:dev": "export NODE_ENV=development && node server.js -p 8080",
+    "start:prod": "env NODE_ENV=production ENV=production node server.js",
+    "start:staging": "env NODE_ENV=production ENV=staging node server.js",
     "tslint": "tslint -p . -c tslint.json"
   },
   "husky": {

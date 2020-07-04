@@ -1,8 +1,12 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import getConfig from 'next/config';
+
+// Only holds serverRuntimeConfig and publicRuntimeConfig
+const { publicRuntimeConfig } = getConfig();
 
 export default class BaseHttpService {
-  BASE_URL = process.env.NEXT_STATIC_BASE_URL;
+  BASE_URL = publicRuntimeConfig.API;
   _accessToken: string | null = null;
 
   constructor() {}
@@ -15,6 +19,7 @@ export default class BaseHttpService {
   }
 
   async post(endpoint: string, data = {}, options = {}) {
+    console.log(publicRuntimeConfig.API);
     Object.assign(options, this.getCommonOptions());
     return axios
       .post(`${this.BASE_URL}/${endpoint}`, data, options)

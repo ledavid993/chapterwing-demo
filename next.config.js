@@ -1,9 +1,12 @@
 const nextEnv = require('next-env');
 const dotenvLoad = require('dotenv-load');
+const configs = require('./env_config.js');
 
 dotenvLoad();
 
 const withNextEnv = nextEnv();
+
+const env = process.env.ENV || 'development';
 
 module.exports = withNextEnv({
   typescript: {
@@ -12,5 +15,8 @@ module.exports = withNextEnv({
     // your project has type errors.
     // !! WARN !!
     ignoreBuildErrors: true,
+  },
+  publicRuntimeConfig: {
+    API: configs.API,
   },
 });
