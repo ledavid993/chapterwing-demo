@@ -2,15 +2,13 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 export default class BaseHttpService {
-  BASE_URL =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.NEXT_STATIC_BASE_URL;
+  BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   _accessToken: string | null = null;
 
   constructor() {}
 
   async get(endpoint: string, options = {}) {
+    console.log(process.env);
     Object.assign(options, this.getCommonOptions());
     return axios
       .get(`${this.BASE_URL}/${endpoint}`, options)
