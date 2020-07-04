@@ -16,6 +16,7 @@ export default class BaseHttpService {
   }
 
   async post(endpoint: string, data = {}, options = {}) {
+    console.log(process.env);
     Object.assign(options, this.getCommonOptions());
     return axios
       .post(`${this.BASE_URL}/${endpoint}`, data, options)
