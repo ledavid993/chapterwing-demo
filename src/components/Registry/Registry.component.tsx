@@ -14,9 +14,11 @@ import {
   ListItem,
 } from '@chakra-ui/core';
 import clsx from 'clsx';
+import { useDispatch } from 'react-redux';
 import styles from './Registry.module.scss';
 import { useEffect, useState } from 'react';
 import { isNil, isEmpty } from 'ramda';
+import { clearAuthError } from '@redux/actions/auth.action';
 
 interface Props {
   isOpen: boolean;
@@ -43,6 +45,7 @@ const Registry: React.FC<Props> = ({
     confirmPassword: '',
   });
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isOpen) {
@@ -61,6 +64,7 @@ const Registry: React.FC<Props> = ({
 
   const onClick = () => {
     toggleSignIn(!isSignIn);
+    dispatch(clearAuthError());
   };
 
   const onRegisterSubmit = () => {

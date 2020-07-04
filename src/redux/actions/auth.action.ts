@@ -100,3 +100,9 @@ export const validateToken = () => async (dispatch: any) => {
     });
   }
 };
+
+export const clearAuthError = () => (dispatch: any) => {
+  dispatch({
+    type: types.CLEAR_AUTH_ERROR,
+  });
+};
