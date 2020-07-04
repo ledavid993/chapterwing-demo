@@ -53,6 +53,7 @@ const Home = () => {
       </Head>
       <Box boxSizing="border-box">
         <Layout>
+          {console.log(process.env)}
           <HeroBanner />
           <div className={styles.container}>
             <Showcase popularNovels={popularNovels} />
