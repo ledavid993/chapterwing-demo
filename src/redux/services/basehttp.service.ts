@@ -3,19 +3,20 @@ import jwtDecode from 'jwt-decode';
 
 export default class BaseHttpService {
   BASE_URL =
-    process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.wingpen.name';
+    process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.BASE_URL;
   _accessToken: string | null = null;
 
   constructor() {}
 
   async get(endpoint: string, options = {}) {
-    // Object.assign(options, this.getCommonOptions());
+    Object.assign(options, this.getCommonOptions());
     return axios
       .get(`${this.BASE_URL}/${endpoint}`, options)
       .catch((error: any) => this.handleHttpError(error));
   }
 
   async post(endpoint: string, data = {}, options = {}) {
+    console.log(process.env);
     Object.assign(options, this.getCommonOptions());
     return axios
       .post(`${this.BASE_URL}/${endpoint}`, data, options)
