@@ -1,4 +1,4 @@
-import { Box, Divider, Heading, Flex, Image, Button } from '@chakra-ui/core';
+import { Box, Divider, Heading, Flex, Image, Button, Text } from '@chakra-ui/core';
 import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -53,6 +53,7 @@ const Home = () => {
       </Head>
       <Box boxSizing="border-box">
         <Layout>
+          <Text color="#fff">{process.env.API_ENDPOINT}</Text>
           <HeroBanner />
           <div className={styles.container}>
             <Showcase popularNovels={popularNovels} />
