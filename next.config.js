@@ -1,7 +1,4 @@
-const nextEnv = require('next-env');
-const dotenvLoad = require('dotenv-load');
-
-module.exports = nextEnv({
+module.exports = {
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -9,4 +6,4 @@ module.exports = nextEnv({
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-});
+};
