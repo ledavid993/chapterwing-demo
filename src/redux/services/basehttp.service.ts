@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 export default class BaseHttpService {
-  BASE_URL = 'https://dev.wingpen.name';
+  BASE_URL = 'https://prod.wingpen.name';
   _accessToken: string | null = null;
 
   constructor() {}
