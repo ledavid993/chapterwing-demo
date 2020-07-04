@@ -54,6 +54,12 @@ const reducer = (state = initialState, action: any) => {
         pending: false,
       };
     }
+    case types.CLEAR_AUTH_ERROR: {
+      return {
+        ...state,
+        errors: [],
+      };
+    }
     default:
       return state;
   }
