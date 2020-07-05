@@ -54,6 +54,11 @@ export default function Layout({ children }: any) {
           content="Read, write, and share novels. From indie novels to web novels. Chapterwing is a
            place for writers to share with readers and readers to discuss their favorite book"
         />
+        <script
+          data-ad-client="ca-pub-6339212630902854"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        ></script>
       </Head>
       <MenuBar
         onMenuBarOpen={onMenuBarOpen}
