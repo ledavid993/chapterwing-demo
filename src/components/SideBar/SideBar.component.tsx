@@ -103,9 +103,11 @@ const SideBar: React.FC<Props> = ({ isOpen }) => {
             );
           else if (key.includes('EX'))
             return (
-              <div className={styles.extra} key={value.name}>
-                {value.name}
-              </div>
+              <Link href={`/${value.url}`} key={value.name}>
+                <div className={styles.extra} key={value.name}>
+                  {value.name}
+                </div>
+              </Link>
             );
           else if (key.includes('sectionDivider'))
             return <Divider borderColor="background.300" key={value.name} />;
