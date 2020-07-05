@@ -1,6 +1,5 @@
 const nextEnv = require('next-env');
 const dotenvLoad = require('dotenv-load');
-const configs = require('./env_config.js');
 
 dotenvLoad();
 
@@ -15,6 +14,6 @@ module.exports = withNextEnv({
     ignoreBuildErrors: true,
   },
   publicRuntimeConfig: {
-    API: configs.API,
+    API: process.env.API,
   },
 });
