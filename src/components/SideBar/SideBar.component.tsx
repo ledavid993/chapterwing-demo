@@ -43,7 +43,7 @@ const config = {
     },
     termOfUseEX: {
       name: 'Term Of Use',
-      url: 'termofuser',
+      url: 'termOfUser',
     },
     privacyEX: {
       name: 'Privacy',

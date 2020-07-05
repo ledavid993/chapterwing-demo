@@ -1,5 +1,5 @@
-import { Library } from '@containers';
+import { Contact } from '@containers';
 
-export default function LibraryPage() {
-  return <Library />;
+export default function ContactPage() {
+  return <Contact />;
 }
