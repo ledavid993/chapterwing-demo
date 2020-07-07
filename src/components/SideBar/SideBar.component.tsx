@@ -37,17 +37,9 @@ const config = {
       name: 'Contact',
       url: 'contact',
     },
-    feedbackEX: {
-      name: 'Feedback',
-      url: 'feedback',
-    },
     termOfUseEX: {
       name: 'Term Of Use',
       url: 'termOfUse',
-    },
-    privacyEX: {
-      name: 'Privacy',
-      url: 'privacy',
     },
   },
 };
