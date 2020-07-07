@@ -18,7 +18,7 @@ export default class AuthService extends BaseHttpService {
       password,
     });
 
-    this.saveToken(pathOr('', ['data', 'accessToken'], result));
+    return result;
   }
 
   async signOut() {
