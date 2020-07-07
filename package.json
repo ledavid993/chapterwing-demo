@@ -26,6 +26,7 @@
     "dayjs": "^1.8.28",
     "dotenv-load": "^2.0.0",
     "emotion-theming": "^10.0.27",
+    "express": "^4.17.1",
     "html-react-parser": "^0.13.0",
     "humps": "^2.0.1",
     "jwt-decode": "^2.2.0",
