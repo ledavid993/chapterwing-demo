@@ -24,7 +24,11 @@ interface Props {
   isOpen: boolean;
   onRegistryClose: () => void;
   onSignIn: (email: string, password: string) => void;
-  onRegister: (email: string, username: string, password: string) => void;
+  onRegister: (
+    email: string,
+    username: string,
+    password: string
+  ) => Promise<{ statusCode: number }>;
   pending: boolean;
   errors: string[];
 }
@@ -45,6 +49,7 @@ const Registry: React.FC<Props> = ({
     confirmPassword: '',
   });
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [showSuccessRegister, toggleShowSuccessRegister] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -67,12 +72,21 @@ const Registry: React.FC<Props> = ({
     dispatch(clearAuthError());
   };
 
-  const onRegisterSubmit = () => {
+  const onRegisterSubmit = async () => {
     setConfirmPasswordError('');
     if (inputs.password !== inputs.confirmPassword) {
       setConfirmPasswordError('Passwords does not match');
     } else {
-      onRegister(inputs.email, inputs.username, inputs.password);
+      const { statusCode } = await onRegister(inputs.email, inputs.username, inputs.password);
+
+      if (statusCode === 201) {
+        toggleShowSuccessRegister(true);
+        dispatch(clearAuthError());
+      } else if (statusCode === 500) {
+        toggleShowSuccessRegister(false);
+      } else {
+        toggleShowSuccessRegister(null);
+      }
     }
   };
 
@@ -99,9 +113,14 @@ const Registry: React.FC<Props> = ({
         {isSignIn ? (
           <SignIn message=" Welcome, Please Sign in!" onInputChange={onInputChange} />
         ) : (
-          <CreateAccount message="New? Please Create an Account." onInputChange={onInputChange} />
+          <CreateAccount
+            message="New? Please Create an Account."
+            onInputChange={onInputChange}
+            showSuccessRegister={showSuccessRegister}
+          />
         )}
       </Box>
+
       <List
         margin="5px 0"
         styleType="disc"
@@ -194,9 +213,11 @@ const SignIn = ({
 const CreateAccount = ({
   message,
   onInputChange,
+  showSuccessRegister,
 }: {
   message: string;
   onInputChange: (name: string, value: string) => void;
+  showSuccessRegister: boolean;
 }) => {
   return (
     <>
@@ -242,6 +263,16 @@ const CreateAccount = ({
             />
           </InputGroup>
         </Stack>
+        {showSuccessRegister !== null &&
+          (showSuccessRegister && showSuccessRegister ? (
+            <Box className={styles.email} background="#1baf13">
+              Email Sent
+            </Box>
+          ) : (
+            <Box className={styles.email} background="#FF0000">
+              Server busy, please try again at a later time.
+            </Box>
+          ))}
       </Box>
     </>
   );

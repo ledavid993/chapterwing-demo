@@ -4,10 +4,9 @@ import { Layout } from '../../components';
 const TermOfUser = () => {
   return (
     <Layout>
-      <Box color="#d3d3d3" padding="30px" whiteSpace="pre">
+      <Box color="#d3d3d3" padding="30px" whiteSpace="pre-line">
         <Box>
           <Heading>Terms of use</Heading>
-          <Text>The goal of ChapterWing is to:</Text>
           <Box padding="15px 25px">
             <ul>
               <li>

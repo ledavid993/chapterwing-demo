@@ -4,7 +4,7 @@ import { Layout } from '../../components';
 const About = () => {
   return (
     <Layout>
-      <Box color="#d3d3d3" padding="30px" whiteSpace="pre">
+      <Box color="#d3d3d3" padding="30px" whiteSpace="pre-line">
         <Box>
           <Heading>Purpose</Heading>
           <Text>The goal of ChapterWing is to:</Text>

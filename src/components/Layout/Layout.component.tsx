@@ -5,7 +5,7 @@ import MenuBar from '../MenuBar/MenuBar.component';
 import SideBar from '../SideBar/SideBar.component';
 import Backdrop from '../Backdrop/Backdrop';
 import Registry from '../Registry/Registry.component';
-import { signIn, validateToken, register, signOut } from '../../redux/actions/auth.action';
+import { signIn, validateToken, createAccount, signOut } from '../../redux/actions/auth.action';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import SettingBox from '../SettingBox/SettingBox.component';
@@ -39,10 +39,7 @@ export default function Layout({ children }: any) {
   };
 
   const onRegister = async (email: string, username: string, password: string) => {
-    const isSuccess = await dispatch(register(email, username, password));
-    if (isSuccess && !pending) {
-      onRegistryClose();
-    }
+    return await dispatch(createAccount(email, username, password));
   };
 
   return (

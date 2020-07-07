@@ -36,46 +36,46 @@ export const signIn = (email: string, password: string) => async (
   }
 };
 
+export const createAccount = (email: string, username: string, password: string) => async (
+  dispatch: any
+): Promise<{ statusCode: number }> => {
+  try {
+    dispatch({
+      type: types.CREATE_ACCOUNT_REQUEST,
+    });
+
+    const res = await authService.register(email, username, password);
+
+    dispatch({
+      type: types.CREATE_ACCOUNT_SUCCESS,
+    });
+
+    return {
+      statusCode: res.status,
+    };
+  } catch (e) {
+    let errors = [];
+    if (typeof e.message === 'string') errors.push(e.message);
+    else errors = e.message;
+
+    dispatch({
+      type: types.CREATE_ACCOUNT_FAILURE,
+      payload: {
+        data: errors,
+      },
+    });
+    return {
+      statusCode: e.statusCode,
+    };
+  }
+};
+
 export const signOut = () => async (dispatch: any) => {
   await authService.signOut();
 
   dispatch({
     type: types.SIGN_OUT,
   });
-};
-
-export const register = (email: string, username: string, password: string) => async (
-  dispatch: any
-): Promise<boolean> => {
-  try {
-    dispatch({
-      type: types.GET_SIGN_IN_REQUEST,
-    });
-
-    await authService.register(email, username, password);
-
-    const decoded = localStorage.getItem('accessToken') || '';
-
-    dispatch({
-      type: types.GET_SIGN_IN_SUCCESS,
-      payload: {
-        data: jwtDecode(decoded),
-      },
-    });
-
-    return true;
-  } catch (e) {
-    let errors = [];
-    if (typeof e.message === 'string') errors.push(e.message);
-    else errors = e.message;
-    dispatch({
-      type: types.GET_SIGN_IN_FAILURE,
-      payload: {
-        data: errors,
-      },
-    });
-    return false;
-  }
 };
 
 export const validateToken = () => async (dispatch: any) => {

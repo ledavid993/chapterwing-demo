@@ -4,7 +4,7 @@ import { Layout } from '../../components';
 const TermOfUser = () => {
   return (
     <Layout>
-      <Box color="#d3d3d3" padding="30px" whiteSpace="pre">
+      <Box color="#d3d3d3" padding="30px" whiteSpace="pre-line">
         <Box>
           <Heading>Contact</Heading>
           <Text>chapterwing@gmail.com</Text>

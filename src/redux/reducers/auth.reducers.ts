@@ -48,12 +48,33 @@ const reducer = (state = initialState, action: any) => {
         pending: false,
       };
     }
+    case types.CREATE_ACCOUNT_REQUEST: {
+      return {
+        ...state,
+        pending: true,
+      };
+    }
+    case types.CREATE_ACCOUNT_SUCCESS: {
+      return {
+        ...state,
+        errors: [],
+        pending: false,
+      };
+    }
+    case types.CREATE_ACCOUNT_FAILURE: {
+      return {
+        ...state,
+        errors: action.payload.data,
+        pending: false,
+      };
+    }
     case types.VALIDATE_TOKEN_FAILURE: {
       return {
         ...state,
         pending: false,
       };
     }
+
     case types.CLEAR_AUTH_ERROR: {
       return {
         ...state,
