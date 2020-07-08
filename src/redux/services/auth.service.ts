@@ -21,6 +21,16 @@ export default class AuthService extends BaseHttpService {
     return result;
   }
 
+  async forgotPassword(email: string) {
+    return await this.post('auth/forgotPassword', {
+      email,
+    });
+  }
+
+  async resetPassword(accessToken: string, password: string) {
+    return await this.put(`auth/resetPassword/${accessToken}`, { password });
+  }
+
   async signOut() {
     this.removeToken();
   }

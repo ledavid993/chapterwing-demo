@@ -44,7 +44,7 @@ export const createAccount = (email: string, username: string, password: string)
       type: types.CREATE_ACCOUNT_REQUEST,
     });
 
-    const res = await authService.register(email, username, password);
+    const res: any = await authService.register(email, username, password);
 
     dispatch({
       type: types.CREATE_ACCOUNT_SUCCESS,
@@ -105,4 +105,72 @@ export const clearAuthError = () => (dispatch: any) => {
   dispatch({
     type: types.CLEAR_AUTH_ERROR,
   });
+};
+
+export const forgotPassword = (email: string) => async (
+  dispatch: any
+): Promise<{ statusCode: number }> => {
+  try {
+    dispatch({
+      type: types.FORGOT_PASSWORD_REQUEST,
+    });
+
+    const res: any = await authService.forgotPassword(email);
+
+    dispatch({
+      type: types.FORGOT_PASSWORD_SUCCESS,
+    });
+
+    return {
+      statusCode: res.status,
+    };
+  } catch (e) {
+    let errors = [];
+    if (typeof e.message === 'string') errors.push(e.message);
+    else errors = e.message;
+
+    dispatch({
+      type: types.FORGOT_PASSWORD_FAILURE,
+      payload: {
+        data: errors,
+      },
+    });
+    return {
+      statusCode: e.statusCode,
+    };
+  }
+};
+
+export const resetPassword = (accessToken: string, password: string) => async (
+  dispatch: any
+): Promise<{ statusCode: number }> => {
+  try {
+    dispatch({
+      type: types.RESET_PASSWORD_REQUEST,
+    });
+
+    const res: any = await authService.resetPassword(accessToken, password);
+
+    dispatch({
+      type: types.RESET_PASSWORD_SUCCESS,
+    });
+
+    return {
+      statusCode: res.status,
+    };
+  } catch (e) {
+    let errors = [];
+    if (typeof e.message === 'string') errors.push(e.message);
+    else errors = e.message;
+
+    dispatch({
+      type: types.RESET_PASSWORD_FAILURE,
+      payload: {
+        data: errors,
+      },
+    });
+    return {
+      statusCode: e.statusCode,
+    };
+  }
 };

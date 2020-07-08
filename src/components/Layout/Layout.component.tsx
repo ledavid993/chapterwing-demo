@@ -5,7 +5,13 @@ import MenuBar from '../MenuBar/MenuBar.component';
 import SideBar from '../SideBar/SideBar.component';
 import Backdrop from '../Backdrop/Backdrop';
 import Registry from '../Registry/Registry.component';
-import { signIn, validateToken, createAccount, signOut } from '../../redux/actions/auth.action';
+import {
+  signIn,
+  validateToken,
+  createAccount,
+  signOut,
+  forgotPassword,
+} from '../../redux/actions/auth.action';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import SettingBox from '../SettingBox/SettingBox.component';
@@ -38,8 +44,16 @@ export default function Layout({ children }: any) {
     onRegistryClose();
   };
 
-  const onRegister = async (email: string, username: string, password: string) => {
+  const onRegister = async (
+    email: string,
+    username: string,
+    password: string
+  ): Promise<{ statusCode: number }> => {
     return await dispatch(createAccount(email, username, password));
+  };
+
+  const onForgotPassword = async (email: string): Promise<{ statusCode: number }> => {
+    return await dispatch(forgotPassword(email));
   };
 
   return (
@@ -51,11 +65,6 @@ export default function Layout({ children }: any) {
           content="Read, write, and share novels. From indie novels to web novels. Chapterwing is a
            place for writers to share with readers and readers to discuss their favorite book"
         />
-        <script
-          data-ad-client="ca-pub-6339212630902854"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        ></script>
       </Head>
       <MenuBar
         onMenuBarOpen={onMenuBarOpen}
@@ -72,6 +81,7 @@ export default function Layout({ children }: any) {
         onSignIn={onSignIn}
         pending={pending}
         onRegister={onRegister}
+        onForgotPassword={onForgotPassword}
         errors={errors}
       />
       <SettingBox

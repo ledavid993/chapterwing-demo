@@ -5,5 +5,6 @@ import Library from './Library/Library.container';
 import About from './About/About';
 import Contact from './Contact/Contact';
 import TermOfUse from './TermOfUse/TermOfUse';
+import Reset from './Reset/Reset';
 
-export { Home, Novel, Chapter, Library, About, Contact, TermOfUse };
+export { Home, Novel, Chapter, Library, About, Contact, TermOfUse, Reset };
