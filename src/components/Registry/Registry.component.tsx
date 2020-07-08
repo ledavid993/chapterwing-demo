@@ -380,7 +380,7 @@ const ForgotPassword = ({
             </Box>
           ) : (
             <Box className={styles.email} background="#FF0000">
-              Something went wrong, please try again.
+              Something went wrong, please try again at later time.
             </Box>
           ))}
       </Box>
