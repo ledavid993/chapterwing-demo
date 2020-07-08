@@ -105,13 +105,18 @@ const Registry: React.FC<Props> = ({
         ...inputErrors,
         confirmPassword: 'Passwords does not match',
       });
+    } else if (inputs.email.length === 0) {
+      setInputErrors({
+        ...inputErrors,
+        email: 'Email cannot be empty',
+      });
     } else {
       const { statusCode } = await onRegister(inputs.email, inputs.username, inputs.password);
 
       if (statusCode === 201) {
         toggleShowSuccessRegister(true);
         onClose();
-      } else if (statusCode >= 400) {
+      } else if (statusCode === 500) {
         toggleShowSuccessRegister(false);
       } else {
         toggleShowSuccessRegister(null);
@@ -135,7 +140,7 @@ const Registry: React.FC<Props> = ({
         setInputErrors(initialInput);
         setInputs(initialInput);
         dispatch(clearAuthError());
-      } else if (statusCode >= 400) {
+      } else if (statusCode === 500 || statusCode === 404) {
         toggleForgotPasswordSuccess(false);
       } else {
         toggleForgotPasswordSuccess(null);
@@ -375,7 +380,7 @@ const ForgotPassword = ({
             </Box>
           ) : (
             <Box className={styles.email} background="#FF0000">
-              Something went wrong, please try again.
+              Something went wrong, please try again at later time.
             </Box>
           ))}
       </Box>
