@@ -14,7 +14,7 @@ import {
   ListItem,
 } from '@chakra-ui/core';
 import clsx from 'clsx';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Registry.module.scss';
 import { useEffect, useState } from 'react';
 import { isNil, isEmpty } from 'ramda';

@@ -1,0 +1,11 @@
+.inputField {
+  width: 80%;
+  margin: 60px auto;
+}
+
+@media (min-width: 730px) {
+  .inputField {
+    width: 50%;
+    max-width: 400px;
+  }
+}

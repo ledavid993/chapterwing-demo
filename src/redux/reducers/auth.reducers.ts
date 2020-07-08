@@ -68,6 +68,46 @@ const reducer = (state = initialState, action: any) => {
         pending: false,
       };
     }
+    case types.FORGOT_PASSWORD_REQUEST: {
+      return {
+        ...state,
+        pending: true,
+      };
+    }
+    case types.FORGOT_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        errors: [],
+        pending: false,
+      };
+    }
+    case types.FORGOT_PASSWORD_FAILURE: {
+      return {
+        ...state,
+        errors: action.payload.data,
+        pending: false,
+      };
+    }
+    case types.RESET_PASSWORD_REQUEST: {
+      return {
+        ...state,
+        pending: true,
+      };
+    }
+    case types.RESET_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        errors: [],
+        pending: false,
+      };
+    }
+    case types.RESET_PASSWORD_FAILURE: {
+      return {
+        ...state,
+        errors: action.payload.data,
+        pending: false,
+      };
+    }
     case types.VALIDATE_TOKEN_FAILURE: {
       return {
         ...state,
