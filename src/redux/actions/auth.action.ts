@@ -107,7 +107,9 @@ export const clearAuthError = () => (dispatch: any) => {
   });
 };
 
-export const forgotPassword = (email: string) => async (dispatch: any) => {
+export const forgotPassword = (email: string) => async (
+  dispatch: any
+): Promise<{ statusCode: number }> => {
   try {
     dispatch({
       type: types.FORGOT_PASSWORD_REQUEST,
@@ -139,7 +141,9 @@ export const forgotPassword = (email: string) => async (dispatch: any) => {
   }
 };
 
-export const resetPassword = (accessToken: string, password: string) => async (dispatch: any) => {
+export const resetPassword = (accessToken: string, password: string) => async (
+  dispatch: any
+): Promise<{ statusCode: number }> => {
   try {
     dispatch({
       type: types.RESET_PASSWORD_REQUEST,

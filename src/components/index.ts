@@ -12,6 +12,7 @@ import Tags from './Tags/Tags.component';
 import NovelList from './NovelList/NovelList.component';
 import StarRating from './StarRating';
 import Error from './Error/Error';
+import ErrorMessage from './ErrorMessage/ErrorMessage';
 
 export {
   Layout,
@@ -30,4 +31,5 @@ export {
   NovelList,
   StarRating,
   Error,
+  ErrorMessage,
 };
