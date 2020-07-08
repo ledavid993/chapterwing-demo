@@ -115,7 +115,6 @@ const Registry: React.FC<Props> = ({
 
       if (statusCode === 201) {
         toggleShowSuccessRegister(true);
-        onClose();
       } else if (statusCode === 500) {
         toggleShowSuccessRegister(false);
       } else {
