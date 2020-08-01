@@ -9,6 +9,8 @@ export const fetchPopularNovels = (limit: number, offset: number) => async (disp
 
     const res = await novelService.getPopularNovels(0, 8);
 
+    console.log(res);
+
     dispatch({
       type: types.GET_POPULAR_NOVELS_SUCCESS,
       payload: {

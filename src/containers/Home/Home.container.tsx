@@ -1,6 +1,5 @@
 import { Box, Divider, Heading, Flex, Image, Button, Text } from '@chakra-ui/core';
 import { useSelector } from 'react-redux';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styles from './Home.module.scss';
 import {
@@ -14,6 +13,7 @@ import {
 } from '@components';
 import { navigateToChapterPage, navigateToNovelPage } from '@utils/navigate';
 import { NovelState } from '@interface/novel.interface';
+import { NextSeo } from 'next-seo';
 
 const Home = () => {
   const { novel, auth }: any = useSelector((state) => state);
@@ -48,9 +48,11 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        <title>ChapterWing - Homepage</title>
-      </Head>
+      <NextSeo
+        title="ChapterWing- Homepage"
+        description="Read, write, and share novels. From indie novels to web novels. ChapterWing is a
+          place for writers to share with readers and readers to discuss their favorite book"
+      />
       <Box boxSizing="border-box">
         <Layout>
           <Text color="#fff">{process.env.API_ENDPOINT}</Text>

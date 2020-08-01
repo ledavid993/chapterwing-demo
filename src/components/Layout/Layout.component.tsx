@@ -1,6 +1,5 @@
 import { useDisclosure, Box, Text } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import Head from 'next/head';
 import MenuBar from '../MenuBar/MenuBar.component';
 import SideBar from '../SideBar/SideBar.component';
 import Backdrop from '../Backdrop/Backdrop';
@@ -58,15 +57,6 @@ export default function Layout({ children }: any) {
 
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          key="title"
-          name="description"
-          content="Read, write, and share novels. From indie novels to web novels. Chapterwing is a
-           place for writers to share with readers and readers to discuss their favorite book"
-        />
-      </Head>
       <MenuBar
         onMenuBarOpen={onMenuBarOpen}
         onRegistryOpen={onRegistryOpen}

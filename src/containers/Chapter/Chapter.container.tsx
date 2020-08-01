@@ -9,7 +9,7 @@ import { navigateToChapterPage } from '../../utils/navigate';
 import { likeChapter } from '@redux/actions/novel.action';
 import { contains } from 'ramda';
 import { useState, useEffect } from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 const Chapter = () => {
   const { novel, auth }: any = useSelector((state) => state);
@@ -18,6 +18,22 @@ const Chapter = () => {
   const [hasLike, setHasLike] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const makeChapterSchema = () => {
+    return {
+      '@context': 'http://schema.org',
+      '@type': 'Chapters',
+      createdDate: currentChapter?.createdDate,
+      updatedDate: currentChapter?.updatedDate,
+      volume: currentChapter?.task?.title,
+      title: currentChapter.title,
+      likes: currentChapter.userEmailLiked,
+      chapterNumber: currentChapter.chapterNumber,
+      novelTitle: router?.query?.novel,
+      username: novel?.author,
+      content: currentChapter?.document,
+    };
+  };
 
   useEffect(() => {
     if (user) {
@@ -40,7 +56,13 @@ const Chapter = () => {
 
   return (
     <Layout>
+      <NextSeo title={`${router.query.novel}`} />
       <Box className={styles.contentContainer}>
+        <script
+          key={`chapterJSON-${currentChapter.id}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(makeChapterSchema()) }}
+        />
         <Box
           display="flex"
           justifyContent="center"
