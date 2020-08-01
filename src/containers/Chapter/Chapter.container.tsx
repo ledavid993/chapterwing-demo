@@ -1,4 +1,4 @@
-import { Heading, Box, Image, Flex, Button } from '@chakra-ui/core';
+import { Heading, Box, Image, Flex, Button, Text } from '@chakra-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { Layout } from '@components';
 import { NovelState } from '@interface/novel.interface';
@@ -9,6 +9,7 @@ import { navigateToChapterPage } from '../../utils/navigate';
 import { likeChapter } from '@redux/actions/novel.action';
 import { contains } from 'ramda';
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 
 const Chapter = () => {
   const { novel, auth }: any = useSelector((state) => state);
@@ -40,19 +41,25 @@ const Chapter = () => {
   return (
     <Layout>
       <Box className={styles.contentContainer}>
-        <Heading
+        <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
+          flexDirection="column"
           color="#d3d3d3"
           className={styles.volumeHeader}
         >
-          {currentChapter.task.title}
-        </Heading>
+          <Heading margin="0" fontSize="22px">
+            {router.query.novel}
+          </Heading>
+          <Heading fontSize="20px">{currentChapter.task.title}</Heading>
+        </Box>
+
         <Heading color="white" fontSize="1.5rem" marginTop="25px">
           <span>Chapter {currentChapter?.chapterNumber}:</span>
           <div>{currentChapter?.title}</div>
         </Heading>
+
         <Box marginTop="60px" />
         <div dangerouslySetInnerHTML={{ __html: nodesToHtml(currentChapter?.document) }} />
         <Flex justifyContent="space-between" marginTop="60px">

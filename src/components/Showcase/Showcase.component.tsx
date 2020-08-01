@@ -16,7 +16,7 @@ const Showcase: React.FC<Props> = ({ style, popularNovels }) => {
         <Box className={styles.container} style={style}>
           <div className={styles.heading}>
             <img src="/icons/feather.png" alt="feather" />
-            <span>Popular Releases</span>
+            <span>Trending Releases</span>
           </div>
           <Grid className={styles.grid}>
             {popularNovels.map((novel) => (
@@ -33,9 +33,7 @@ const Showcase: React.FC<Props> = ({ style, popularNovels }) => {
             ))}
           </Grid>
         </Box>
-      ) : (
-        <ShowcaseSkeleton style={style} />
-      )}
+      ) : null}
     </>
   );
 };

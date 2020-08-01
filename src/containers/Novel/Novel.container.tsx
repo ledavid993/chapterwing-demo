@@ -22,13 +22,16 @@ export default function Novel() {
   } = novelState;
   const { user } = auth;
   const { title, author, createdDate, rating, image, description } = novel;
-  const [offset, setOffset] = useState(0);
+  const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const offset = (page - 1) * limit + 1;
+
   useEffect(() => {
     dispatch(fetchReviews(novel.id, offset, limit));
+    setPage(page + 1);
   }, [router]);
 
   const onNavigateToChapterPage = (chapterNumber: number) => {
@@ -42,11 +45,16 @@ export default function Novel() {
     return dispatch(postReview(novel.id, { text, rating }));
   };
 
+  const showMoreReviews = () => {
+    dispatch(fetchReviews(novel.id, offset, limit));
+    setPage(page + 1);
+  };
+
   return (
     <Layout>
       <Head>
         <title>{title}</title>
-        <meta name={title} content={description} />
+        <meta name={title} content={description} key="title" />
       </Head>
       <Box className={styles.imageBanner}>
         <div className={styles.shade} />
@@ -118,18 +126,14 @@ export default function Novel() {
         <Divider w="90%" margin="30px auto" borderColor="background.300" />
         <Box>
           <Header fontSize="14px">Reviews</Header>
-          {!loading ? (
-            <Review
-              reviews={reviews.results}
-              count={reviews.count}
-              onReviewSubmit={onReviewSubmit}
-              isAuth={user || false}
-            />
-          ) : (
-            <Flex justifyContent="center" alignItems="center">
-              <Spinner size="lg" />
-            </Flex>
-          )}
+          <Review
+            reviews={reviews.results}
+            count={reviews.count}
+            onReviewSubmit={onReviewSubmit}
+            isAuth={user || false}
+            loading={loading}
+            showMoreReviews={showMoreReviews}
+          />
         </Box>
         {/* <Box>
           <Header fontSize="14px">Discussions</Header>

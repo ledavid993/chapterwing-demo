@@ -92,19 +92,29 @@ export const fetchNovels = (params: { offset: number; limit: number; search?: st
 };
 
 export const fetchReviews = (novelId: string, offset: number, limit: number) => async (
-  dispatch: any
+  dispatch: any,
+  getState: any
 ) => {
   try {
     dispatch({
       type: types.GET_REVIEWS_REQUEST,
     });
 
+    const {
+      novel: {
+        reviews: { results },
+      },
+    } = getState();
+
     const res = await novelService.getReviews(novelId, offset, limit);
+
+    const updateReview = res.data.results.length !== 0 ? results.concat(res.data.results) : results;
 
     dispatch({
       type: types.GET_REVIEWS_SUCCESS,
       payload: {
-        data: res.data,
+        count: res.data.count,
+        results: updateReview,
       },
     });
   } catch (e) {

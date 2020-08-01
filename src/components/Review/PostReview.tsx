@@ -1,6 +1,7 @@
 import { Box, Text, Textarea, Flex, Button } from '@chakra-ui/core';
 import { StarRating } from '..';
 import styles from './Review.module.scss';
+import clsx from 'clsx';
 import { FaCheck } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 
@@ -26,7 +27,7 @@ const PostReview: React.FC<Props> = ({ onReviewSubmit }) => {
   };
 
   const onSubmit = async () => {
-    if (text.trim().length < 100) return;
+    if (text.trim().length < 100 || text.trim().length > 1000) return;
     const { success, statusCode } = await onReviewSubmit(text, rating);
 
     if (statusCode === 409) {
@@ -108,7 +109,14 @@ const PostReview: React.FC<Props> = ({ onReviewSubmit }) => {
               fontSize="11px"
               color="rgba(0,0,0,.4)"
             >
-              minimum of 100 characters ({text.trim().length})
+              <span
+                className={clsx(
+                  (text.trim().length < 100 || text.trim().length > 1000) && styles['error'],
+                  !(text.trim().length < 100 || text.trim().length > 1000) && styles['ok']
+                )}
+              >
+                minimum of 100 characters & maximum of 1000 characters ({text.trim().length})
+              </span>
             </Text>
             <Button size="sm" variantColor="primary" onClick={() => onSubmit()}>
               Submit
