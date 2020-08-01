@@ -12,7 +12,7 @@ class MyApp extends App {
     return (
       <>
         <DefaultSeo
-          canonical={process.env.CANONICAL || ''}
+          canonical="https://chapterwing.com"
           twitter={{
             handle: '@ChapterWing',
             site: '@ChapterWing',

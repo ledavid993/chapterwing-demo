@@ -9,7 +9,6 @@ const configs = {
   },
   production: {
     API: 'https://prod.wingpen.name',
-    CANONICAL: 'https://chapterwing.com',
   },
 }[env];
 
