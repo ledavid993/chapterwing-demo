@@ -11,9 +11,8 @@ import {
   List,
   ListItem,
 } from '@chakra-ui/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Layout } from '@components';
 import styles from './Reset.module.scss';
 import { resetPassword, clearAuthError } from '../../redux/actions/auth.action';
 import { useRouter } from 'next/router';
@@ -30,6 +29,10 @@ const Reset = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  useEffect(() => {
+    localStorage.removeItem('accessToken');
+  }, []);
+
   const onInputChange = (name: string, value: string) => {
     setInputs({
       ...inputs,
@@ -37,7 +40,7 @@ const Reset = () => {
     });
   };
 
-  const onSubmitPassword = () => {
+  const onSubmitPassword = async () => {
     setPasswordError('');
     dispatch(clearAuthError());
     if (inputs.password.length === 0 || inputs.confirmPassword.length === 0) {
@@ -45,7 +48,12 @@ const Reset = () => {
     } else if (inputs.password !== inputs.confirmPassword) {
       setPasswordError('Password do not match');
     } else {
-      dispatch(resetPassword(router.query.accessToken as string, inputs.password));
+      const { statusCode }: { statusCode: number } = await dispatch(
+        resetPassword(router.query.accessToken as string, inputs.password)
+      );
+      if (statusCode === 200) {
+        router.push('/');
+      }
     }
   };
 
