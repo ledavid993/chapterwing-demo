@@ -1,7 +1,7 @@
 import * as types from '../types/novel.type';
-import { CurrentNovel } from '../../interface/novel.interface';
+import { NovelState } from '../../interface/novel.interface';
 
-const initialState: CurrentNovel = {
+const initialState: NovelState = {
   popularNovels: [],
   recommendedNovels: [],
   library: { count: 0, results: [] },
@@ -116,7 +116,11 @@ const reducer = (state = initialState, action: any) => {
     case types.GET_REVIEWS_SUCCESS: {
       return {
         ...state,
-        reviews: action.payload.data,
+        reviews: {
+          ...state.reviews,
+          count: action.payload.count,
+          results: action.payload.results,
+        },
         loading: false,
       };
     }

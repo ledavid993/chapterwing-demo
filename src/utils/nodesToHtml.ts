@@ -11,7 +11,13 @@ export default function nodesToHtml(nodes: any) {
         const innerContent = outerContent.content.map((node: any) => {
           switch (node.type) {
             case 'text':
-              return node.text;
+              let text = node.text;
+              if (node.marks !== undefined) {
+                node.marks.forEach(({ type }: { type: string }) => {
+                  text = `<${type}>${text}</${type}>`;
+                });
+              }
+              return text;
             case 'hard_break':
               return '<br>';
             default:

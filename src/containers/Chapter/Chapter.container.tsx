@@ -1,4 +1,4 @@
-import { Heading, Box, Image, Flex, Button } from '@chakra-ui/core';
+import { Heading, Box, Image, Flex, Button, Text } from '@chakra-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { Layout } from '@components';
 import { NovelState } from '@interface/novel.interface';
@@ -9,6 +9,7 @@ import { navigateToChapterPage } from '../../utils/navigate';
 import { likeChapter } from '@redux/actions/novel.action';
 import { contains } from 'ramda';
 import { useState, useEffect } from 'react';
+import { NextSeo } from 'next-seo';
 
 const Chapter = () => {
   const { novel, auth }: any = useSelector((state) => state);
@@ -17,6 +18,22 @@ const Chapter = () => {
   const [hasLike, setHasLike] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const makeChapterSchema = () => {
+    return {
+      '@context': 'http://schema.org',
+      '@type': 'Chapters',
+      createdDate: currentChapter?.createdDate,
+      updatedDate: currentChapter?.updatedDate,
+      volume: currentChapter?.task?.title,
+      title: currentChapter.title,
+      likes: currentChapter.userEmailLiked,
+      chapterNumber: currentChapter.chapterNumber,
+      novelTitle: router?.query?.novel,
+      username: novel?.author,
+      content: currentChapter?.document,
+    };
+  };
 
   useEffect(() => {
     if (user) {
@@ -39,20 +56,32 @@ const Chapter = () => {
 
   return (
     <Layout>
+      <NextSeo title={`${router.query.novel}`} />
       <Box className={styles.contentContainer}>
-        <Heading
+        <script
+          key={`chapterJSON-${currentChapter.id}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(makeChapterSchema()) }}
+        />
+        <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
+          flexDirection="column"
           color="#d3d3d3"
           className={styles.volumeHeader}
         >
-          {currentChapter.task.title}
-        </Heading>
+          <Heading margin="0" fontSize="22px">
+            {router.query.novel}
+          </Heading>
+          <Heading fontSize="20px">{currentChapter.task.title}</Heading>
+        </Box>
+
         <Heading color="white" fontSize="1.5rem" marginTop="25px">
           <span>Chapter {currentChapter?.chapterNumber}:</span>
           <div>{currentChapter?.title}</div>
         </Heading>
+
         <Box marginTop="60px" />
         <div dangerouslySetInnerHTML={{ __html: nodesToHtml(currentChapter?.document) }} />
         <Flex justifyContent="space-between" marginTop="60px">

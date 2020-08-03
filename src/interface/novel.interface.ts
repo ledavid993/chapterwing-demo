@@ -6,6 +6,7 @@ export interface NovelState {
   currentNovel: CurrentNovel;
   loading: boolean;
   currentChapter: ContentsEntity;
+  error: any;
 }
 
 export interface CurrentNovel {

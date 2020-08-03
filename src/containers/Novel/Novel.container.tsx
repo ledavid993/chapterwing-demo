@@ -1,7 +1,7 @@
 import { Box, Image, Heading, Text, SimpleGrid, Divider, Flex, Spinner } from '@chakra-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { Layout, Header, Table, Review, Genres, Tags } from '@components';
 import styles from './Novel.module.scss';
@@ -10,6 +10,7 @@ import { isEmpty } from 'ramda';
 import { useEffect, useState } from 'react';
 import { fetchReviews, postReview } from '@redux/actions/novel.action';
 import { navigateToChapterPage } from '@utils/navigate';
+import { BUNNY_IMAGE_URL } from '../../constants';
 
 export default function Novel() {
   const { novel: novelState, auth }: { novel: NovelState; auth: any } = useSelector(
@@ -21,14 +22,17 @@ export default function Novel() {
     currentNovel: { novel, volumes },
   } = novelState;
   const { user } = auth;
-  const { title, author, createdDate, rating, image, description } = novel;
-  const [offset, setOffset] = useState(0);
+  const { title, author, createdDate, rating, image, description, genres, tags } = novel;
+  const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const offset = (page - 1) * limit + 1;
+
   useEffect(() => {
     dispatch(fetchReviews(novel.id, offset, limit));
+    setPage(page + 1);
   }, [router]);
 
   const onNavigateToChapterPage = (chapterNumber: number) => {
@@ -42,12 +46,38 @@ export default function Novel() {
     return dispatch(postReview(novel.id, { text, rating }));
   };
 
+  const showMoreReviews = () => {
+    dispatch(fetchReviews(novel.id, offset, limit));
+    setPage(page + 1);
+  };
+
   return (
     <Layout>
-      <Head>
-        <title>{title}</title>
-        <meta name={title} content={description} />
-      </Head>
+      <NextSeo
+        title={title}
+        description={description?.slice(0, 150)}
+        openGraph={{
+          title,
+          description,
+          url: `https://chapterwing.com/novels/${title}`,
+          type: 'book',
+          profile: {
+            username: author,
+          },
+          book: {
+            releaseDate: createdDate,
+            tags: genres.concat(tags || ['']),
+          },
+          images: [
+            {
+              url: `${BUNNY_IMAGE_URL}/${novel.image}`,
+              width: 850,
+              height: 650,
+              alt: 'Cover of the book',
+            },
+          ],
+        }}
+      />
       <Box className={styles.imageBanner}>
         <div className={styles.shade} />
         <Image src="/wood.webp" h="100%" w="100%" alt="background" fallbackSrc="/wood.jpg" />
@@ -118,18 +148,14 @@ export default function Novel() {
         <Divider w="90%" margin="30px auto" borderColor="background.300" />
         <Box>
           <Header fontSize="14px">Reviews</Header>
-          {!loading ? (
-            <Review
-              reviews={reviews.results}
-              count={reviews.count}
-              onReviewSubmit={onReviewSubmit}
-              isAuth={user || false}
-            />
-          ) : (
-            <Flex justifyContent="center" alignItems="center">
-              <Spinner size="lg" />
-            </Flex>
-          )}
+          <Review
+            reviews={reviews.results}
+            count={reviews.count}
+            onReviewSubmit={onReviewSubmit}
+            isAuth={user || false}
+            loading={loading}
+            showMoreReviews={showMoreReviews}
+          />
         </Box>
         {/* <Box>
           <Header fontSize="14px">Discussions</Header>

@@ -1,12 +1,11 @@
-import { Box, Flex, Text } from '@chakra-ui/core';
+import { Box, Flex, Text, Button, Spinner } from '@chakra-ui/core';
 import { TiMessages } from 'react-icons/ti';
+import React, { useState } from 'react';
 import dayjs from 'dayjs';
-import ReactStarsRating from 'react-awesome-stars-rating';
 import { ReviewEntity } from '@interface/novel.interface';
 import styles from './Review.module.scss';
 import { StarRating } from '..';
 import PostReview from './PostReview';
-import { useState } from 'react';
 
 interface Props {
   reviews: ReviewEntity[];
@@ -16,9 +15,18 @@ interface Props {
     rating: number
   ) => Promise<{ success: boolean; statusCode?: number }>;
   isAuth: boolean;
+  loading: boolean;
+  showMoreReviews: () => void;
 }
 
-const Review: React.FC<Props> = ({ reviews, count, onReviewSubmit, isAuth }) => {
+const Review: React.FC<Props> = ({
+  reviews,
+  count,
+  onReviewSubmit,
+  isAuth,
+  loading,
+  showMoreReviews,
+}) => {
   return (
     <Box margin="10px 0" width="100%">
       {reviews.length !== 0 ? (
@@ -26,6 +34,26 @@ const Review: React.FC<Props> = ({ reviews, count, onReviewSubmit, isAuth }) => 
       ) : (
         <ReviewEmpty />
       )}
+      <Flex justifyContent="center" marginTop="10px">
+        {reviews.length + 1 < count ? (
+          <>
+            {!loading ? (
+              <Button
+                fontSize="12px"
+                w="80%"
+                variantColor="primary"
+                onClick={() => showMoreReviews()}
+              >
+                Show More
+              </Button>
+            ) : (
+              <Flex justifyContent="center" alignItems="center">
+                <Spinner size="lg" />
+              </Flex>
+            )}
+          </>
+        ) : null}
+      </Flex>
       {isAuth && <PostReview onReviewSubmit={onReviewSubmit} />}
     </Box>
   );
