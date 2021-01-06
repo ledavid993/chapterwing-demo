@@ -19,7 +19,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@sentry/node": "^5.19.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cacheable-response": "^2.1.0",
     "clsx": "^1.1.0",
     "cross-env": "^7.0.2",
